@@ -1,0 +1,447 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none; 
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    color: #272727;
+}
+
+body{
+    background-image: url(../images/bg.jpg);
+    background-repeat: repeat;
+    background-position: top left;	
+}
+
+#upper-header{
+    background-color: #1b1b1b;
+    height: 9px;
+    width: 100%;
+    display: block;
+}
+
+#wrapper{
+    width: 907px;
+    margin: 0 auto;
+}
+
+#social-network{
+    float: left;
+    position: relative;
+    display: block;
+    top: 25px;
+}
+
+#social-network .facebook{
+    background-image: url(../images/facebook-icon.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+#social-network .twitter{
+    background-image: url(../images/twitter-icon.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+#social-network .linkedin{
+    background-image: url(../images/linkedin-icon.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+#social-network .youtube{
+    background-image: url(../images/youtube-icon.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+}
+
+.arabic-link{
+    background-image: url(../images/arabic-link.png);
+    width: 65px;
+    height: 32px;
+    display:block;
+    float: right;
+    position: relative;
+    right: 0px;
+    top: 25px;
+}
+
+.clear{
+    clear: both;
+    height: 1px;
+    display: block;
+}
+
+#top-menu{
+    float: left;
+    position: relative;
+    top: 40px;
+}
+
+#top-menu .header-left{
+    background-image: url(../images/header-left.png);
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 35px;
+    display: block;
+    float: left;
+}
+
+#top-menu .header-middle{
+    background-image: url(../images/header-middle.png);
+    background-repeat: repeat-x;
+    height: 35px;
+    width: 887px;
+    display: block;
+    float: left;
+}
+
+#top-menu .header-right{
+    background-image: url(../images/header-right.png);
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 35px;
+    display: block;
+    float: left;
+}
+
+#top-menu .header-middle ul{
+    margin-left: 10px;	
+}
+
+#top-menu .header-middle ul li{
+    display: inline-block;	
+    position: relative;
+    top: 7px;
+}
+
+#top-menu .header-middle ul .menu-separator{
+    color: #000;
+    font-size: 13.5px;
+    position: relative;
+    top: 7px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#top-menu .header-middle ul li a{
+    font-size: 13px;
+    color: #FFF;
+    text-decoration: none;
+}
+
+#top-menu .header-middle ul li a:hover{
+    color: #c9dbff;
+}
+
+#logo-banner{
+    position: relative;
+    top: 39px;
+}
+
+.nahdit-mist-group-logo{
+    background-image: url(../images/nahdit-misr-group.jpg);
+    background-repeat: no-repeat;
+    width: 247px;
+    height: 300px;
+    display: block;
+    float: left;
+}
+
+.banner{
+    float: left;
+    width: 660px;
+    height: 300px;
+    display: block;
+    float: left;
+}
+
+#search-box{
+    float: left;	
+    position: relative;
+    top: 38px;
+}
+
+#search-box .search-left{
+    background-image: url(../images/search-left.png);
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 65px;
+    display: block;
+    float: left;
+}
+
+#search-box .search-middle{
+    background-image: url(../images/search-middle.png);
+    background-repeat: repeat-x;
+    width: 887px;
+    height: 65px;
+    display: block;
+    float: left;
+}
+
+#search-box .search-right{
+    background-image: url(../images/search-right.png);
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 65px;
+    display: block;
+    float: left;
+}
+
+#content{
+    margin-top: 60px;
+}
+
+#content .left{
+    width: 180px;
+    margin-right: 22px;
+    display: block;
+    float: left;
+}
+
+#content .right{
+    width: 700px;
+    display: block;
+    float: left;
+}
+
+#content .left .bar-title{
+    background-image: url(../images/left-bar-title-bg.png);
+    background-repeat: no-repeat;
+    width: 161px;
+    height: 25px;
+    display: block;	
+    margin-top: 15px;
+}
+#content .left .bar-title span{
+    position: relative;
+    left: 5px;
+    top: 3px;
+    color: #FFF;
+    font-size: 14px;
+}
+
+#content .left ul{
+    margin-left: 18px;	
+    margin-top: 10px;
+}
+#content .left ul li{
+    color: #272727;
+    margin-top: 3px;
+    padding-bottom: 3px;
+    border-bottom: dashed #858585 1px;
+}
+#content .left ul li:last-child{
+    border-bottom: none;	
+}
+#content .left img{
+    margin-top: 15px;	
+}
+
+#content .right .about-us{
+
+}
+#content .right .about-us .about-us-left{
+    width: 190px;	
+    float: left;
+}
+#content .right .about-us .about-us-left .home-title{
+    color: #001845;
+    font-size: 23px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+#content .right .about-us .about-us-right{
+    margin-left: 45px;
+    float: left;
+    width: 465px;
+}
+#content .right .about-us .about-us-right p{
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+.home-news{
+    margin-top: 15px;	
+}
+
+.home-news .news-home-title{
+    color: #323232;
+    font-size: 14px;
+    border-bottom: 1px dashed #858585;
+}
+
+.home-news .news-box{
+    width: 220px;
+    float: left;
+    margin-top: 10px;
+    margin-right: 13px;
+}
+.home-news .news-box:last-child{
+    margin-right: 0px;
+}
+.home-news .news-box .title{
+    color: #001845;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.home-news .news-box p{
+    margin-top: 5px;	
+}
+
+.home-media-title{
+    background-image: url(../images/home-media-title-bg.jpg);
+    background-repeat: no-repeat;
+    width: 703px;
+    height: 25px;
+    display: block;
+    margin-top: 15px;
+}
+.home-media-title span{
+    color: #c0c0c0;
+    font-size: 14px;
+    position: relative;
+    top: 3px;
+    left: 7px;
+}
+
+.home-media{
+    background-image: url(../images/home-media.png);
+    height: 152px;
+    background-repeat: repeat-x;
+    width: 703px;
+    display: block;
+}
+
+#footer{
+    background-image: url(../images/footer-bg.png);
+    background-repeat: repeat-x;
+    height: 460px;
+    width: 100%;
+    margin-top: 60px;
+}
+
+#footer .wrapper{
+    background-image: url(../images/nahdit-misr-statue.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    display: block;
+    width: 907px;
+    height: 390px;
+    margin: 0 auto;
+}
+
+#footer .wrapper ul{
+    position: relative;
+    float: left;
+    margin-right: 15px;
+    width: 164px;
+    display: block;
+    top: 60px;
+    margin-right: 50px;
+}
+
+#footer .wrapper ul .title{	
+    background-image: url(../images/footer-title-bg.png);
+    width: 162px;
+    height: 24px;
+    list-style: none;
+    margin-left: -14px;
+}
+#footer .wrapper ul .sub-title{		
+    list-style: none;
+    margin-left: -5px;
+    font-size: 12px;
+    color: #828282;
+    margin-top: 10px;
+}
+#footer .wrapper ul .title span{
+    position: relative;
+    top: 3px;
+    left: 10px;
+    color: #828282;
+    font-size: 13px;
+}
+#footer .wrapper ul li{
+    margin-left: 20px;
+    margin-bottom: 7px;
+    color: #6f6f6f;
+}
+
+#footer .wrapper ul li a{
+    color: #6f6f6f;
+    font-size: 11px;
+    text-decoration: none;
+}
+#footer .wrapper ul li a:hover{
+    text-decoration:underline;	
+}
+
+#footer .wrapper .copyrights{
+    width: 350px;
+    margin: 0 auto;
+    top: 110px;
+    position: relative;
+    color: #676767;
+    font-size: 11px;
+}
+#footer .wrapper .copyrights a{
+    color: #676767;
+    font-size: 11px;
+}
+.page-title{
+    font-size: 14px;
+    margin-bottom: 13px;
+    text-transform: capitalize;
+}
+.news-title{
+    color: #001845;
+    font-size: 13px;
+    text-decoration: none;
+}
+.more{
+    color: #001845
+}
+.news-separator {
+    border-bottom: 1px dashed #272727;
+    clear: both;
+    height: 1px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+.page-brief{
+    margin-bottom: 30px;
+}
+.img-box{
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.full-img{
+    padding: 20px;
+}
+.full-img img{
+    width: 660px;
+}
+/*.txt-box{
+    float: left;
+}*/
