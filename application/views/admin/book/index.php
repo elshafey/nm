@@ -31,6 +31,6 @@
     <li>&nbsp;</li>
 </ul>
 
-<?php build_grid(array('title_en-us', 'title_ar-eg','subcategory_name','category_name'), 'books', '','1','admin/book/books_list/',false) ?>
+<?php build_grid(array('title_en-us', 'title_ar-eg','subcategory_name','category_name','is_latest_release','is_most_popular'), 'books', '','1','admin/book/books_list/',false) ?>
 <?php build_grid(array('name_en-us', 'name_ar-eg','category_name'), 'subcategories', '','2','admin/book/subcategories_list/',false) ?>
 <?php build_grid(array('name_en-us', 'name_ar-eg'), 'categories', '','3','admin/book/categories_list/',false) ?>

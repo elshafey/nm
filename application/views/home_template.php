@@ -7,7 +7,12 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/coolMenu.css"/>
         <?php echo $_styles ?>
 
-        <script src="<?php echo base_url(); ?>layout/js/jquery/jquery-1.7.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>layout/js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>layout/js/jquery/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>layout/js/jquery/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>layout/js/jquery/jquery.touchSwipe.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>layout/js/jquery/jquery.transit.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>layout/js/jquery/jquery.ba-throttle-debounce.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>layout/js/content.js" type="text/javascript"></script>
         <?php echo $_scripts ?>
     </head>

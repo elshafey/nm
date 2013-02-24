@@ -28,7 +28,10 @@ class Home extends My_Controller {
         $this->data['home_page'] = StaticPagesTable::getPage('home');
         $this->data['news'] = NewsTable::getLatest();
         $this->data['banners'] = BannersTable::getList(true);
-//        pre_print($this->data['banners']);
+        $this->data['latest_release']=  BooksTable::getListBy('is_latest_release', '1');
+        $this->data['most_popular']=  BooksTable::getListBy('is_most_popular', '1');
+//        pre_print($this->data['latest_release'],false);
+//        pre_print($this->data['most_popular']);
         $this->template->add_css('layout/css/themes/default/default.css');
         $this->template->add_css('layout/css/themes/light/light.css');
         $this->template->add_css('layout/css/themes/dark/dark.css');
@@ -98,6 +101,16 @@ class Home extends My_Controller {
     public function portfolio_details($id){
         $this->get_common_news_details($id,'Portfolios');
     }
+
+    public function partners(){
+        
+        $this->data['portfolios'] = PartenersTable::getList(true);
+        $this->data['page_title'] = lang('home_menu_partners');
+        
+        $this->template->write_view('content', 'home/partners', $this->data);
+        $this->template->render();
+    }
+
 
     private function get_common_data() {
         $this->data['aboutus'] = AboutusPagesTable::getList(true);

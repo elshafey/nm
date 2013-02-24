@@ -69,7 +69,8 @@ a{
 }
 
 #content{
-    margin-top: 50px;
+    float: left;
+/*    margin-top: 50px;*/
 }
 
 #content .home-btn{

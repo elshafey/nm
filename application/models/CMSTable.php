@@ -48,6 +48,50 @@ class CMSTable {
         return array();
     }
 
+    public static function getListBy($field, $value, $active_only = true) {
+        $cms = static::getInstance();
+//        echo '<pre>';
+        /* @var My_Controller  */
+        $CI = get_instance();
+        /* @var $qb \Doctrine\ORM\QueryBuilder */
+        $qb = $CI->doctrine->em->createQueryBuilder();
+
+        if ($cms->isParentField($field)) {
+            $qb->select('p,pd')
+                    ->from('\Entities\Pages', 'p')
+                    ->join('p.PageDetails', 'pd')
+                    ->andWhere('p.' . $field . '= ?3 ')
+                    ->andwhere('p.namespace = ?1 ');
+            if ($active_only)
+                $qb->andWhere('p.isActive= 1 ');
+            $q = $qb->getQuery()
+                    ->setParameter('1', "" . $cms->namespace)
+                    ->setParameter('3', "" . $value)
+            ;
+        } else {
+            $qb->select('p,pd')
+                    ->from('\Entities\Pages', 'p')
+                    ->join('p.PageDetails', 'q', Doctrine\ORM\Query\Expr\Join::WITH, 'q.name = ?2 AND q.value= ?3 ')
+                    ->join('p.PageDetails', 'pd')
+                    ->andwhere('p.namespace = ?1 ');
+            if ($active_only)
+                $qb->andWhere('p.isActive= 1 ');
+            $q = $qb->getQuery()
+                    ->setParameter('1', "" . $cms->namespace)
+                    ->setParameter('2', "" . $field)
+                    ->setParameter('3', "" . $value)
+            ;
+        }
+
+        $res = $q->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY)
+                ->execute();
+        if ($res) {
+            return self::getFloatHydration($res);
+        }
+
+        return array();
+    }
+
     public static function getOneBy($field, $value) {
         $cms = static::getInstance();
 //        echo '<pre>';
@@ -57,7 +101,7 @@ class CMSTable {
         $qb = $CI->doctrine->em->createQueryBuilder();
 
         if ($cms->isParentField($field)) {
-            $q=$qb->select('p,pd')
+            $q = $qb->select('p,pd')
                     ->from('\Entities\Pages', 'p')
                     ->join('p.PageDetails', 'pd')
                     ->andWhere('p.' . $field . '= ?3 ')
@@ -67,7 +111,7 @@ class CMSTable {
                     ->setParameter('3', "" . $value)
             ;
         } else {
-            $q=$qb->select('p,pd')
+            $q = $qb->select('p,pd')
                     ->from('\Entities\Pages', 'p')
                     ->join('p.PageDetails', 'q', Doctrine\ORM\Query\Expr\Join::WITH, 'q.name = ?2 AND q.value= ?3 ')
                     ->join('p.PageDetails', 'pd')
@@ -78,7 +122,7 @@ class CMSTable {
                     ->setParameter('3', "" . $value)
             ;
         }
-        
+
         $res = $q->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY)
                 ->execute();
         if ($res) {

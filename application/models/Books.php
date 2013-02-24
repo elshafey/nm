@@ -59,6 +59,16 @@ class Books extends CMS {
 
         $this->setUpColumn(
                 array(
+                    'name' => 'brief_description',
+                    'validation' => 'required|xss_clean',
+                    'required' => true,
+                    'outType' => 'content',
+                    'multi' => true,
+                    'value' => $value,
+        ));
+
+        $this->setUpColumn(
+                array(
                     'name' => 'author',
                     'validation' => 'required|xss_clean',
                     'required' => true,
@@ -96,6 +106,33 @@ class Books extends CMS {
 
         $this->setUpColumn(
                 array(
+                    'name' => 'pages_count',
+                    'validation' => 'required|xss_clean',
+                    'required' => true,
+                    'outType' => 'textbox',
+                    'value' => '',
+        ));
+
+        $this->setUpColumn(
+                array(
+                    'name' => 'is_latest_release',
+                    'validation' => 'xss_clean',
+                    'required' => false,
+                    'outType' => 'checkbox',
+                    'value' => '',
+        ));
+
+        $this->setUpColumn(
+                array(
+                    'name' => 'is_most_popular',
+                    'validation' => 'xss_clean',
+                    'required' => false,
+                    'outType' => 'checkbox',
+                    'value' => '',
+        ));
+
+        $this->setUpColumn(
+                array(
                     'name' => 'img_alt',
                     'validation' => 'required|xss_clean',
                     'required' => true,
@@ -119,6 +156,10 @@ class Books extends CMS {
                     'value' => new Urls(Urls::URL_PREFIX_BOOK),
         ));
 
+        
+        array_push($this->render_fields, 'is_latest_release');
+        array_push($this->render_fields, 'is_most_popular');
+        array_unshift($this->render_fields, 'pages_count');
         array_unshift($this->render_fields, 'book_url');
         array_unshift($this->render_fields, 'img_title');
         array_unshift($this->render_fields, 'img_alt');
@@ -126,6 +167,7 @@ class Books extends CMS {
         array_unshift($this->render_fields, 'preview');
         array_unshift($this->render_fields, 'isbn');
         array_unshift($this->render_fields, 'author');
+        array_unshift($this->render_fields, 'brief_description');
         array_unshift($this->render_fields, 'title');
         array_unshift($this->render_fields, 'parent_id');
         array_unshift($this->render_fields, 'category');

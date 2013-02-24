@@ -144,6 +144,8 @@ $lang['books_title_en-us']                     ='Title in English';
 $lang['books_title_ar-eg']                     ='Title in Arabic';
 $lang['books_category']                  ='Category name';
 $lang['books_parent_id']                  ='Subcategory name';
+$lang['books_category_name']                  ='Category name';
+$lang['books_subcategory_name']                  ='Subcategory name';
 $lang['books_img']                           ='Select image';
 $lang['books_img_alt']                            ='Image alt';
 $lang['books_img_title']                          ='Image title';
@@ -151,5 +153,13 @@ $lang['books_isbn']                           ='ISBN';
 $lang['books_author_en-us']                            ='Author name in english';
 $lang['books_author_ar-eg']                          ='Author name in arabic';
 $lang['books_preview']                          ='Preview';
+$lang['books_is_latest_release_view']          ='Latest release';
+$lang['books_is_most_popular_view']          ='Most popular';
+$lang['books_brief_description_en-us']          ='Brief description';
+$lang['books_brief_description_ar-eg']          ='Brief description';
+$lang['books_pages_count']              ='Number of pages';
+$lang['books_is_latest_release']          ='Is latest release?';
+$lang['books_is_most_popular']          ='Is most popular';
+
 
 ?>

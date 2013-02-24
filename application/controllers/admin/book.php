@@ -50,6 +50,8 @@ class Book extends CMSController {
                 $page['title']['ar-eg'],
                 $page['Subcategories']['name'][get_locale()],
                 $page['Subcategories']['Categories']['name'][get_locale()],
+                ($page['is_latest_release'])? lang('books_is_latest_release_view'):'-',
+                $page['is_most_popular']? lang('books_is_most_popular_view'):'-',
                 order_icon($page['page_order'], $this->data['controller'], $page['id']),
                 active_icon($page['is_active'], $this->data['controller'], $page['id']),
                 '<a href="' . site_url("admin/{$this->data['controller']}/edit/{$page['id']}") . '">' . lang('global_edit') . ' </a>',
