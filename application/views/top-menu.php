@@ -20,7 +20,7 @@
             <li class="menu-separator">|</li>
             <li><a href=""><?php echo lang('home_menu_partners') ?></a></li>
             <li class="menu-separator">|</li>
-            <li><a href="">Download</a></li>
+            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_DOWNLOADS) ?>"><?php echo lang('home_menu_downloads') ?></a></li>
             <li class="menu-separator">|</li>
             <li><a href="javascript:">Media Center</a>
                 <ul class="sub-menu noJS">
@@ -36,7 +36,7 @@
                 </ul>
             </li>
             <li class="menu-separator">|</li>
-            <li><a href="">Careers</a></li>
+            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_CAREERS) ?>"><?php echo lang('home_menu_careers') ?></a></li>
             <li class="menu-separator">|</li>
             <li><a href="">FAQ</a></li>
             <li class="menu-separator">|</li>

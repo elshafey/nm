@@ -20,4 +20,20 @@
     $('#li_video_path').hide();
     $('#li_video_image').hide();
 </script>
+<?php }elseif($type=='career'){ ?>
+<script>
+    $('#type').val('career');
+    $('#video_path').val('career');
+    $('#video_image').val('career');
+    $('#li_video_path').hide();
+    $('#li_video_image').hide();
+</script>
+<?php }elseif($type=='downloads'){ ?>
+<script>
+    $('#type').val('downloads');
+    $('#video_path').val('downloads');
+    $('#video_image').val('downloads');
+    $('#li_video_path').hide();
+    $('#li_video_image').hide();
+</script>
 <?php } ?>

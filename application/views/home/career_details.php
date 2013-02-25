@@ -1,0 +1,12 @@
+<h1 class="news-title"><?php echo $item['job_title'][get_locale()] ?></h1>
+
+<div class="news-section">
+    <div class="job-code">
+        <span><?php echo lang('home_career_job_code') ?></span>
+        <?php echo $item['job_code'] ?>
+    </div>
+    <span class="job-description">
+        <?php echo lang('home_career_job_description') ?>
+    </span>
+    <?php echo $item['job_description'][get_locale()] ?>
+</div>

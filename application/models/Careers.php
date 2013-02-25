@@ -1,8 +1,8 @@
 <?php
 
-class AboutusPages extends CMS {
+class Careers extends CMS {
 
-    var $namespace = 'aboutus';
+    var $namespace = 'careers';
 
     public function __construct($id = null) {
         parent::__construct($id);
@@ -17,7 +17,15 @@ class AboutusPages extends CMS {
         }
         $this->setUpColumn(
                 array(
-                    'name' => 'page_title',
+                    'name' => 'job_code',
+                    'validation' => 'required|xss_clean',
+                    'required' => true,
+                    'outType' => 'textbox',
+                    'value' => '',
+        ));
+        $this->setUpColumn(
+                array(
+                    'name' => 'job_title',
                     'validation' => 'required|xss_clean',
                     'required' => true,
                     'outType' => 'textbox',
@@ -26,7 +34,7 @@ class AboutusPages extends CMS {
         ));
         $this->setUpColumn(
                 array(
-                    'name' => 'page_content',
+                    'name' => 'job_description',
                     'validation' => 'required',
                     'required' => true,
                     'outType' => 'content',
@@ -35,15 +43,15 @@ class AboutusPages extends CMS {
         ));
         $this->setUpColumn(
                 array(
-                    'name' => 'page_url',
+                    'name' => 'job_url',
                     'outType' => 'url',
-                    'value' => new Urls(Urls::URL_PREFIX_ABOUTUS_PAGE),
+                    'value' => new Urls(Urls::URL_PREFIX_CAREERS_DETAILS),
         ));
-        
-        
-        array_unshift($this->render_fields, 'page_title');
-        array_unshift($this->render_fields, 'page_content');
-        array_unshift($this->render_fields, 'page_url');
+
+        array_unshift($this->render_fields, 'job_url');
+        array_unshift($this->render_fields, 'job_description');
+        array_unshift($this->render_fields, 'job_title');
+        array_unshift($this->render_fields, 'job_code');
     }
 
 }

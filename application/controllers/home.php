@@ -32,18 +32,45 @@ class Home extends My_Controller {
         $this->data['most_popular']=  BooksTable::getListBy('is_most_popular', '1');
 //        pre_print($this->data['latest_release'],false);
 //        pre_print($this->data['most_popular']);
-        $this->template->add_css('layout/css/themes/default/default.css');
-        $this->template->add_css('layout/css/themes/light/light.css');
-        $this->template->add_css('layout/css/themes/dark/dark.css');
-        $this->template->add_css('layout/css/themes/bar/bar.css');
-        $this->template->add_css('layout/css/nivo-slider.css');
-        $this->template->add_js('layout/js/jquery/jquery.nivo.slider.js');
+        $this->template->add_css('layout/css/nivo/themes/default/default.css');
+        $this->template->add_css('layout/css/nivo/themes/light/light.css');
+        $this->template->add_css('layout/css/nivo/themes/dark/dark.css');
+        $this->template->add_css('layout/css/nivo/themes/bar/bar.css');
+        $this->template->add_css('layout/css/nivo/nivo-slider.css');
+        $this->template->add_js('layout/js/jquery/nivo/jquery.nivo.slider.pack.js');
+        
         $this->template->add_js('layout/js/popup.js');
+        $this->template->add_js('layout/js/home.js');
         $this->template->add_css('layout/css/popup.css');
         $this->template->write_view('content', 'home/index', $this->data);
         $this->template->render();
     }
 
+    public function downloads(){
+        $this->data['page'] = StaticPagesTable::getPage('downloads');
+        $this->data['downloads'] = DownloadsTable::getList(true);
+        $this->data['page_title'] = ($this->data['page'])? $this->data['page']['page_title'][get_locale()]:lang('home_menu_downloads');
+        
+        $this->template->write_view('content', 'home/downloads', $this->data);
+        $this->template->render();
+    }
+    
+    public function careers(){
+        $this->data['page'] = StaticPagesTable::getPage('career');
+        $this->data['list'] = CareersTable::getList(true);
+        $this->data['page_title'] = ($this->data['page'])? $this->data['page']['page_title'][get_locale()]:lang('home_menu_careers');
+        
+        $this->template->write_view('content', 'home/careers', $this->data);
+        $this->template->render();
+    }
+    
+    public function career_details($id){
+        $this->data['item'] = CareersTable::getOneBy('id', $id);
+        $this->data['page_title'] = $this->data['item']['job_title'][get_locale()];
+        $this->template->write_view('content', 'home/career_details', $this->data);
+        $this->template->render();
+    }
+    
     public function aboutus($id){
         $this->get_common_news_details($id,'AboutusPages');
     }

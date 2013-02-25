@@ -83,8 +83,31 @@ $lang['portfolios_img_alt']                            ='Image alt';
 $lang['portfolios_img_title']                          ='Image title';
 
 
+////////////// careers controller /////////////
+$lang['careers_form_create_page_title']         ='Create new job';
+$lang['careers_job_title_en-us']               ='Job title in English';
+$lang['careers_job_title_ar-eg']               ='Job title in Arabic';
+$lang['careers_job_description_en-us']             ='Job description in English';
+$lang['careers_job_description_ar-eg']             ='Job description in Arabic';
+$lang['careers_job_order']                     ='Page order';
+$lang['careers_is_active']                     ='Is active?';
+$lang['careers_form_edit_page_title']           ='Edit career job';
+$lang['careers_job_code']                           ='Job Code';
+$lang['careers_main_page_txt']                  ='Edit careers main text';
+
+
+////////////// downloads controller /////////////
+$lang['downloads_form_create_page_title']         ='Create new download';
+$lang['downloads_name_en-us']               ='Name in English';
+$lang['downloads_name_ar-eg']               ='Name in Arabic';
+$lang['downloads_page_order']                     ='Download order';
+$lang['downloads_is_active']                     ='Is active?';
+$lang['downloads_form_edit_page_title']           ='Edit download';
+$lang['downloads_path']                           ='Select file';
+$lang['downloads_main_page_txt']                  ='Edit downloads main text';
+
 ////////////// staticpages controller /////////////
-$lang['staticpages_form_create_page_title']         ='Create new page';
+$lang['staticpage_form_create_page_title']         ='Create new page';
 $lang['staticpages_page_title_en-us']               ='Page title in English';
 $lang['staticpages_page_title_ar-eg']               ='Page title in Arabic';
 $lang['staticpages_page_content_en-us']             ='Page content in English';

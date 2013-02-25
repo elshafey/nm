@@ -29,6 +29,16 @@ class Staticpage extends CMSController {
                 $this->_model = 'HomePage';
                 $this->_redirect='portfolio';
                 break;
+            case 'careers-main':
+                $this->url_prefix=  Urls::URL_PREFIX_CAREERS;
+                $this->_model = 'HomePage';
+                $this->_redirect='career';
+                break;
+            case 'downloads-main':
+                $this->url_prefix=  Urls::URL_PREFIX_DOWNLOADS;
+                $this->_model = 'HomePage';
+                $this->_redirect='download';
+                break;
             default:
                 break;
         }

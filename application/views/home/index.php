@@ -57,7 +57,6 @@
 </div> 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#slider').nivoSlider({pauseTime:5000});
         
         $('#vedio').click(function(){
             $('#vedio_iframe').attr('src', '<?php echo $home_page['video_path']; ?>');

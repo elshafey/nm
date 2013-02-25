@@ -24,6 +24,9 @@ class Urls extends CMS {
     const URL_PREFIX_PRESS_LIST         = 'home/press/';
     const URL_PREFIX_PORTFOLIO_DETAILS  = 'home/portfolio_details/';
     const URL_PREFIX_PORTFOLIO          = 'home/portfolio/';
+    const URL_PREFIX_CAREERS            = 'home/careers/';
+    const URL_PREFIX_CAREERS_DETAILS    = 'home/career_details/';
+    const URL_PREFIX_DOWNLOADS          = 'home/downloads/';
     
     public function __construct($url_prefix = null) {
         $this->url_prefix = $url_prefix;

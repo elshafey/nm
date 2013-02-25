@@ -34,7 +34,7 @@
             <?php if ($original_path == 'home/index') { ?>
                 <div id="logo-banner">
                     <a href="<?php echo base_url() ?>" class="nahdit-mist-group-logo"></a>
-                    <div class="banner">
+                    <div class="banner  theme-default">
                         <div id="slider" class="nivoSlider">
                             <?php foreach ($banners as $banner) { ?>
                                 <a href="<?php echo base_url() . $banner['path'] ?>" >

@@ -82,6 +82,12 @@ if (isset($page_header)) {
                         <a href="<?php echo site_url('admin/portfolio') ?>">Portfolios</a> |
                     </li>
                     <li>
+                        <a href="<?php echo site_url('admin/download') ?>">Downloads</a> |
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('admin/career') ?>">Careers</a> |
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('admin/partener') ?>">Partners</a>
                     </li>
                     <li  style="float: right;font-size: 10px;">

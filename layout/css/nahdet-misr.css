@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     border: 0;
+    list-style: none;
     background: none; 
     font-family: Verdana, Geneva, sans-serif;
     font-size: 12px;
@@ -514,4 +515,45 @@ a.prev span, a.next span {
 .clearfix {
     float: none;
     clear: both;
+}
+.pdf-icon{
+    display: block;
+    float: left;
+    height: 50px;
+    position: relative;
+    width: 48px;
+}
+.pdf-icon img{
+    height: 50px;
+    width: 48px;
+}
+.downloads li{
+    float: left;
+    width: 40%;
+}
+.downloads li a{
+    float: left;
+    margin-top: 15px
+}
+.downloads{
+
+}
+.job-code{
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%
+}
+.job-description{
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+.job-code span{
+    font-size: 13px;
+    font-weight: bold;
+}
+.news-section{
+    float: left;
 }
