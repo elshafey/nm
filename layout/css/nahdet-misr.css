@@ -557,3 +557,8 @@ a.prev span, a.next span {
 .news-section{
     float: left;
 }
+.see_more,.see_less{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #001845;
+}

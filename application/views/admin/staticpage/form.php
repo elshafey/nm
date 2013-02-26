@@ -36,4 +36,8 @@
     $('#li_video_path').hide();
     $('#li_video_image').hide();
 </script>
+<?php }elseif($type=='faqs'){ ?>
+<script>
+    $('#type').val('faqs');
+</script>
 <?php } ?>

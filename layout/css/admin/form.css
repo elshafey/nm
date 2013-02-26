@@ -78,3 +78,47 @@ input[type="submit"]:hover{
 span.cke_skin_kama{
     float: left;
 }
+
+#question_en-us , #question_ar-eg,#answer_en-us , #answer_ar-eg{
+    width:600px;
+}
+#answer_en-us , #answer_ar-eg{
+    height: 100px
+}
+.faqs{
+    float: left;
+}
+.faqs table td {
+    text-align: left;
+    padding-bottom: 10px;
+    vertical-align: text-top;
+}
+.question{
+    font-weight: bold;
+    font-size: 13px;
+}
+.info{
+    float: left;
+    padding-right: 6px;
+    font-weight: bolder;
+}
+.info-answer{
+    float: left;
+    
+}
+.separator{
+    float: left;
+    padding-left: 13px;
+    padding-right: 13px;
+}
+.info-answer .order_change{
+    margin-top: 0px;
+    width: 40%
+}
+.info-answer .arrows{
+    float: left;
+    margin-top: -5px;
+}
+.faq_manage{
+    float: right;
+}

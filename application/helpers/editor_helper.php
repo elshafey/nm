@@ -111,4 +111,9 @@ function page_thumb($path) {
 
     return implode("/", $exploded);
 }
-?>
+
+function n2nl($str){
+    return str_replace('
+', '<br>', $str);
+}
+    ?>

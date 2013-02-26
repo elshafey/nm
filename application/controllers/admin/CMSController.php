@@ -14,27 +14,27 @@ class CMSController extends My_Controller {
 
     protected $_model = '';
     protected $_controller = '';
-    protected $_redirect='';
-    
+    protected $_redirect = '';
+
     public function __construct() {
         parent::__construct();
         $this->template->set_template('admin_template');
         $this->data['controller'] = $this->_controller;
-        $this->_redirect=  $this->_controller;
+        $this->_redirect = $this->_controller;
     }
 
     function index() {
         $table = $this->_model . 'Table';
         $pages = $table::getList();
-        
+
         $this->data['responce'] = $this->getRespnce($pages);
-        $this->data['page_title'] = lang($this->data['controller'] .  '_index_page_title');
+        $this->data['page_title'] = lang($this->data['controller'] . '_index_page_title');
         load_grid_files();
         $this->template->write_view('content', 'admin/' . $this->_controller . '/index', $this->data, FALSE);
         $this->template->render();
     }
-    
-    protected function getRespnce($pages){
+
+    protected function getRespnce($pages) {
         $responce = array();
         if ($pages) {
             foreach ($pages as $k => $page) {
@@ -52,7 +52,7 @@ class CMSController extends My_Controller {
                     }
                 }
                 $responce[$k]['edit'] =
-                        '<a href="' . site_url("admin/{$this->data['controller']}/edit/{$page['id']}") . '">' . lang('global_edit') . ' </a>';
+                        '<a class="edit_lnk" rel="' . $page['id'] . '"  href="' . site_url("admin/{$this->data['controller']}/edit/{$page['id']}") . '">' . lang('global_edit') . ' </a>';
                 $responce[$k]['delete'] =
                         '<a class="delete_lnk" href="' . site_url("admin/{$this->data['controller']}/delete/{$page['id']}") . '">' . lang('global_delete') . ' </a>';
             }
@@ -60,9 +60,7 @@ class CMSController extends My_Controller {
         return $responce;
     }
 
-    public function create() {
-//        pre_print($_POST,false);
-        $this->data['page_title'] = lang($this->data['controller'] .  '_form_create_page_title');
+    protected function create_logic() {
         $model = $this->_model;
 
         /* @var $form Forms */
@@ -77,12 +75,23 @@ class CMSController extends My_Controller {
             redirect('admin/' . $this->_redirect);
         }
         $this->data['form'] = $form;
+    }
+
+    protected function render_form_file() {
+        
+    }
+
+    public function create() {
+
+        $this->data['page_title'] = lang($this->data['controller'] . '_form_create_page_title');
+
+        $this->create_logic();
+
         $this->template->write_view('content', 'admin/' . $this->_controller . '/form', $this->data, FALSE);
         $this->template->render();
     }
 
-    public function edit($id) {
-        $this->data['page_title'] = lang($this->data['controller'] .  '_form_edit_page_title');
+    protected function edit_logic($id) {
         $model = $this->_model;
 
         /* @var $form Forms */
@@ -95,9 +104,18 @@ class CMSController extends My_Controller {
             );
 
             $this->session->set_flashdata("message", $message);
-            redirect('admin/' . $this->_redirect);
+            if (is_ajax()) {
+                echo 'success';exit;
+            } else {
+                redirect('admin/' . $this->_redirect);
+            }
         }
         $this->data['form'] = $form;
+    }
+
+    public function edit($id) {
+        $this->data['page_title'] = lang($this->data['controller'] . '_form_edit_page_title');
+        $this->edit_logic($id);
         $this->template->write_view('content', 'admin/' . $this->_controller . '/form', $this->data, FALSE);
         $this->template->render();
     }
@@ -117,7 +135,7 @@ class CMSController extends My_Controller {
         $this->session->set_flashdata("message", $message);
         redirect('admin/' . $this->_redirect);
     }
-    
+
     public function orderdown($id) {
         $model = $this->_model;
 
@@ -133,8 +151,8 @@ class CMSController extends My_Controller {
         $this->session->set_flashdata("message", $message);
         redirect('admin/' . $this->_redirect);
     }
-    
-    public function activate($id){
+
+    public function activate($id) {
         $model = $this->_model;
 
         /* @var $cms CMS */
@@ -150,7 +168,7 @@ class CMSController extends My_Controller {
         redirect('admin/' . $this->_redirect);
     }
 
-    public function deactivate($id){
+    public function deactivate($id) {
         $model = $this->_model;
 
         /* @var $cms CMS */
@@ -166,8 +184,7 @@ class CMSController extends My_Controller {
         redirect('admin/' . $this->_redirect);
     }
 
-
-    public function delete($id){
+    public function delete($id) {
         $model = $this->_model;
 
         /* @var $cms CMS */

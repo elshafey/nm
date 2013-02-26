@@ -46,6 +46,14 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
+    public function faqs(){
+        $this->data['faqs'] = FaqsTable::getList(true);
+        $this->data['page_title'] = lang('home_menu_faqs');
+        
+        $this->template->write_view('content', 'home/faqs', $this->data);
+        $this->template->render();
+    }
+
     public function downloads(){
         $this->data['page'] = StaticPagesTable::getPage('downloads');
         $this->data['downloads'] = DownloadsTable::getList(true);

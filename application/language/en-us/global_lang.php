@@ -139,6 +139,18 @@ $lang['parteners_name_ar-eg']                     ='Name in Arabic';
 $lang['parteners_type']                           ='Type';
 
 
+
+////////////// faqs controller /////////////
+$lang['faqs_form_create_page_title']         ='Create new FAQ';
+$lang['faqs_question_en-us']                 ='Question in English';
+$lang['faqs_question_ar-eg']                 ='Question in Arabic';
+$lang['faqs_answer_en-us']                 ='Answer in English';
+$lang['faqs_answer_ar-eg']                 ='Answer in Arabic';
+$lang['faqs_page_order']                     ='FAQ order';
+$lang['faqs_is_active']                      ='Is active?';
+$lang['faqs_main_page_txt']            ='Edit FAQ page meta';
+
+
 ////////////// category controller /////////////
 $lang['category_form_create_page_title']         ='Create new category';
 $lang['categories_page_order']                     ='Category order';

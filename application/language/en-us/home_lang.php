@@ -17,3 +17,4 @@ $lang['home_menu_media_center_events']='Events';
 $lang['home_menu_partners']='Partners';
 $lang['home_menu_downloads']='Downloads';
 $lang['home_menu_careers']='Careers';
+$lang['home_menu_faqs']='FAQ';
