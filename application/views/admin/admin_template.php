@@ -91,6 +91,9 @@ if (isset($page_header)) {
                         <a href="<?php echo site_url('admin/faq') ?>">Faqs</a> |
                     </li>
                     <li>
+                        <a href="<?php echo site_url('admin/achievements') ?>">achievements</a> |
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('admin/partener') ?>">Partners</a>
                     </li>
                     <li  style="float: right;font-size: 10px;">

@@ -40,4 +40,12 @@
 <script>
     $('#type').val('faqs');
 </script>
+<?php }elseif($type=='achievements'){ ?>
+<script>
+    $('#type').val('achievements');
+    $('#video_path').val('achievements');
+    $('#video_image').val('achievements');
+    $('#li_video_path').hide();
+    $('#li_video_image').hide();
+</script>
 <?php } ?>

@@ -18,3 +18,4 @@ $lang['home_menu_partners']='Partners';
 $lang['home_menu_downloads']='Downloads';
 $lang['home_menu_careers']='Careers';
 $lang['home_menu_faqs']='FAQ';
+$lang['home_menu_achievements']='Achievement';

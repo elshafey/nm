@@ -14,7 +14,7 @@
                 </ul>
             </li>
             <li class="menu-separator">|</li>
-            <li><a href="">Achievements</a></li>
+            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_ACHIEVEMENTS) ?>"><?php echo lang('home_menu_achievements') ?></a></li>
             <li class="menu-separator">|</li>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_PORTFOLIO) ?>">Portfolio</a></li>
             <li class="menu-separator">|</li>

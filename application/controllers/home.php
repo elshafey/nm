@@ -62,6 +62,14 @@ class Home extends My_Controller {
         $this->template->write_view('content', 'home/downloads', $this->data);
         $this->template->render();
     }
+
+    public function achievements(){
+        $this->data['page'] = StaticPagesTable::getPage('achievements');
+        $this->data['page_title'] = ($this->data['page'])? $this->data['page']['page_title'][get_locale()]:lang('home_menu_achievements');
+        
+        $this->template->write_view('content', 'home/achievements', $this->data);
+        $this->template->render();
+    }
     
     public function careers(){
         $this->data['page'] = StaticPagesTable::getPage('career');

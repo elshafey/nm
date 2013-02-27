@@ -59,6 +59,7 @@ $route['admin/home']            ='admin/staticpage/index/home';
 $route['admin/portfolio-main']            ='admin/staticpage/index/portfolio';
 $route['admin/careers-main']            ='admin/staticpage/index/career';
 $route['admin/downloads-main']            ='admin/staticpage/index/downloads';
+$route['admin/achievements']            ='admin/staticpage/index/achievements';
 $route['admin/faqs']            ='admin/staticpage/index/faqs';
 
 //include auto genrated routes

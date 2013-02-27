@@ -24,6 +24,11 @@ class Staticpage extends CMSController {
             case 'home':
                 $this->_model = 'HomePage';
                 break;
+            case 'achievements':
+                $this->url_prefix=  Urls::URL_PREFIX_ACHIEVEMENTS;
+                $this->_model = 'HomePage';
+                $this->_redirect='achievements';
+                break;
             case 'portfolio-main':
                 $this->url_prefix=  Urls::URL_PREFIX_PORTFOLIO;
                 $this->_model = 'HomePage';

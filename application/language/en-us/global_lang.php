@@ -117,17 +117,21 @@ $lang['staticpages_video_image']                    ='Video image';
 
 
 ////////////// Banners controller /////////////
-$lang['banners_form_create_page_title']         ='Create new banner';
+$lang['banner_form_create_page_title']         ='Create new banner';
 $lang['banners_path']                           ='Select image';
-$lang['banners_alt']                            ='Image alt';
-$lang['banners_title']                          ='Image title';
-$lang['banners_page_order']                     ='Image order';
-$lang['banners_is_active']                      ='Is active?';
-$lang['banners_form_edit_page_title']           ='Edit banner';
+$lang['banner_grid_preview']                           ='Preview';
+$lang['banner_alt']                            ='Image alt';
+$lang['banner_title']                          ='Image title';
+$lang['banner_page_order']                     ='Image order';
+$lang['banner_is_active']                      ='Is active?';
+$lang['banner_form_edit_page_title']           ='Edit banner';
 
 
 ////////////// parteners controller /////////////
+$lang['partener_form_edit_page_title']            ='Partners';
 $lang['parteners_form_create_page_title']         ='Create new partner';
+$lang['partener_form_edit_page_title']            ='Edit partner';
+$lang['parteners_grid_preview']                   ='Preview';
 $lang['parteners_path']                           ='Select image';
 $lang['parteners_alt']                            ='Image alt';
 $lang['parteners_title']                          ='Image title';
@@ -137,6 +141,8 @@ $lang['parteners_form_edit_page_title']           ='Edit partner';
 $lang['parteners_name_en-us']                     ='Name in English';
 $lang['parteners_name_ar-eg']                     ='Name in Arabic';
 $lang['parteners_type']                           ='Type';
+$lang['parteners_content']                        ='Content';
+$lang['parteners_business']                       ='Business';
 
 
 
