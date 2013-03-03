@@ -117,34 +117,35 @@ class Forms {
         }
     }
 
-    public function renderFields(array $fields=array()) {
-        if(!$fields)
-            $fields=  $this->cms->render_fields;
-        if (!$this->fields){
+    public function renderFields(array $fields = array()) {
+        if (!$fields)
+            $fields = $this->cms->render_fields;
+        if (!$this->fields) {
             $this->buildFields($fields);
         }
-        
+
         foreach ($this->fields as $field) {
             echo $field;
         }
     }
 
-    public function getFieldHTML($field_name){
-        if(!array_key_exists($field_name, $this->fields)){
+    public function getFieldHTML($field_name) {
+        if (!array_key_exists($field_name, $this->fields)) {
             $this->buildFields(array($field_name));
         }
-        
+
         return $this->fields[$field_name];
     }
+
     public function addSelect($field) {
-        $id = ($field['value'] instanceof \Entities\Pages)? $field['value']->getId():$field['value'];
-        
+        $id = ($field['value'] instanceof \Entities\Pages) ? $field['value']->getId() : $field['value'];
+
         $select_txt_field = $field['select_txt_field'];
         $select = '<select name="%s" id="%s">';
         $select.='<option value="">' . lang('global_select') . '</option>';
 
         foreach ($field['select_list'] as $value) {
-            $select.='<option value="' . $value['id'].'" ' .($id==$value['id']? 'selected="selected"':''). ' >'
+            $select.='<option value="' . $value['id'] . '" ' . ($id == $value['id'] ? 'selected="selected"' : '') . ' >'
                     . (is_array($value[$select_txt_field]) ? $value[$select_txt_field][get_locale()] : $value[$select_txt_field])
                     . '</option>';
         }
@@ -158,7 +159,7 @@ class Forms {
                 . ' <span class="star">*</span>'
                 . '<div id="img_thumb"></div>'
                 . file_finder_txt($field['name'])
-                
+
         ;
         $this->fields[$field['name']] = $this->buildCommonHtml($field, $fld_html);
     }
@@ -174,7 +175,7 @@ class Forms {
         $fld_html = '<input name="%s" class="txtbox" id="%s" value="%s" /> ';
         $this->fields[$field['name']] = $this->buildCommonHtml($field, $fld_html);
     }
-    
+
     public function addHidden($field) {
         $field_name = $field['name'];
         $value = $this->getFieldValue($field);
@@ -198,20 +199,24 @@ class Forms {
     }
 
     public function getFieldValue($field) {
-        if (isset($field['multi']) && $field['multi']) {
-            if ($_POST) {
-                foreach (get_lang_list() as $key => $lang) {
-                    $value[$key] = $_POST[$field['name'] . "_$key"];
-                }
-            } else {
-                return $field['value'];
-            }
-            return $value;
+        if ($field['value'] instanceof Entities\Pages) {
+            return $field['value']->getId();
         } else {
-            if ($_POST) {
-                return $_POST[$field['name']];
+            if (isset($field['multi']) && $field['multi']) {
+                if ($_POST) {
+                    foreach (get_lang_list() as $key => $lang) {
+                        $value[$key] = $_POST[$field['name'] . "_$key"];
+                    }
+                } else {
+                    return $field['value'];
+                }
+                return $value;
             } else {
-                return $field['value'];
+                if ($_POST) {
+                    return $_POST[$field['name']];
+                } else {
+                    return $field['value'];
+                }
             }
         }
     }

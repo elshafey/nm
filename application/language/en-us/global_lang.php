@@ -97,14 +97,14 @@ $lang['careers_main_page_txt']                  ='Edit careers main text';
 
 
 ////////////// downloads controller /////////////
-$lang['downloads_form_create_page_title']         ='Create new download';
-$lang['downloads_name_en-us']               ='Name in English';
-$lang['downloads_name_ar-eg']               ='Name in Arabic';
-$lang['downloads_page_order']                     ='Download order';
-$lang['downloads_is_active']                     ='Is active?';
-$lang['downloads_form_edit_page_title']           ='Edit download';
-$lang['downloads_path']                           ='Select file';
-$lang['downloads_main_page_txt']                  ='Edit downloads main text';
+$lang['side_menu_downloads_form_create_page_title']         ='Create new download';
+$lang['side_menu_downloads_name_en-us']               ='Name in English';
+$lang['side_menu_downloads_name_ar-eg']               ='Name in Arabic';
+$lang['side_menu_downloads_page_order']                     ='Download order';
+$lang['side_menu_downloads_is_active']                     ='Is active?';
+$lang['side_menu_downloads_form_edit_page_title']           ='Edit download';
+$lang['side_menu_downloads_path']                           ='Select file';
+$lang['side_menu_downloads_main_page_txt']                  ='Edit downloads main text';
 
 ////////////// staticpages controller /////////////
 $lang['staticpage_form_create_page_title']         ='Create new page';
@@ -202,5 +202,70 @@ $lang['books_pages_count']              ='Number of pages';
 $lang['books_is_latest_release']          ='Is latest release?';
 $lang['books_is_most_popular']          ='Is most popular';
 
+
+////////////// side menu downloads  /////////////
+$lang['side_menu_downloads_form_create_page_title']         ='Create new download';
+$lang['side_menu_downloads_name_en-us']               ='Name in English';
+$lang['side_menu_downloads_name_ar-eg']               ='Name in Arabic';
+$lang['side_menu_downloads_page_order']                     ='Download order';
+$lang['side_menu_downloads_is_active']                     ='Is active?';
+$lang['side_menu_downloads_form_edit_page_title']           ='Edit download';
+$lang['side_menu_downloads_path']                           ='Select file';
+$lang['side_menu_downloads_main_page_txt']                  ='Edit downloads main text';
+
+
+
+///////////////////Digital Solutions///////////////
+$lang['digital_soluions_index_page_title']      ='Digital Solutions';
+$lang['digital_soluions_form_create_page_title']      ='Create new digital solutions page';
+$lang['digital_soluions_manage_downloads']      ='Manage page downloads';
+$lang['digital_soluions_side_menu_downloads_form_create_page_title']      ='Add new download';
+$lang['digital_soluions_downloads_form_create_page_title']      ='Add new download';
+$lang['digital_soluions_downloads_form_edit_page_title']      ='Edit download';
+$lang['digital_soluions_manage_page_content']      ='Manage page content';
+$lang['digital_soluions_name_en-us']      ='Page name in English';
+$lang['digital_soluions_name_ar-eg']      ='Page name in Arabic';
+$lang['digital_soluions_title_en-us']      ='Page title in English';
+$lang['digital_soluions_title_ar-eg']      ='Page title in Arabic';
+$lang['digital_soluions_content_en-us']      ='Page content in English';
+$lang['digital_soluions_content_ar-eg']      ='Page content in Arabic';
+$lang['digital_soluions_page_order']      ='Page order';
+$lang['digital_soluions_is_active']      ='Is active?';
+
+
+///////////////////Publishing Solutions///////////////
+$lang['publishing_soluions_index_page_title']      ='Publishing Solutions';
+$lang['publishing_soluions_form_create_page_title']      ='Create new publishing solutions page';
+$lang['publishing_soluions_manage_downloads']      ='Manage page downloads';
+$lang['publishing_soluions_side_menu_downloads_form_create_page_title']      ='Add new download';
+$lang['publishing_soluions_downloads_form_create_page_title']      ='Add new download';
+$lang['publishing_soluions_downloads_form_edit_page_title']      ='Edit download';
+$lang['publishing_soluions_manage_page_content']      ='Manage page content';
+$lang['publishing_soluions_name_en-us']      ='Page name in English';
+$lang['publishing_soluions_name_ar-eg']      ='Page name in Arabic';
+$lang['publishing_soluions_title_en-us']      ='Page title in English';
+$lang['publishing_soluions_title_ar-eg']      ='Page title in Arabic';
+$lang['publishing_soluions_content_en-us']      ='Page content in English';
+$lang['publishing_soluions_content_ar-eg']      ='Page content in Arabic';
+$lang['publishing_soluions_page_order']      ='Page order';
+$lang['publishing_soluions_is_active']      ='Is active?';
+
+
+///////////////////Educational Solutions///////////////
+$lang['educational_soluions_index_page_title']      ='Educational Solutions';
+$lang['educational_soluions_form_create_page_title']      ='Create new educational solutions page';
+$lang['educational_soluions_manage_downloads']      ='Manage page downloads';
+$lang['educational_soluions_side_menu_downloads_form_create_page_title']      ='Add new download';
+$lang['educational_soluions_downloads_form_create_page_title']      ='Add new download';
+$lang['educational_soluions_downloads_form_edit_page_title']      ='Edit download';
+$lang['educational_soluions_manage_page_content']      ='Manage page content';
+$lang['educational_soluions_name_en-us']      ='Page name in English';
+$lang['educational_soluions_name_ar-eg']      ='Page name in Arabic';
+$lang['educational_soluions_title_en-us']      ='Page title in English';
+$lang['educational_soluions_title_ar-eg']      ='Page title in Arabic';
+$lang['educational_soluions_content_en-us']      ='Page content in English';
+$lang['educational_soluions_content_ar-eg']      ='Page content in Arabic';
+$lang['educational_soluions_page_order']      ='Page order';
+$lang['educational_soluions_is_active']      ='Is active?';
 
 ?>

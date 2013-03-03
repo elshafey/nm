@@ -1,8 +1,7 @@
-<h1 class="page-title"><?php echo $page_title ?></h1>
-
 <div class="news-section">
     <?php if ($list) { ?>
-        <?php foreach ($list as $item) { ?>
+    <?php $count=  count($list) ?>
+        <?php foreach ($list as $k=>$item) { ?>
             <a class="news-title" href="<?php echo get_routed_url(Urls::URL_PREFIX_NEWS_DETAILS . $item['id']) ?>">
                 <?php echo $item['page_title'][get_locale()] ?>
             </a>
@@ -12,7 +11,9 @@
                     <?php echo lang('global_more') ?>
                 </a>
             </p>
-            <div class="news-separator"></div>
+            <?php if($count>$k+1){ ?>
+            <div class="h-line"></div>
+            <?php } ?>
         <?php } ?>
     <?php } ?>
 </div>

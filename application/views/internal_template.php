@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <?php echo print_meta_data($url,isset($page_title) ? $page_title : lang('page_title')) ?>
+        <?php echo print_meta_data($url, isset($page_title) ? $page_title : lang('page_title')) ?>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/nahdet-misr.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/coolMenu.css"/>
         <?php echo $_styles ?>
@@ -15,18 +15,25 @@
     <body>
         <div id="upper-header"></div>
         <div id="wrapper">
-            <a href="<?php echo base_url() ?>" class="arabic-link"></a>
-
+            <a href="<?php echo base_url() ?>">
+            <div class="logo-inside"></div>
+            </a>
+            <a href="<?php echo base_url() ?>" class="arabic-link arabic-link-inside"></a>
+            <div class="social-network-inside" id="social-network">
+                <a class="facebook" href=""></a>
+                <a class="twitter" href=""></a>
+                <a class="linkedin" href=""></a>
+                <a class="youtube" href=""></a>
+            </div>
             <div class="clear"></div>
-            <?php $this->load->view('top-menu') ?>
+            <?php $this->load->view('top-menu', array('is_internal' => true)) ?>
             <div class="clear"></div>
-                <div id="logo-banner">
-                    
-                </div>
-
+            <div class="inside-banner">
+                <img width="907" height="137" src="<?php echo base_url(); ?>layout/images/inside-banner.png" >
+            </div>
             <div class="clear"></div>
 
-            <div id="search-box">
+            <div id="search-box-inside">
                 <div class="search-left"></div>
                 <div class="search-middle"></div>
                 <div class="search-right"></div>
@@ -34,40 +41,15 @@
 
             <div class="clear"></div>
 
-            <div id="content">
+            <div id="content" class="content-inside">
                 <div class="left">
-                    <div class="bar-title" style="margin-top: 0px;"><span>Publishing Solutions</span></div>
-                    <ul>
-                        <li>Books</li>
-                        <li>Magazines</li>
-                        <li>Digital Publishing</li>
-                        <li>Printing</li>
-                        <li>Distribution</li>
-                        <li>Rights & Permissions</li>
-                    </ul>
-
-                    <div class="bar-title"><span>Educational Solutions</span></div>
-                    <ul>
-                        <li>Curriculum Development</li>
-                        <li>Curriculum Content</li>
-                        <li>Educational Technology</li>
-                        <li>Educational Supplies</li>
-                        <li>Training For Teachers</li>
-                    </ul>
-
-                    <div class="bar-title"><span>Digital Solutions</span></div>
-                    <ul>
-                        <li>Digital Content</li>
-                        <li>Animation Production</li>
-                        <li>CD/ DVD Replication</li>
-                    </ul>
-
-                    <div class="bar-title"><span>Custom Solutions</span></div>
-
-                    <img src="<?php echo base_url() ?>layout/images/for-limited-time-img.jpg" width="162" height="174" />
-
+                    <?php $this->load->view('side_menu') ?>
                 </div>
                 <div class="right">
+                    <div class="navigator">
+                        <span class="main-item"><a href="<?php echo base_url() ?>">Home Page</a></span>
+                        <?php echo implode('', $navigator) ?>
+                    </div>
                     <?php echo $content ?>
                 </div>
             </div>

@@ -48,7 +48,7 @@ class CMSTable {
         return array();
     }
 
-    public static function getListBy($field, $value, $active_only = true) {
+    public static function getListBy($field, $value, $active_only = true,$namespace='') {
         $cms = static::getInstance();
 //        echo '<pre>';
         /* @var My_Controller  */
@@ -65,7 +65,7 @@ class CMSTable {
             if ($active_only)
                 $qb->andWhere('p.isActive= 1 ');
             $q = $qb->getQuery()
-                    ->setParameter('1', "" . $cms->namespace)
+                    ->setParameter('1', "" . ($namespace? $namespace:$cms->namespace))
                     ->setParameter('3', "" . $value)
             ;
         } else {
@@ -77,12 +77,12 @@ class CMSTable {
             if ($active_only)
                 $qb->andWhere('p.isActive= 1 ');
             $q = $qb->getQuery()
-                    ->setParameter('1', "" . $cms->namespace)
+                    ->setParameter('1', "" . ($namespace? $namespace:$cms->namespace))
                     ->setParameter('2', "" . $field)
                     ->setParameter('3', "" . $value)
             ;
         }
-
+//        echo $q->getSQL();exit;
         $res = $q->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY)
                 ->execute();
         if ($res) {

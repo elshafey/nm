@@ -39,5 +39,6 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('MAX_INBOX_COUNT',20);
 
 define('ROUTS_ITEM_TEMPLATE','$route["%s"]        ="%s";');
+define('SIDE_MENU_DOWNLOADS_NAMESPACE','side_menu_downloads');
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

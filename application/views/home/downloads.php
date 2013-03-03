@@ -1,5 +1,3 @@
-<h1 class="page-title"><?php echo $page_title ?></h1>
-
 <div class="news-section">
     <?php if ($page) { ?>
         <div class="page-brief">
@@ -8,16 +6,12 @@
     <?php } ?>
     <?php if ($downloads) { ?>
         <?php foreach ($downloads as $download) { ?>
-            <ul class="downloads">
+            <ul class="downloaded-items">
                 <li>
-                    <span class="pdf-icon">
-                        <img src="<?php echo base_url() ?>layout/images/pdficon.gif" >
-                    </span>
-                    <a target="_blank" href="<?php echo  base_url() . $download['path'] ?>" ><?php echo $download['name'][get_locale()] ?></a>
+                    <a href="<?php echo  base_url() . $download['path'] ?>" class="download-pdf"></a>
+                    <a target="_blank" class="download-item" href="<?php echo  base_url() . $download['path'] ?>" ><?php echo $download['name'][get_locale()] ?></a>
                 </li>
             </ul>
         <?php } ?>
-    <?php }else{ ?>
-    <?php echo lang('home_no_data_available') ?>
     <?php } ?>
 </div>

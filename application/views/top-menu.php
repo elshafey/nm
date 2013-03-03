@@ -1,10 +1,9 @@
-
-<div id="top-menu">
+<div id="<?php if($is_internal){ ?>top-menu-inside<?php }else{?>top-menu<?php }?>">
     <div class="header-left"></div>
     <div class="header-middle">
         <ul id="menu">
             <li>
-                <a href="javascript:">About Us</a>
+                <a href="javascript:"><?php echo lang('home_menu_aboutus') ?></a>
                 <ul class="sub-menu noJS">
                     <?php foreach ($aboutus as $value) { ?>
                         <li>
@@ -16,9 +15,9 @@
             <li class="menu-separator">|</li>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_ACHIEVEMENTS) ?>"><?php echo lang('home_menu_achievements') ?></a></li>
             <li class="menu-separator">|</li>
-            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_PORTFOLIO) ?>">Portfolio</a></li>
+            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_PORTFOLIO) ?>"><?php echo lang('home_menu_portfolio') ?></a></li>
             <li class="menu-separator">|</li>
-            <li><a href=""><?php echo lang('home_menu_partners') ?></a></li>
+            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_PARTNERS) ?>"><?php echo lang('home_menu_partners') ?></a></li>
             <li class="menu-separator">|</li>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_DOWNLOADS) ?>"><?php echo lang('home_menu_downloads') ?></a></li>
             <li class="menu-separator">|</li>

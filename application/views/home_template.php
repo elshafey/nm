@@ -29,7 +29,7 @@
             <a href="<?php echo base_url() ?>" class="arabic-link"></a>
 
             <div class="clear"></div>
-            <?php $this->load->view('top-menu') ?>
+            <?php $this->load->view('top-menu',array('is_internal'=>false)) ?>
             <div class="clear"></div>
             <?php if ($original_path == 'home/index') { ?>
                 <div id="logo-banner">
@@ -58,36 +58,7 @@
 
             <div id="content">
                 <div class="left">
-                    <div class="bar-title" style="margin-top: 0px;"><span>Publishing Solutions</span></div>
-                    <ul>
-                        <li>Books</li>
-                        <li>Magazines</li>
-                        <li>Digital Publishing</li>
-                        <li>Printing</li>
-                        <li>Distribution</li>
-                        <li>Rights & Permissions</li>
-                    </ul>
-
-                    <div class="bar-title"><span>Educational Solutions</span></div>
-                    <ul>
-                        <li>Curriculum Development</li>
-                        <li>Curriculum Content</li>
-                        <li>Educational Technology</li>
-                        <li>Educational Supplies</li>
-                        <li>Training For Teachers</li>
-                    </ul>
-
-                    <div class="bar-title"><span>Digital Solutions</span></div>
-                    <ul>
-                        <li>Digital Content</li>
-                        <li>Animation Production</li>
-                        <li>CD/ DVD Replication</li>
-                    </ul>
-
-                    <div class="bar-title"><span>Custom Solutions</span></div>
-
-                    <img src="<?php echo base_url() ?>layout/images/for-limited-time-img.jpg" width="162" height="174" />
-
+                    <?php $this->load->view('side_menu') ?>
                 </div>
                 <div class="right">
                     <?php echo $content ?>

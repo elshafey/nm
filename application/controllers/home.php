@@ -28,8 +28,8 @@ class Home extends My_Controller {
         $this->data['home_page'] = StaticPagesTable::getPage('home');
         $this->data['news'] = NewsTable::getLatest();
         $this->data['banners'] = BannersTable::getList(true);
-        $this->data['latest_release']=  BooksTable::getListBy('is_latest_release', '1');
-        $this->data['most_popular']=  BooksTable::getListBy('is_most_popular', '1');
+        $this->data['latest_release'] = BooksTable::getListBy('is_latest_release', '1');
+        $this->data['most_popular'] = BooksTable::getListBy('is_most_popular', '1');
 //        pre_print($this->data['latest_release'],false);
 //        pre_print($this->data['most_popular']);
         $this->template->add_css('layout/css/nivo/themes/default/default.css');
@@ -38,7 +38,7 @@ class Home extends My_Controller {
         $this->template->add_css('layout/css/nivo/themes/bar/bar.css');
         $this->template->add_css('layout/css/nivo/nivo-slider.css');
         $this->template->add_js('layout/js/jquery/nivo/jquery.nivo.slider.pack.js');
-        
+
         $this->template->add_js('layout/js/popup.js');
         $this->template->add_js('layout/js/home.js');
         $this->template->add_css('layout/css/popup.css');
@@ -46,76 +46,113 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function faqs(){
+    public function faqs() {
+        $this->data['navigator']=array('<span class="sub-item"> &gt; '.lang('home_menu_faqs').'</span>');
         $this->data['faqs'] = FaqsTable::getList(true);
         $this->data['page_title'] = lang('home_menu_faqs');
-        
+
         $this->template->write_view('content', 'home/faqs', $this->data);
         $this->template->render();
     }
 
-    public function downloads(){
+    public function publishing_solutions($id){
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_publishing_solutions').'</span>';
+        $this->side_menu_page($id, 'PublishingSoluionsTable');
+    }
+
+    public function educational_solutions($id){
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_educational_solutions').'</span>';
+        $this->side_menu_page($id, 'EducationalSoluionsTable');
+    }
+
+    public function digital_solutions($id){
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_digital_solutions').'</span>';
+        $this->side_menu_page($id, 'DigitalSoluionsTable');
+    }
+
+    private function side_menu_page($id,$table){
+        $page=  $table::getOneBy('id', $id);
+        $this->data['downloads'] = CMSTable::getListBy('parent',$id,true,SIDE_MENU_DOWNLOADS_NAMESPACE);
+        $this->data['page_title']=$page['title'][get_locale()];
+        $this->data['page']['page_content'][get_locale()]=$page['content'][get_locale()];
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.$this->data['page_title'].'</span>';
+        $this->template->write_view('content', 'home/downloads', $this->data);
+        $this->template->render();
+    }
+
+    public function downloads() {
         $this->data['page'] = StaticPagesTable::getPage('downloads');
         $this->data['downloads'] = DownloadsTable::getList(true);
-        $this->data['page_title'] = ($this->data['page'])? $this->data['page']['page_title'][get_locale()]:lang('home_menu_downloads');
+        $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_downloads');
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.$this->data['page_title'].'</span>';
         
         $this->template->write_view('content', 'home/downloads', $this->data);
         $this->template->render();
     }
 
-    public function achievements(){
+    public function achievements() {
         $this->data['page'] = StaticPagesTable::getPage('achievements');
-        $this->data['page_title'] = ($this->data['page'])? $this->data['page']['page_title'][get_locale()]:lang('home_menu_achievements');
-        
+        $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_achievements');
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.$this->data['page_title'].'</span>';
         $this->template->write_view('content', 'home/achievements', $this->data);
         $this->template->render();
     }
-    
-    public function careers(){
+
+    public function careers() {
         $this->data['page'] = StaticPagesTable::getPage('career');
         $this->data['list'] = CareersTable::getList(true);
-        $this->data['page_title'] = ($this->data['page'])? $this->data['page']['page_title'][get_locale()]:lang('home_menu_careers');
-        
+        $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_careers');
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.$this->data['page_title'].'</span>';
         $this->template->write_view('content', 'home/careers', $this->data);
         $this->template->render();
     }
-    
-    public function career_details($id){
+
+    public function career_details($id) {
+        $this->data['navigator'][]='<span class="main-item"> &gt; <a href="'.get_routed_url(Urls::URL_PREFIX_CAREERS).'">'.lang('home_menu_careers').'</a></span>';
         $this->data['item'] = CareersTable::getOneBy('id', $id);
         $this->data['page_title'] = $this->data['item']['job_title'][get_locale()];
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.$this->data['page_title'].'</span>';
         $this->template->write_view('content', 'home/career_details', $this->data);
         $this->template->render();
     }
-    
-    public function aboutus($id){
-        $this->get_common_news_details($id,'AboutusPages');
+
+    public function aboutus($id) {
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_menu_aboutus').'</span>';
+        $this->get_common_news_details($id, 'AboutusPages');
     }
-    
+
     public function news() {
         $this->data['page_title'] = lang('home_menu_media_center_news');
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_menu_media_center_news').'</span>';
         $this->get_common_news();
     }
 
     public function news_details($id) {
+        $this->data['navigator'][]='<span class="main-item"> &gt; <a href="'.get_routed_url(Urls::URL_PREFIX_NEWS_LIST).'">'.lang('home_menu_media_center_news').'</a></span>';
         $this->get_common_news_details($id);
     }
 
     public function events() {
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_menu_media_center_events').'</span>';
         $this->data['page_title'] = lang('home_menu_media_center_events');
         $this->get_common_news('Events');
     }
-    
+
     public function event_details($id) {
-        $this->get_common_news_details($id,'Events');
+        $this->data['navigator'][]='<span class="main-item"> &gt; <a href="'.get_routed_url(Urls::URL_PREFIX_EVENTS_LIST).'">'.lang('home_menu_media_center_events').'</a></span>';
+        $this->get_common_news_details($id, 'Events');
     }
 
     public function press() {
+        
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_menu_media_center_press_release').'</span>';
         $this->data['page_title'] = lang('home_menu_media_center_press_release');
         $this->get_common_news('Pressreleases');
     }
-    
+
     public function press_details($id) {
-        $this->get_common_news_details($id,'Pressreleases');
+        $this->data['navigator'][]='<span class="main-item"> &gt; <a href="'.get_routed_url(Urls::URL_PREFIX_PRESS_LIST).'">'.lang('home_menu_media_center_press_release').'</a></span>';
+        $this->get_common_news_details($id, 'Pressreleases');
     }
 
     public function generate_models() {
@@ -132,31 +169,38 @@ class Home extends My_Controller {
         }
     }
 
-    public function portfolio(){
+    public function portfolio() {
         $this->data['page'] = StaticPagesTable::getPage('portfolio');
         $this->data['portfolios'] = PortfoliosTable::getList(true);
         $this->data['page_title'] = $this->data['page']['page_title'][get_locale()];
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.$this->data['page_title'].'</span>';
         
         $this->template->write_view('content', 'home/portfolio', $this->data);
         $this->template->render();
     }
 
-    public function portfolio_details($id){
-        $this->get_common_news_details($id,'Portfolios');
+    public function portfolio_details($id) {
+        $page = StaticPagesTable::getPage('portfolio');
+        $this->data['navigator'][]='<span class="main-item"> &gt; <a href="'.get_routed_url(Urls::URL_PREFIX_PORTFOLIO).'">'.$page['page_title'][get_locale()].'</a></span>';
+        $this->get_common_news_details($id, 'Portfolios');
     }
 
-    public function partners(){
+    public function partners() {
+
+        $this->data['partners']['content'] = PartenersTable::getListBy('type',1,true);
+        $this->data['partners']['business'] = PartenersTable::getListBy('type',2,true);
         
-        $this->data['portfolios'] = PartenersTable::getList(true);
         $this->data['page_title'] = lang('home_menu_partners');
-        
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_menu_partners').'</span>';
         $this->template->write_view('content', 'home/partners', $this->data);
         $this->template->render();
     }
 
-
     private function get_common_data() {
         $this->data['aboutus'] = AboutusPagesTable::getList(true);
+        $this->data['publishing_solutions'] = PublishingSoluionsTable::getList(true);
+        $this->data['educational_solutions'] = EducationalSoluionsTable::getList(true);
+        $this->data['digital_solutions'] = DigitalSoluionsTable::getList(true);
         $this->data['original_path'] = implode('/', $this->uri->rsegments);
         $this->data['url'] = UrlsTable::getOneBy('url_prefix', $this->data['original_path']);
     }
@@ -171,10 +215,11 @@ class Home extends My_Controller {
     }
 
     private function get_common_news_details($id, $model = 'News') {
-
+        
         $modelTable = $model . 'Table';
         $this->data['item'] = $modelTable::getOneBy('id', $id);
         $this->data['page_title'] = $this->data['item']['page_title'][get_locale()];
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.$this->data['page_title'].'</span>';
         $this->template->write_view('content', 'home/news_details', $this->data);
         $this->template->render();
     }

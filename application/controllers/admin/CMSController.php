@@ -30,8 +30,8 @@ class CMSController extends My_Controller {
         $this->data['responce'] = $this->getRespnce($pages);
         $this->data['page_title'] = lang($this->data['controller'] . '_index_page_title');
         load_grid_files();
-        $this->template->write_view('content', 'admin/' . $this->_controller . '/index', $this->data, FALSE);
-        $this->template->render();
+        
+        $this->load_view('index');
     }
 
     protected function getRespnce($pages) {
@@ -60,6 +60,12 @@ class CMSController extends My_Controller {
         return $responce;
     }
 
+    protected function load_view($view){
+        $this->template->write_view('content', 'admin/' . $this->_controller . '/'.$view, $this->data, FALSE);
+        $this->template->render();
+    }
+
+
     protected function create_logic() {
         $model = $this->_model;
 
@@ -87,8 +93,7 @@ class CMSController extends My_Controller {
 
         $this->create_logic();
 
-        $this->template->write_view('content', 'admin/' . $this->_controller . '/form', $this->data, FALSE);
-        $this->template->render();
+        $this->load_view('form');
     }
 
     protected function edit_logic($id) {
@@ -110,14 +115,14 @@ class CMSController extends My_Controller {
                 redirect('admin/' . $this->_redirect);
             }
         }
+        $this->data['id']=$id;
         $this->data['form'] = $form;
     }
 
     public function edit($id) {
         $this->data['page_title'] = lang($this->data['controller'] . '_form_edit_page_title');
         $this->edit_logic($id);
-        $this->template->write_view('content', 'admin/' . $this->_controller . '/form', $this->data, FALSE);
-        $this->template->render();
+        $this->load_view('form');
     }
 
     public function orderup($id) {

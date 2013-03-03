@@ -24,11 +24,15 @@ class Urls extends CMS {
     const URL_PREFIX_PRESS_LIST         = 'home/press/';
     const URL_PREFIX_PORTFOLIO_DETAILS  = 'home/portfolio_details/';
     const URL_PREFIX_PORTFOLIO          = 'home/portfolio/';
+    const URL_PREFIX_PARTNERS          = 'home/partners/';
     const URL_PREFIX_CAREERS            = 'home/careers/';
     const URL_PREFIX_CAREERS_DETAILS    = 'home/career_details/';
     const URL_PREFIX_DOWNLOADS          = 'home/downloads/';
     const URL_PREFIX_FAQS               = 'home/faqs/';
     const URL_PREFIX_ACHIEVEMENTS       = 'home/achievements/';
+    const URL_PREFIX_PUBLISHING_SOLUTIONS       = 'home/publishing_solutions/';
+    const URL_PREFIX_DIGITAL_SOLUTIONS       = 'home/digital_solutions/';
+    const URL_PREFIX_EDUCATIONAL_SOLUTIONS       = 'home/educational_solutions/';
     
     public function __construct($url_prefix = null) {
         $this->url_prefix = $url_prefix;

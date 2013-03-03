@@ -46,7 +46,7 @@ class CMS {
     }
 
     public function isParentField($field){
-        return in_array($field, $this->parent_columns);
+        return in_array($field, $this->parent_columns)||$field=='parent';
     }
 
 
