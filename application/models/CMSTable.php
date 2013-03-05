@@ -99,7 +99,7 @@ class CMSTable {
         $CI = get_instance();
         /* @var $qb \Doctrine\ORM\QueryBuilder */
         $qb = $CI->doctrine->em->createQueryBuilder();
-
+        /* @var $q Doctrine\ORM\Query */
         if ($cms->isParentField($field)) {
             $q = $qb->select('p,pd')
                     ->from('\Entities\Pages', 'p')
@@ -122,9 +122,10 @@ class CMSTable {
                     ->setParameter('3', "" . $value)
             ;
         }
-
+        $q->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE);
         $res = $q->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY)
                 ->execute();
+        
         if ($res) {
             return array_shift(self::getFloatHydration($res));
         }

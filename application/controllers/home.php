@@ -196,6 +196,45 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
+    public function preview_book($id){
+        
+        $this->data['book']= BooksTable::getOneBy('id', $id);
+        $this->data['book']['SubCategories']= SubCategoriesTable::getOneBy('id', $this->data['book']['parent_id']);
+        $this->data['book']['SubCategories']['Categories']= CategoriesTable::getOneBy('id', $this->data['book']['category']);
+        
+        $this->data['page_title']=  $this->data['book']['title'][get_locale()];
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.$this->data['page_title'].'</span>';
+        $this->template->write_view('content', 'home/book_details', $this->data);
+        $this->template->render();
+    }
+    
+    public function advanced_search(){
+        
+        if($_POST){
+            
+            $this->data['books']=BooksTable::advancedSearch($_POST);
+            
+            $this->form_validation->set_rules('title', '', 'xss_clean');
+            $this->form_validation->set_rules('author', '', 'xss_clean');
+            $this->form_validation->set_rules('isbn', '', 'xss_clean');
+            $this->form_validation->set_rules('category', '', 'xss_clean');
+            $this->form_validation->set_rules('subcategory', '', 'xss_clean');
+            $this->form_validation->run();
+            if($_POST['category'])
+                $this->data['subcategories']=  SubCategoriesTable::getListByCat($_POST['category']);
+        }
+        $this->data['categories']=  CategoriesTable::getList(true);
+        $this->data['navigator'][]='<span class="sub-item"> &gt; '.lang('home_menu_advances_search').'</span>';
+        $this->template->add_css('layout/css/form.css');
+        $this->template->write_view('content', 'home/advanced_search', $this->data);
+        $this->template->render();
+    }
+
+    public function get_subcategories($id){
+        $this->data['subcategories']=  SubCategoriesTable::getListByCat($id);
+        $this->load->view('home/_subcategories',  $this->data);
+    }
+
     private function get_common_data() {
         $this->data['aboutus'] = AboutusPagesTable::getList(true);
         $this->data['publishing_solutions'] = PublishingSoluionsTable::getList(true);

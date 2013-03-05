@@ -799,3 +799,109 @@ a.prev span, a.next span {
     text-decoration: underline;
     color: #001845;
 }
+#latest{
+    height: 213px !important;
+}
+
+
+
+.caroufredsel_wrapper {
+    height: 213px !important;
+    width: 605px !important;
+    margin-left: 28px !important;
+}
+
+.home-media {
+    background: #f7f7f7;
+    height: 236px;
+}
+
+.carousel-image-container-2{
+
+    border: 1px solid rgb(255, 255, 255);
+
+
+    height: 172px;
+    overflow-y:hidden;
+}
+
+.carousel-image-container-1
+{border: 1px solid #ccc;
+ display: block;
+ float: left;
+}
+
+.carousel-image-container-1:hover{
+    border-color: rgb(76, 148, 255);
+}
+
+.carousel-image-container-0
+{
+    margin: 4px;
+    display: block;
+    float: left;
+    width: 143px;
+}
+
+
+.carousel-image-item{
+    border: none !important;
+    background-color: white !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 128px;
+}
+
+.carousel-image-info{
+    float: left;
+    clear:left;
+    margin-top:4px;
+    text-align: left !important;
+    font-size: 10px;
+    color: #f7f7f7;
+    display:block;
+    -webkit-transition: color 0.2s linear;  
+    -moz-transition: color 0.2s linear;  
+    -o-transition: color 0.2s linear;  
+    -ms-transition: color 0.2s linear;  
+    transition: color 0.2s linear;  
+}
+
+.carousel-image-container-0:hover .carousel-image-info{
+
+
+    color: gray;
+
+
+    -webkit-transition: color 0.8s linear;  
+    -moz-transition: color 0.8s linear;  
+    -o-transition: color 0.8s linear;  
+    -ms-transition: color 0.8s linear;  
+    transition: color 0.8s linear;  
+}
+
+a.next, a.prev { 
+    top: 75px ;
+
+}
+
+.theme-default a.nivo-nextNav {
+    background-position: -30px 0;
+}
+
+.theme-default a.nivo-prevNav {
+    background-position: 5px 0px;
+}
+
+.book-title-anchor{
+    color: rgb(0, 92, 255);
+    font-size: 11px;
+}
+
+.book-title-anchor:hover{
+    color: rgb(0, 92, 255);
+}
+
+.carousel-image-container-0:hover .book-title-anchor{
+    text-decoration:underline;
+}

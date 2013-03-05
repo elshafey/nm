@@ -27,8 +27,18 @@
     <div class="home-media">
         <div class="image_carousel">
             <div id="latest">
-                <?php foreach ($latest_release as $value) { ?>
-                    <img src="<?php echo base_url() . page_thumb($value['img']) ?>" title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" width="140" height="100" />
+                <?php foreach ($most_popular as $value) { ?>
+                    <div class="carousel-image-container-0">
+                        <a href="#" class="carousel-image-container-1">
+                            <div class="carousel-image-container-2" >
+                                <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" />
+                            </div>
+                        </a>
+                        <p class="carousel-image-info">
+                            <?php echo $value['title'][get_locale()] ?><br/>
+                            <?php echo $value['pages_count'] ?> Pages
+                        </p>
+                    </div>
                 <?php } ?>
             </div>
             <div class="clearfix"></div>
@@ -42,7 +52,17 @@
         <div class="image_carousel">
             <div id="popular">
                 <?php foreach ($most_popular as $value) { ?>
-                    <img src="<?php echo base_url() . page_thumb($value['img']) ?>" title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" width="140" height="100" />
+                    <div class="carousel-image-container-0">
+                        <a href="#" class="carousel-image-container-1">
+                            <div class="carousel-image-container-2" >
+                                <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" />
+                            </div>
+                        </a>
+                        <p class="carousel-image-info">
+                            <?php echo $value['title'][get_locale()] ?><br/>
+                            <?php echo $value['pages_count'] ?> Pages
+                        </p>
+                    </div>
                 <?php } ?>
             </div>
             <div class="clearfix"></div>
