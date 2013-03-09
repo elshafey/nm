@@ -1318,6 +1318,17 @@ class My_Form_validation {
 
         return true;
     }
+    
+    function capatcha($str){
+        /* @var $CI My_Controller */
+        $CI=  get_instance();
+        $security_code=$CI->session->userdata('security_code');
+        $CI->session->unset_userdata('security_code');
+        if(strtolower($str)==$security_code)
+            return true;
+        
+        return false;
+    }
 
 }
 

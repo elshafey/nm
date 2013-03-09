@@ -80,3 +80,13 @@ input[type="submit"],input[type="button"]{
 input[type="submit"]:hover{
     color: #444;
 }
+.capatcha-span{
+    float: left;
+}
+.capatcha-span img,.capatcha-span input{
+    float: left;
+    margin-top: 3px;
+}
+.capatcha-span input{
+    margin-left: 5px;
+}

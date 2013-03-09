@@ -33,6 +33,7 @@ class Urls extends CMS {
     const URL_PREFIX_PUBLISHING_SOLUTIONS       = 'home/publishing_solutions/';
     const URL_PREFIX_DIGITAL_SOLUTIONS       = 'home/digital_solutions/';
     const URL_PREFIX_EDUCATIONAL_SOLUTIONS       = 'home/educational_solutions/';
+    const URL_PREFIX_CONTACT_US       = 'home/contact_us/';
     
     public function __construct($url_prefix = null) {
         $this->url_prefix = $url_prefix;

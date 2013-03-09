@@ -25,6 +25,7 @@ $lang['greater_than']		= "This field must contain a number greater than %s.";
 
 /**this localizations are for the user defiend validations**/
 $lang['unique']                 = "This field value was assigined before.";
+$lang['capatcha']               = "Please insert valid capatcha";
 $lang['select']                 = "Please select value for this field.";
 $lang['valid_date']             = "Please insert valid date value.";
 $lang["max_count"]              ="Please select less than %s %s item(s)";

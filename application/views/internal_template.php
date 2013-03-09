@@ -16,7 +16,7 @@
         <div id="upper-header"></div>
         <div id="wrapper">
             <a href="<?php echo base_url() ?>">
-            <div class="logo-inside"></div>
+                <div class="logo-inside"></div>
             </a>
             <a href="<?php echo base_url() ?>" class="arabic-link arabic-link-inside"></a>
             <div class="social-network-inside" id="social-network">
@@ -35,7 +35,13 @@
 
             <div id="search-box-inside">
                 <div class="search-left"></div>
-                <div class="search-middle"></div>
+                <div class="search-middle">
+                    <div class="search-middle-title">Search Products</div>
+                    <form action="<?php echo site_url('home/quick_search') ?>">
+                        <input id="quick_search" type="text" value="<?php echo set_value('q') ?>" class="search-box" name="q" />
+                    </form>
+                    <a class="advanced-search" href="<?php echo site_url('home/advanced_search') ?>"><?php echo lang('home_menu_advances_search') ?></a>
+                </div>
                 <div class="search-right"></div>
             </div>
 
@@ -59,66 +65,7 @@
 
         <div id="footer">
             <div class="wrapper">
-                <ul>
-                    <li class="title"><span>Nahdit Misr</span></li>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Achievements</a></li>
-                    <li><a href="">Portfolio</a></li>
-                    <li><a href="">Partners</a></li>
-                    <li><a href="">Download</a></li>
-                    <li><a href="">Media Center</a></li>
-                    <li><a href="">Careers</a></li>
-                    <li><a href="">FAQ</a></li>
-                    <li><a href="">Contacts Us</a></li>
-                </ul>
-
-                <ul>
-                    <li class="title"><span>Navigation</span></li>
-                    <li class="sub-title">Publishing Solutions</li>
-                    <li><a href="">Books</a></li>
-                    <li><a href="">Magazines</a></li>
-                    <li><a href="">Digital Publishing</a></li>
-                    <li><a href="">Printing</a></li>
-                    <li><a href="">Distribution</a></li>
-                    <li><a href="">Rights & Permissions</a></li>
-
-                    <li class="sub-title">Educational Solutions</li>
-                    <li><a href="">Curriculum Development</a></li>
-                    <li><a href="">Curriculum Content</a></li>
-                    <li><a href="">Educational Technology</a></li>
-                    <li><a href="">Educational Supplies</a></li>
-                    <li><a href="">Training For Teachers</a></li>
-                </ul>
-
-                <ul>        	
-                    <li class="sub-title">Digital Solutions</li>
-                    <li><a href="">Digital Content</a></li>
-                    <li><a href="">Animation Production</a></li>
-                    <li><a href="">CD/ DVD Replication</a></li> 
-
-                    <li class="sub-title">Custom Solutions</li>
-                </ul>
-
-                <ul>
-                    <li class="title"><span>Languages</span></li>
-                    <li><a href="">English</a></li>
-                    <li><a href="">Arabic</a></li>            
-
-                    <li class="sub-title" style="margin-top: 25px;">Search</li>
-                    <li><a href="">Advanced Search</a></li>
-
-                    <li class="sub-title" style="margin-top: 25px;">Our Social Pages</li>
-                    <li><a href="">Facebook</a></li>
-                    <li><a href="">Twitter</a></li>
-                    <li><a href="">Linkedin</a></li>
-                    <li><a href="">Youtube</a></li>
-                </ul>
-
-                <div class="clear"></div>
-
-                <div class="copyrights">
-                    &copy; 2013 Nadit Misr | All Rights Reserved | <a href="">Privacy Statement</a>
-                </div>
+                <?php $this->load->view('footer_navigation') ?>
             </div>
         </div>
     </body>

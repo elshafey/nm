@@ -22,6 +22,7 @@ class Media_center extends CMSController{
         $this->_model=  ucfirst($seg);
 //        $this->lang->load($seg);
         $this->data['controller']=$seg;
+        $this->_redirect=$this->uri->segment(2);
     }
     
 }

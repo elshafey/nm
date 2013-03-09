@@ -12,6 +12,12 @@ $(document).ready(function(){
     $(':checkbox').each(function(i){
         $(this).parent().append('<input type="hidden" id="'+$(this).attr('name')+'_hidden" value="'+$(this).val()+'" name="'+$(this).attr('name')+'" />');
     })
+    
+    $('#quick_search').keypress(function(e){
+        if(e.keyCode==13){
+            $(this).closest('form').submit();
+        }
+    });
 });
 function site_url(controller){
     if(!controller){
@@ -29,6 +35,9 @@ function site_url(controller){
     return url;
     
 }
+
+
+
 function get_thumb_path(fileUrl){
     var path=fileUrl;
                         

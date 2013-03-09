@@ -55,12 +55,14 @@ $route['admin/events/(:any)']   =    'admin/media_center/$1';
 
 $route['admin/category']              ='admin/book/index';
 $route['admin/subcategory']              ='admin/book/index';
-$route['admin/home']            ='admin/staticpage/index/home';
-$route['admin/portfolio-main']            ='admin/staticpage/index/portfolio';
-$route['admin/careers-main']            ='admin/staticpage/index/career';
-$route['admin/downloads-main']            ='admin/staticpage/index/downloads';
-$route['admin/achievements']            ='admin/staticpage/index/achievements';
-$route['admin/faqs']            ='admin/staticpage/index/faqs';
+$route['admin/home']            ='admin/staticpage/edit/home';
+$route['admin/portfolio-main']            ='admin/staticpage/edit/portfolio';
+$route['admin/careers-main']            ='admin/staticpage/edit/career';
+$route['admin/downloads-main']            ='admin/staticpage/edit/downloads';
+$route['admin/achievements']            ='admin/staticpage/edit/achievements';
+$route['admin/faqs']            ='admin/staticpage/edit/faqs';
+
+$route['capatch.jpg']           ='home/capatcha';
 
 //include auto genrated routes
 require_once 'application/config/auto_routes.php';

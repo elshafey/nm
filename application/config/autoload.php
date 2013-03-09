@@ -70,7 +70,7 @@ $autoload['libraries'] = array('template', 'session','form_validation','doctrine
 
 
 
-$autoload['helper'] = array('language', 'locale', 'url', 'html', 'form', 'cookie', 'theme','message','url2','editor','grid','txt');
+$autoload['helper'] = array('email','language', 'locale', 'url', 'html', 'form', 'cookie', 'theme','message','url2','editor','grid','txt');
 
 
 

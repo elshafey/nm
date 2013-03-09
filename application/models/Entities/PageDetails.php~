@@ -45,7 +45,7 @@ class PageDetails
     /**
      * @var \Entities\Pages
      *
-     * @ManyToOne(targetEntity="Entities\Pages")
+     * @ManyToOne(targetEntity="Entities\Pages", inversedBy="PageDetails")
      * @JoinColumns({
      *   @JoinColumn(name="page_id", referencedColumnName="id")
      * })
