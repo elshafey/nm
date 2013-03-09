@@ -1,6 +1,30 @@
 <form method="POST">
     <ul>
         <li>
+            <?php if ($page) { ?>
+                <?php echo $page['page_content'][get_locale()] ?>
+            <?php } ?>
+        </li>
+        <li>
+            <?php echo lang('home_contact_us_fiil_form') ?>
+        </li>
+        <?php if ($services) { ?>
+            <li>
+                <?php echo lang('home_contact_us_ask_about', 'ask_about') ?>
+                <div class="contact-us-services">
+                    <ul>
+                        <?php foreach ($services as $k=>$service) { ?>
+                        <li>
+                            <input type="checkbox" name="ask_about[]" value="<?php  echo $service['name'][get_locale()]  ?>" <?php set_checkbox('ask_about', $service['name'][get_locale()] ) ?> id="<?php echo "service_$k" ?>" />
+                            <label for="<?php echo "service_$k" ?>"><?php echo $service['name'][get_locale()] ?></label>
+                        </li>
+                        <?php } ?>
+                        
+                    </ul>
+                </div>
+            </li>
+        <?php } ?>
+        <li>
             <?php echo lang('home_contact_us_full_name', 'full_name') ?>
             <input class="txtbox" type="text" value="<?php echo set_value('full_name') ?>" name="full_name" />
             <span class="star">*</span>
@@ -16,7 +40,7 @@
             </select>
         </li>
         <li>
-                <?php echo lang('home_contact_us_company', 'company') ?>
+            <?php echo lang('home_contact_us_company', 'company') ?>
             <input class="txtbox" type="text" value="<?php echo set_value('company') ?>" name="company" />
         </li>
         <li>
@@ -35,7 +59,7 @@
                 <img src="<?php echo site_url() . 'capatch.jpg' ?>" />
                 <input class="txtbox" type="text" maxlength="6" style="width: 70px;" value="" name="security_code" />
                 <span class="star">*</span>
-            <?php echo form_error('security_code') ?>
+                <?php echo form_error('security_code') ?>
             </span>
         </li>
         <li>

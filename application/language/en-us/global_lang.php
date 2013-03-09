@@ -26,7 +26,9 @@ $lang['global_added_successfully']             ='The page was added successfully
 $lang['global_order_changed_successfully']     ='Page order was changed successfully';
 $lang['global_deactivated_successfully']       ='Page was deactivated successfully';
 $lang['global_activated_successfully']         ='Page was activated successfully';
+$lang['global_deleted_successfully']         ='Page was deleted successfully';
 ////////////// aboutus controller /////////////
+$lang['aboutus_index_page_title']         ='Manage about us';
 $lang['aboutus_form_create_page_title']         ='Create new page';
 $lang['aboutus_page_title_en-us']               ='Page title in English';
 $lang['aboutus_page_title_ar-eg']               ='Page title in Arabic';
@@ -38,6 +40,7 @@ $lang['aboutus_form_edit_page_title']           ='Edit about us page';
 
 
 ////////////// News controller /////////////
+$lang['news_index_page_title']         ='Manage news';
 $lang['news_form_create_page_title']         ='Create new page';
 $lang['news_page_title_en-us']               ='Page title in English';
 $lang['news_page_title_ar-eg']               ='Page title in Arabic';
@@ -49,6 +52,7 @@ $lang['news_form_edit_page_title']           ='Edit news page';
 
 
 ////////////// Events controller /////////////
+$lang['events_index_page_title']         ='Manage events';
 $lang['events_form_create_page_title']         ='Create new page';
 $lang['events_page_title_en-us']               ='Page title in English';
 $lang['events_page_title_ar-eg']               ='Page title in Arabic';
@@ -60,6 +64,7 @@ $lang['events_form_edit_page_title']           ='Edit event page';
 
 
 ////////////// Pressreleases controller /////////////
+$lang['pressreleases_index_page_title']         ='Manage press releases';
 $lang['pressreleases_form_create_page_title']         ='Create new page';
 $lang['pressreleases_page_title_en-us']               ='Page title in English';
 $lang['pressreleases_page_title_ar-eg']               ='Page title in Arabic';
@@ -71,6 +76,7 @@ $lang['pressreleases_form_edit_page_title']           ='Edit press release page'
 
 
 ////////////// portfolios controller /////////////
+$lang['portfolio_index_page_title']         ='Manage portfolio';
 $lang['portfolios_form_create_page_title']         ='Create new page';
 $lang['portfolios_page_title_en-us']               ='Page title in English';
 $lang['portfolios_page_title_ar-eg']               ='Page title in Arabic';
@@ -85,6 +91,7 @@ $lang['portfolios_img_title']                          ='Image title';
 
 
 ////////////// careers controller /////////////
+$lang['career_index_page_title']         ='Manage careers';
 $lang['careers_form_create_page_title']         ='Create new job';
 $lang['careers_job_title_en-us']               ='Job title in English';
 $lang['careers_job_title_ar-eg']               ='Job title in Arabic';
@@ -98,14 +105,15 @@ $lang['careers_main_page_txt']                  ='Edit careers main text';
 
 
 ////////////// downloads controller /////////////
-$lang['side_menu_downloads_form_create_page_title']         ='Create new download';
-$lang['side_menu_downloads_name_en-us']               ='Name in English';
-$lang['side_menu_downloads_name_ar-eg']               ='Name in Arabic';
-$lang['side_menu_downloads_page_order']                     ='Download order';
-$lang['side_menu_downloads_is_active']                     ='Is active?';
-$lang['side_menu_downloads_form_edit_page_title']           ='Edit download';
-$lang['side_menu_downloads_path']                           ='Select file';
-$lang['side_menu_downloads_main_page_txt']                  ='Edit downloads main text';
+$lang['download_index_page_title']         ='Manage downloads';
+$lang['downloads_form_create_page_title']         ='Create new download';
+$lang['downloads_name_en-us']               ='Name in English';
+$lang['downloads_name_ar-eg']               ='Name in Arabic';
+$lang['downloads_page_order']                     ='Download order';
+$lang['downloads_is_active']                     ='Is active?';
+$lang['downloads_form_edit_page_title']           ='Edit download';
+$lang['downloads_path']                           ='Select file';
+$lang['downloads_main_page_txt']                  ='Edit downloads main text';
 
 ////////////// staticpages controller /////////////
 $lang['staticpage_form_create_page_title']         ='Create new page';
@@ -118,6 +126,7 @@ $lang['staticpages_video_image']                    ='Video image';
 
 
 ////////////// Banners controller /////////////
+$lang['banner_index_page_title']         ='Manage home rotator';
 $lang['banner_form_create_page_title']         ='Create new banner';
 $lang['banners_path']                           ='Select image';
 $lang['banner_grid_preview']                           ='Preview';
@@ -129,6 +138,7 @@ $lang['banner_form_edit_page_title']           ='Edit banner';
 
 
 ////////////// parteners controller /////////////
+$lang['partener_index_page_title']            ='Manage partners';
 $lang['partener_form_edit_page_title']            ='Partners';
 $lang['parteners_form_create_page_title']         ='Create new partner';
 $lang['partener_form_edit_page_title']            ='Edit partner';
@@ -148,6 +158,7 @@ $lang['parteners_business']                       ='Business';
 
 
 ////////////// faqs controller /////////////
+$lang['faq_index_page_title']         ='Manage FAQ';
 $lang['faqs_form_create_page_title']         ='Create new FAQ';
 $lang['faqs_question_en-us']                 ='Question in English';
 $lang['faqs_question_ar-eg']                 ='Question in Arabic';
@@ -159,6 +170,7 @@ $lang['faqs_main_page_txt']            ='Edit FAQ page meta';
 
 
 ////////////// category controller /////////////
+$lang['categories_section_title']                    ='Manage categories';
 $lang['category_form_create_page_title']         ='Create new category';
 $lang['categories_page_order']                     ='Category order';
 $lang['categories_is_active']                      ='Is active?';
@@ -168,6 +180,7 @@ $lang['categories_name_ar-eg']                     ='Name in Arabic';
 
 
 ////////////// Subcategory controller /////////////
+$lang['subcategories_section_title']                    ='Manage subcategories';
 $lang['subcategory_form_create_page_title']         ='Create new subcategory';
 $lang['subcategories_page_order']                     ='Subcategory order';
 $lang['subcategories_is_active']                      ='Is active?';
@@ -178,6 +191,8 @@ $lang['subcategories_category_name']                  ='Category name';
 
 
 ////////////// books controller /////////////
+$lang['books_section_title']                    ='Manage books';
+$lang['book_index_page_title']         ='Manage books';
 $lang['book_form_create_page_title']         ='Create new book';
 $lang['books_page_order']                     ='Book order';
 $lang['books_is_active']                      ='Is active?';
@@ -269,4 +284,13 @@ $lang['educational_soluions_content_ar-eg']      ='Page content in Arabic';
 $lang['educational_soluions_page_order']      ='Page order';
 $lang['educational_soluions_is_active']      ='Is active?';
 
-?>
+
+////////////// category controller /////////////
+$lang['contactus_index_page_title']                    ='Manage contactus services';
+$lang['contactus_main_page_txt']                    ='Manage contactus main page';
+$lang['contactus_form_create_page_title']         ='Create new contactus service';
+$lang['contactus_page_order']                     ='Service order';
+$lang['contactus_is_active']                      ='Is active?';
+$lang['contactus_form_edit_page_title']           ='Edit service';
+$lang['contactus_name_en-us']                     ='Name in English';
+$lang['contactus_name_ar-eg']                     ='Name in Arabic';

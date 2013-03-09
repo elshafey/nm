@@ -90,3 +90,22 @@ input[type="submit"]:hover{
 .capatcha-span input{
     margin-left: 5px;
 }
+.contact-us-services {
+    float: right;
+    width: 522px;
+}
+.contact-us-services li {
+    float: left;
+    width: 165px;
+}
+
+.contact-us-services input {
+    float: left;
+    margin-right: 3px;
+    margin-top: 5px;
+}
+
+.contact-us-services label {
+    text-align: left;
+    width: 140px;
+}

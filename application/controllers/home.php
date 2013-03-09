@@ -209,18 +209,17 @@ class Home extends My_Controller {
     }
 
     public function quick_search() {
-        if (!$_GET || !isset($_GET['q'])&&$_GET['q'])
+        if (!$_GET || !isset($_GET['q']) && $_GET['q'])
             redirect('/');
         $_POST = $_GET;
         $this->form_validation->set_rules('q', '', 'xss_clean');
         $this->form_validation->run();
         $this->data['books'] = BooksTable::quickSearch($_POST['q']);
-        $this->data['page_title']=lang('home_menu_quick_search');
+        $this->data['page_title'] = lang('home_menu_quick_search');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-        
+
         $this->template->write_view('content', 'home/search_result', $this->data);
         $this->template->render();
-        
     }
 
     public function advanced_search() {
@@ -239,7 +238,7 @@ class Home extends My_Controller {
                 $this->data['subcategories'] = SubCategoriesTable::getListByCat($_POST['category']);
         }
         $this->data['categories'] = CategoriesTable::getList(true);
-        $this->data['page_title']=lang('home_menu_advances_search');
+        $this->data['page_title'] = lang('home_menu_advances_search');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_advances_search') . '</span>';
         $this->template->add_css('layout/css/form.css');
         $this->template->write_view('content', 'home/advanced_search', $this->data);
@@ -258,6 +257,7 @@ class Home extends My_Controller {
             $this->form_validation->set_rules('full_name', '', 'required|xss_clean');
             $this->form_validation->set_rules('country', '', 'xss_clean');
             $this->form_validation->set_rules('company', '', 'xss_clean');
+            $this->form_validation->set_rules('ask_about', '', 'xss_clean');
             $this->form_validation->set_rules('tel', '', 'xss_clean');
             $this->form_validation->set_rules('email', '', 'valid_email|xss_clean');
             $this->form_validation->set_rules('security_code', '', 'required|capatcha|xss_clean');
@@ -265,17 +265,23 @@ class Home extends My_Controller {
             if ($this->form_validation->run()) {
                 $body =
                         "Full name: {$_POST['full_name']}<br>"
-                        . ($_POST['country'] ? "Country: {$_POST['country']}" : "" )
-                        . ($_POST['company'] ? "Company: {$_POST['company']}" : "" )
-                        . ($_POST['tel'] ? "Telephone: {$_POST['tel']}" : "" )
-                        . ($_POST['email'] ? "Email: {$_POST['email']}" : "" )
-                        . "Comment: {$_POST['comment']}";
+                        . ($_POST['country'] ? "Country: {$_POST['country']}<br>" : "" )
+                        . ($_POST['company'] ? "Company: {$_POST['company']}<br>" : "" )
+                        . ($_POST['tel'] ? "Telephone: {$_POST['tel']}<br>" : "" )
+                        . ($_POST['email'] ? "Email: {$_POST['email']}<br>" : "" )
+                        . "Comment: {$_POST['comment']}<br>"
+                        . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
+                ;
+                
                 send_email(CONTACT_US_EMAIL, 'Contact Us Form', $body);
                 redirect('/');
             }
         }
-        $this->data['page_title'] = lang('home_menu_contact_us');
-        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_contact_us') . '</span>';
+        $page = StaticPagesTable::getPage('contactus');
+        $this->data['page'] = $page;
+        $this->data['services'] = ContactusServicesTable::getList(true);
+        $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_contact_us');
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->data['countries'] = CountriesTable::getList();
         $this->template->add_css('layout/css/form.css');
         $this->template->write_view('content', 'home/contact_us', $this->data);

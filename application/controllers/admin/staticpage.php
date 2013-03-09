@@ -22,6 +22,7 @@ class Staticpage extends CMSController {
         'portfolio'=>array('page_title','page_content','page_url'),
         'careers'=>array('page_title','page_content','page_url'),
         'downloads'=>array('page_title','page_content','page_url'),
+        'contactus'=>array('page_title','page_content','page_url'),
     );
 
 
@@ -55,6 +56,11 @@ class Staticpage extends CMSController {
                 $this->url_prefix = Urls::URL_PREFIX_DOWNLOADS;
                 $this->_model = 'HomePage';
                 $this->_redirect = 'download';
+                break;
+            case 'contactus':
+                $this->url_prefix = Urls::URL_PREFIX_CONTACT_US;
+                $this->_model = 'HomePage';
+                $this->_redirect = 'contactus';
                 break;
             case 'faqs':
                 $this->url_prefix = Urls::URL_PREFIX_FAQS;

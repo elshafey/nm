@@ -25,6 +25,8 @@ $lang['home_contact_us_tel']      ='Telephone';
 $lang['home_contact_us_email']      ='Email';
 $lang['home_contact_us_capatch_hint']      ='Please enter the characters below:';
 $lang['home_contact_us_comment']      ='Comment';
+$lang['home_contact_us_ask_about']      ='Ask about';
+$lang['home_contact_us_fiil_form']      ='Or fill form';
 $lang['home_btn_send']      ='Send';
 
 
