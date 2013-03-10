@@ -134,8 +134,9 @@ class BooksTable extends CMSTable {
         $cms = self::getInstance();
 
         /* @var $query Doctrine\ORM\Query */
-        $query = $qb->select('p,pd')
+        $query = $qb->select('p,pds')
                 ->from('\Entities\Pages', 'p')
+                ->join('p.PageDetails', 'pds', Doctrine\ORM\Query\Expr\Join::WITH, '   p.namespace = ?1 ')
                 ->join('p.PageDetails', 'pd', Doctrine\ORM\Query\Expr\Join::WITH, '   p.namespace = ?1 ')
                 ->join('p.parent', 's')->join('s.PageDetails', 'spd')
                 ->join('s.parent', 'c')->join('c.PageDetails', 'cpd')
@@ -147,6 +148,7 @@ class BooksTable extends CMSTable {
         $query->setParameter('3', "%$q%");
         $query->setParameter('4', "%$q%");
         
+//        echo $query->getSQL();exit;
         return (self::getFloatHydration($query->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY)));
     }
 

@@ -135,9 +135,10 @@ class CMSTable {
     public static function getFloatHydration($res) {
 
         $pages = array();
+        $template=self::getModelTemplate();
         foreach ($res as $i => $rec) {
 
-            $page = array();
+            $page = $template;
             foreach ($rec as $key => $value) {
                 $name = self::convertNametoUnderScored($key);
                 if ($key == 'PageDetails') {
@@ -160,6 +161,19 @@ class CMSTable {
             $pages[] = $page;
         }
         return $pages;
+    }
+
+    public static function getModelTemplate(){
+        $template=array();
+        $cms = static::getInstance();
+        foreach ($cms->columns as $column) {
+            if(!isset($column['value'])){
+                $template[$column['name']]='';
+            }elseif(!($column['value'] instanceof CMS)){
+                $template[$column['name']]=  isset($column['value'])? $column['value']:'';
+            }
+        }
+        return $template;
     }
 
     static function convertNametoUnderScored($key) {
