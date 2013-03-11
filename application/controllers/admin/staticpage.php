@@ -32,7 +32,7 @@ class Staticpage extends CMSController {
 
     function edit($type) {
         $this->data['type'] = $type;
-
+        $this->data['page_title'] = lang($this->data['controller'] . '_'.$type.'_form_edit_page_title');
         switch ($type) {
             case 'home':
                 $this->_model = 'HomePage';

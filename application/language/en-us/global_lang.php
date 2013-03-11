@@ -77,7 +77,8 @@ $lang['pressreleases_form_edit_page_title']           ='Edit press release page'
 
 ////////////// portfolios controller /////////////
 $lang['portfolio_index_page_title']         ='Manage portfolio';
-$lang['portfolios_form_create_page_title']         ='Create new page';
+$lang['portfolio_form_create_page_title']         ='Create new page';
+$lang['portfolio_form_edit_page_title']         ='Edit page';
 $lang['portfolios_page_title_en-us']               ='Page title in English';
 $lang['portfolios_page_title_ar-eg']               ='Page title in Arabic';
 $lang['portfolios_page_content_en-us']             ='Page content in English';
@@ -92,6 +93,7 @@ $lang['portfolios_img_title']                          ='Image title';
 
 ////////////// careers controller /////////////
 $lang['career_index_page_title']         ='Manage careers';
+$lang['career_form_create_page_title']         ='Create new job';
 $lang['careers_form_create_page_title']         ='Create new job';
 $lang['careers_job_title_en-us']               ='Job title in English';
 $lang['careers_job_title_ar-eg']               ='Job title in Arabic';
@@ -99,19 +101,20 @@ $lang['careers_job_description_en-us']             ='Job description in English'
 $lang['careers_job_description_ar-eg']             ='Job description in Arabic';
 $lang['careers_job_order']                     ='Page order';
 $lang['careers_is_active']                     ='Is active?';
-$lang['careers_form_edit_page_title']           ='Edit career job';
+$lang['career_form_edit_page_title']           ='Edit career job';
 $lang['careers_job_code']                           ='Job Code';
 $lang['careers_main_page_txt']                  ='Edit careers main text';
 
 
 ////////////// downloads controller /////////////
 $lang['download_index_page_title']         ='Manage downloads';
-$lang['downloads_form_create_page_title']         ='Create new download';
+$lang['download_form_create_page_title']         ='Create new download';
+$lang['download_form_edit_page_title']         ='Edit download';
 $lang['downloads_name_en-us']               ='Name in English';
 $lang['downloads_name_ar-eg']               ='Name in Arabic';
 $lang['downloads_page_order']                     ='Download order';
 $lang['downloads_is_active']                     ='Is active?';
-$lang['downloads_form_edit_page_title']           ='Edit download';
+$lang['download_form_edit_page_title']           ='Edit download';
 $lang['downloads_path']                           ='Select file';
 $lang['downloads_main_page_txt']                  ='Edit downloads main text';
 
@@ -123,6 +126,13 @@ $lang['staticpages_page_content_en-us']             ='Page content in English';
 $lang['staticpages_page_content_ar-eg']             ='Page content in Arabic';
 $lang['staticpages_video_path']                     ='Video URL';
 $lang['staticpages_video_image']                    ='Video image';
+$lang['staticpage_achievements_form_edit_page_title']       ='Edit achievements page data';
+$lang['staticpage_portfolio_form_edit_page_title']       ='Edit Portfolio page main text';
+$lang['staticpage_careers_form_edit_page_title']       ='Edit careers page main text';
+$lang['staticpage_downloads_form_edit_page_title']       ='Edit downloads page main text';
+$lang['staticpage_contactus_form_edit_page_title']       ='Edit Contact us main text';
+$lang['staticpage_faqs_form_edit_page_title']       ='Edit FAQ page meta';
+$lang['staticpage_home_form_edit_page_title']       ='Edit home page data';
 
 
 ////////////// Banners controller /////////////
@@ -174,7 +184,7 @@ $lang['categories_section_title']                    ='Manage categories';
 $lang['category_form_create_page_title']         ='Create new category';
 $lang['categories_page_order']                     ='Category order';
 $lang['categories_is_active']                      ='Is active?';
-$lang['categories_form_edit_page_title']           ='Edit category';
+$lang['categorie_form_edit_page_title']           ='Edit category';
 $lang['categories_name_en-us']                     ='Name in English';
 $lang['categories_name_ar-eg']                     ='Name in Arabic';
 
@@ -184,7 +194,7 @@ $lang['subcategories_section_title']                    ='Manage subcategories';
 $lang['subcategory_form_create_page_title']         ='Create new subcategory';
 $lang['subcategories_page_order']                     ='Subcategory order';
 $lang['subcategories_is_active']                      ='Is active?';
-$lang['subcategories_form_edit_page_title']           ='Edit subcategory';
+$lang['subcategorie_form_edit_page_title']           ='Edit subcategory';
 $lang['subcategories_name_en-us']                     ='Name in English';
 $lang['subcategories_name_ar-eg']                     ='Name in Arabic';
 $lang['subcategories_category_name']                  ='Category name';
@@ -194,9 +204,10 @@ $lang['subcategories_category_name']                  ='Category name';
 $lang['books_section_title']                    ='Manage books';
 $lang['book_index_page_title']         ='Manage books';
 $lang['book_form_create_page_title']         ='Create new book';
+$lang['book_form_edit_page_title']         ='Edit book';
 $lang['books_page_order']                     ='Book order';
 $lang['books_is_active']                      ='Is active?';
-$lang['books_form_edit_page_title']           ='Edit book';
+$lang['book_form_edit_page_title']           ='Edit book';
 $lang['books_title_en-us']                     ='Title in English';
 $lang['books_title_ar-eg']                     ='Title in Arabic';
 $lang['books_category']                  ='Category name';
@@ -234,6 +245,7 @@ $lang['side_menu_downloads_main_page_txt']                  ='Edit downloads mai
 ///////////////////Digital Solutions///////////////
 $lang['digital_soluions_index_page_title']      ='Digital Solutions';
 $lang['digital_soluions_form_create_page_title']      ='Create new digital solutions page';
+$lang['digital_soluions_form_edit_page_title']      ='Edit digital solutions page';
 $lang['digital_soluions_manage_downloads']      ='Manage page downloads';
 $lang['digital_soluions_side_menu_downloads_form_create_page_title']      ='Add new download';
 $lang['digital_soluions_downloads_form_create_page_title']      ='Add new download';
@@ -252,6 +264,7 @@ $lang['digital_soluions_is_active']      ='Is active?';
 ///////////////////Publishing Solutions///////////////
 $lang['publishing_soluions_index_page_title']      ='Publishing Solutions';
 $lang['publishing_soluions_form_create_page_title']      ='Create new publishing solutions page';
+$lang['publishing_soluions_form_edit_page_title']      ='Edit publishing solutions page';
 $lang['publishing_soluions_manage_downloads']      ='Manage page downloads';
 $lang['publishing_soluions_side_menu_downloads_form_create_page_title']      ='Add new download';
 $lang['publishing_soluions_downloads_form_create_page_title']      ='Add new download';
@@ -270,6 +283,7 @@ $lang['publishing_soluions_is_active']      ='Is active?';
 ///////////////////Educational Solutions///////////////
 $lang['educational_soluions_index_page_title']      ='Educational Solutions';
 $lang['educational_soluions_form_create_page_title']      ='Create new educational solutions page';
+$lang['educational_soluions_form_edit_page_title']      ='Edit educational solutions page';
 $lang['educational_soluions_manage_downloads']      ='Manage page downloads';
 $lang['educational_soluions_side_menu_downloads_form_create_page_title']      ='Add new download';
 $lang['educational_soluions_downloads_form_create_page_title']      ='Add new download';
