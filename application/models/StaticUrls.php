@@ -14,7 +14,7 @@ class StaticUrls extends Urls {
         $CI=  get_instance();
         if($CI->uri->segment(2)=='home'){
             $url_prefix=  self::URL_PREFIX_HOME_PAGE;
-        }else{
+        }elseif(isset ($CI->url_prefix)){
             $url_prefix=$CI->url_prefix;
         }
         parent::__construct($url_prefix);
