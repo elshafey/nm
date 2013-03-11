@@ -192,8 +192,8 @@ class Books extends CMS {
         $ch = curl_init('http://api.scribd.com/api?method=docs.upload&api_key=3r190500l02rmjeficw4l');
         $post_data = array(
             'file' => '@' . $path,
-            'access' => 'public'
         );
+        
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
