@@ -151,12 +151,24 @@ class Books extends CMS {
 
         $this->setUpColumn(
                 array(
+                    'name' => 'doc_id',
+                    'value' => '',
+        ));
+
+        $this->setUpColumn(
+                array(
+                    'name' => 'access_key',
+                    'value' => '',
+        ));
+
+        $this->setUpColumn(
+                array(
                     'name' => 'book_url',
                     'outType' => 'url',
                     'value' => new Urls(Urls::URL_PREFIX_BOOK),
         ));
 
-        
+
         array_push($this->render_fields, 'is_latest_release');
         array_push($this->render_fields, 'is_most_popular');
         array_unshift($this->render_fields, 'pages_count');
@@ -171,6 +183,55 @@ class Books extends CMS {
         array_unshift($this->render_fields, 'title');
         array_unshift($this->render_fields, 'parent_id');
         array_unshift($this->render_fields, 'category');
+    }
+
+    function onFlush(\Entities\Pages &$page) {
+        parent::onFlush($page);
+        $path = getcwd() . $this->preview;
+        
+        $ch = curl_init('http://api.scribd.com/api?method=docs.upload&api_key=3r190500l02rmjeficw4l');
+        $post_data = array(
+            'file' => '@' . $path,
+            'access' => 'public'
+        );
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        $xml = simplexml_load_string($output);
+
+        /* @var $CI My_Controller */
+        $CI=get_instance();
+        //inserting access key
+        $pageDetail = $CI->doctrine->em->createQuery('SELECT pd FROM \Entities\PageDetails pd where pd.name= ?2 and pd.Pages= ?1 ')
+                ->setParameter('1', $page->getId())
+                ->setParameter('2', 'access_key')
+                ->getSingleResult();
+        
+        if(!$pageDetail){
+            $pageDetail=new \Entities\PageDetails();
+        }
+        $pageDetail->setPages($page);
+        $pageDetail->setName('access_key');
+        $pageDetail->setValue($xml->access_key);
+        $CI->doctrine->em->persist($pageDetail);
+        $CI->doctrine->em->flush();
+        
+        //inserting doc id
+        $pageDetail = $CI->doctrine->em->createQuery('SELECT pd FROM \Entities\PageDetails pd where pd.name= ?2 and pd.Pages= ?1 ')
+                ->setParameter('1', $page->getId())
+                ->setParameter('2', 'doc_id')
+                ->getSingleResult();
+        if(!$pageDetail){
+            $pageDetail=new \Entities\PageDetails();
+        }
+        $pageDetail->setPages($page);
+        $pageDetail->setName('doc_id');
+        $pageDetail->setValue($xml->access_key);
+        $CI->doctrine->em->persist($pageDetail);
+        
+        $CI->doctrine->em->flush();
     }
 
 }
