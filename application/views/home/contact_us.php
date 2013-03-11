@@ -50,6 +50,7 @@
         <li>
             <?php echo lang('home_contact_us_email', 'email') ?>
             <input class="txtbox" type="text" value="<?php echo set_value('email') ?>" name="email" />
+            <span class="star">*</span>
             <?php echo form_error('email') ?>
         </li>
         <li>

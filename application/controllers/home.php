@@ -259,7 +259,7 @@ class Home extends My_Controller {
             $this->form_validation->set_rules('company', '', 'xss_clean');
             $this->form_validation->set_rules('ask_about', '', 'xss_clean');
             $this->form_validation->set_rules('tel', '', 'xss_clean');
-            $this->form_validation->set_rules('email', '', 'valid_email|xss_clean');
+            $this->form_validation->set_rules('email', '', 'required|valid_email|xss_clean');
             $this->form_validation->set_rules('security_code', '', 'required|capatcha|xss_clean');
             $this->form_validation->set_rules('comment', '', 'required|xss_clean');
             if ($this->form_validation->run()) {
