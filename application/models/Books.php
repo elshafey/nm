@@ -187,13 +187,13 @@ class Books extends CMS {
 
     function onFlush(\Entities\Pages &$page) {
         parent::onFlush($page);
-        $path = getcwd() . $this->preview;
-        
+        $path = getcwd() . '/' . $this->preview;
+
         $ch = curl_init('http://api.scribd.com/api?method=docs.upload&api_key=3r190500l02rmjeficw4l');
         $post_data = array(
             'file' => '@' . $path,
         );
-        
+
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
@@ -202,35 +202,40 @@ class Books extends CMS {
         $xml = simplexml_load_string($output);
 
         /* @var $CI My_Controller */
-        $CI=get_instance();
+        $CI = get_instance();
         //inserting access key
         $pageDetail = $CI->doctrine->em->createQuery('SELECT pd FROM \Entities\PageDetails pd where pd.name= ?2 and pd.Pages= ?1 ')
                 ->setParameter('1', $page->getId())
                 ->setParameter('2', 'access_key')
                 ->getSingleResult();
-        
-        if(!$pageDetail){
-            $pageDetail=new \Entities\PageDetails();
+
+        if (!$pageDetail) {
+            $pageDetail = new \Entities\PageDetails();
         }
         $pageDetail->setPages($page);
         $pageDetail->setName('access_key');
         $pageDetail->setValue($xml->access_key);
         $CI->doctrine->em->persist($pageDetail);
         $CI->doctrine->em->flush();
-        
+
         //inserting doc id
         $pageDetail = $CI->doctrine->em->createQuery('SELECT pd FROM \Entities\PageDetails pd where pd.name= ?2 and pd.Pages= ?1 ')
                 ->setParameter('1', $page->getId())
                 ->setParameter('2', 'doc_id')
                 ->getSingleResult();
-        if(!$pageDetail){
-            $pageDetail=new \Entities\PageDetails();
+        if (!$pageDetail) {
+            $pageDetail = new \Entities\PageDetails();
+        } else {
+            $ch = curl_init('http://api.scribd.com/api?method=docs.delete&api_key=3r190500l02rmjeficw4l&doc_id='.$pageDetail->getValue());
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $output = curl_exec($ch);
+            curl_close($ch);
         }
         $pageDetail->setPages($page);
         $pageDetail->setName('doc_id');
-        $pageDetail->setValue($xml->access_key);
+        $pageDetail->setValue($xml->doc_id);
         $CI->doctrine->em->persist($pageDetail);
-        
+
         $CI->doctrine->em->flush();
     }
 

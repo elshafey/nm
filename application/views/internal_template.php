@@ -52,6 +52,7 @@
                     <?php $this->load->view('side_menu') ?>
                 </div>
                 <div class="right">
+                    <?php echo top_side_link() ?>
                     <div class="navigator">
                         <span class="main-item"><a href="<?php echo base_url() ?>">Home Page</a></span>
                         <?php echo implode('', $navigator) ?>

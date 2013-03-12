@@ -61,11 +61,25 @@ function print_meta_data($url, $page_title) {
         $meta.='<meta name="description" content="' . $url['meta_description'] . '" />
         <meta name="keywords" content="' . $url['meta_keywords'] . '" />
         <meta name="title" content="' . $url['meta_title'] . '" />
-        <title>' . ($url['meta_title']? $url['meta_title']:$page_title) . '</title>';
+        <title>' . ($url['meta_title'] ? $url['meta_title'] : $page_title) . '</title>';
     } else {
         $meta.='<title>' . $page_title . '</title>';
     }
-    
+
     return $meta;
 }
+
+function top_side_link() {
+    /* @var $CI My_Controller */
+    $CI = get_instance();
+    $html='';
+    if (trim(Urls::URL_PREFIX_PARTNERS,'/') == trim(implode('/', $CI->uri->rsegments),'/')){
+        $html = '<div class="request-proposal"><a href="'.get_routed_url('home/become_partner').'">' . lang('home_menu_become_agent') . '</a></div>';
+    }elseif(trim(implode('/', $CI->uri->rsegments),'/')!='home/become_partner'){
+        $html = '<div class="request-proposal"><a href="'.get_routed_url('home/request_proposal').'">' . lang('home_menu_request_prposal') . '</a></div>';
+    }
+    
+    return $html;
+}
+
 ?>

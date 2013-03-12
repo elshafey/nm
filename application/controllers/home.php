@@ -288,6 +288,75 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
+    public function become_partner(){
+        if ($_POST) {
+            $this->form_validation->set_error_delimiters('<span class="frm_error_msg">', '</span>');
+            $this->form_validation->set_rules('full_name', '', 'required|xss_clean');
+            $this->form_validation->set_rules('company', '', 'xss_clean');
+            $this->form_validation->set_rules('tel', '', 'xss_clean');
+            $this->form_validation->set_rules('email', '', 'required|valid_email|xss_clean');
+            $this->form_validation->set_rules('security_code', '', 'required|capatcha|xss_clean');
+            $this->form_validation->set_rules('comment', '', 'required|xss_clean');
+            if ($this->form_validation->run()) {
+                $body =
+                        "Full name: {$_POST['full_name']}<br>"
+                        . ($_POST['country'] ? "Country: {$_POST['country']}<br>" : "" )
+                        . ($_POST['company'] ? "Company: {$_POST['company']}<br>" : "" )
+                        . ($_POST['tel'] ? "Telephone: {$_POST['tel']}<br>" : "" )
+                        . ($_POST['email'] ? "Email: {$_POST['email']}<br>" : "" )
+                        . "Comment: {$_POST['comment']}<br>"
+                        . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
+                ;
+                
+                send_email(CONTACT_US_EMAIL, 'Becom Agent Form', $body);
+                redirect('/');
+            }
+        }
+        $page = StaticPagesTable::getPage('become_agent');
+        $this->data['page'] = $page;
+        $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_become_agent');
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
+        $this->template->add_css('layout/css/form.css');
+        $this->template->write_view('content', 'home/become_agent', $this->data);
+        $this->template->render();
+    }
+
+
+    public function request_proposal(){
+        if ($_POST) {
+
+            $this->form_validation->set_error_delimiters('<span class="frm_error_msg">', '</span>');
+            $this->form_validation->set_rules('full_name', '', 'required|xss_clean');
+            $this->form_validation->set_rules('company', '', 'xss_clean');
+            $this->form_validation->set_rules('tel', '', 'xss_clean');
+            $this->form_validation->set_rules('email', '', 'required|valid_email|xss_clean');
+            $this->form_validation->set_rules('security_code', '', 'required|capatcha|xss_clean');
+            $this->form_validation->set_rules('comment', '', 'required|xss_clean');
+            if ($this->form_validation->run()) {
+                $body =
+                        "Full name: {$_POST['full_name']}<br>"
+                        . ($_POST['country'] ? "Country: {$_POST['country']}<br>" : "" )
+                        . ($_POST['company'] ? "Company: {$_POST['company']}<br>" : "" )
+                        . ($_POST['tel'] ? "Telephone: {$_POST['tel']}<br>" : "" )
+                        . ($_POST['email'] ? "Email: {$_POST['email']}<br>" : "" )
+                        . "Comment: {$_POST['comment']}<br>"
+                        . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
+                ;
+                
+                send_email(CONTACT_US_EMAIL, 'Request Propsal Form', $body);
+                redirect('/');
+            }
+        }
+        $page = StaticPagesTable::getPage('request_prposal');
+        $this->data['page'] = $page;
+        $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_request_prposal');
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
+        $this->template->add_css('layout/css/form.css');
+        $this->template->write_view('content', 'home/become_agent', $this->data);
+        $this->template->render();
+    }
+
+
     public function capatcha() {
         require 'application/libraries/capatcha.php';
         new Captcha(120, 26);
