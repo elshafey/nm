@@ -22,13 +22,7 @@ class SubCategories extends Categories {
                     'select_txt_field' => 'name',
                 )
         );
-
-        $this->setUpColumn(
-                array(
-                    'name' => 'url',
-                    'outType' => 'url',
-                    'value' => new Urls(Urls::URL_PREFIX_BOOK_SUBCATEGORY),
-        ));
+        
         
         array_unshift($this->render_fields, 'parent_id');
     }

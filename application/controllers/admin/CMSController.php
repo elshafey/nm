@@ -18,6 +18,18 @@ class CMSController extends My_Controller {
 
     public function __construct() {
         parent::__construct();
+        if (
+                $this->uri->segment(1) == 'admin'
+                &&
+                $this->uri->rsegment(1) != 'login'
+        ) {
+            if (!$this->session->userdata('is_login')) {
+
+                redirect('admin/login');
+
+                exit;
+            }
+        }
         $this->template->set_template('admin_template');
         $this->data['controller'] = $this->_controller;
         $this->_redirect = $this->_controller;
@@ -30,7 +42,7 @@ class CMSController extends My_Controller {
         $this->data['responce'] = $this->getRespnce($pages);
         $this->data['page_title'] = lang($this->data['controller'] . '_index_page_title');
         load_grid_files();
-        
+
         $this->load_view('index');
     }
 
@@ -60,11 +72,10 @@ class CMSController extends My_Controller {
         return $responce;
     }
 
-    protected function load_view($view){
-        $this->template->write_view('content', 'admin/' . $this->_controller . '/'.$view, $this->data, FALSE);
+    protected function load_view($view) {
+        $this->template->write_view('content', 'admin/' . $this->_controller . '/' . $view, $this->data, FALSE);
         $this->template->render();
     }
-
 
     protected function create_logic() {
         $model = $this->_model;
@@ -110,12 +121,13 @@ class CMSController extends My_Controller {
 
             $this->session->set_flashdata("message", $message);
             if (is_ajax()) {
-                echo 'success';exit;
+                echo 'success';
+                exit;
             } else {
                 redirect('admin/' . $this->_redirect);
             }
         }
-        $this->data['id']=$id;
+        $this->data['id'] = $id;
         $this->data['form'] = $form;
     }
 

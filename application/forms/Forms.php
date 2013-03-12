@@ -111,6 +111,9 @@ class Forms {
                 case 'hidden':
                     $this->addHidden($this->cms->columns[$field]);
                     break;
+                case 'password':
+                    $this->addPassword($this->cms->columns[$field]);
+                    break;
                 default:
                     break;
             }
@@ -174,6 +177,14 @@ class Forms {
     public function addTxtBox($field) {
         $fld_html = '<input name="%s" class="txtbox" id="%s" value="%s" /> ';
         $this->fields[$field['name']] = $this->buildCommonHtml($field, $fld_html);
+    }
+
+    public function addPassword($field) {
+        $fld_html = '<input name="%s" type="password" class="txtbox" id="%s" value="" /> ';
+        
+        $temp =$this->buildCommonHtml($field, $fld_html);
+        $field['name']=$field['name'].'_confirm';
+        $this->fields[$field['name']]=$temp.$this->buildCommonHtml($field, $fld_html);
     }
 
     public function addHidden($field) {

@@ -25,13 +25,6 @@ class Categories extends CMS {
                     'value' => $value,
         ));
         
-        $this->setUpColumn(
-                array(
-                    'name' => 'url',
-                    'outType' => 'url',
-                    'value' => new Urls(Urls::URL_PREFIX_BOOK_CATEGORY),
-        ));
-        array_unshift($this->render_fields, 'url');
         array_unshift($this->render_fields, 'name');
         
     }

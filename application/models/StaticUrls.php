@@ -20,6 +20,42 @@ class StaticUrls extends Urls {
         parent::__construct($url_prefix);
     }
     
+    function setUp() {
+//        array_unshift($this->render_fields, 'img');
+//        array_unshift($this->render_fields, 'img_alt');
+//        array_unshift($this->render_fields, 'img_title');
+        parent::setUp();
+//        $this->setUpColumn(
+//                array(
+//                    'name' => 'img_alt',
+//                    'validation' => 'required|xss_clean',
+//                    'required' => true,
+//                    'outType' => 'textbox',
+//                    'value' => '',
+//        ));
+//
+//        $this->setUpColumn(
+//                array(
+//                    'name' => 'img_title',
+//                    'validation' => 'required|xss_clean',
+//                    'required' => true,
+//                    'outType' => 'textbox',
+//                    'value' => '',
+//        ));
+//        
+//        $this->setUpColumn(
+//                array(
+//                    'name' => 'img',
+//                    'validation' => 'required|xss_clean',
+//                    'required' => false,
+//                    'outType' => 'img_uploader',
+//                    'value' => '',
+//        ));
+        
+        
+    }
+
+
     protected function onFlush(\Entities\Pages &$page) {
         save_url();
     }
