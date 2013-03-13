@@ -29,7 +29,7 @@
             <div id="latest">
                 <?php foreach ($most_popular as $value) { ?>
                     <div class="carousel-image-container-0">
-                        <a href="#" class="carousel-image-container-1">
+                        <a href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK.$value['id']) ?>" class="carousel-image-container-1">
                             <div class="carousel-image-container-2" >
                                 <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" />
                             </div>
@@ -53,7 +53,7 @@
             <div id="popular">
                 <?php foreach ($most_popular as $value) { ?>
                     <div class="carousel-image-container-0">
-                        <a href="#" class="carousel-image-container-1">
+                        <a href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK.$value['id']) ?>" class="carousel-image-container-1">
                             <div class="carousel-image-container-2" >
                                 <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" />
                             </div>
