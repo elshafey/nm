@@ -4,14 +4,14 @@
  *
  * @author elshafey
  */
-class EducationalSoluionsTable extends CMSTable {
+class EducationalSolutionsTable extends CMSTable {
     
     /**
      *
-     * @return EducationalSoluions 
+     * @return EducationalSolutions 
      */
     public static function getInstance(){
-        return new EducationalSoluions();
+        return new EducationalSolutions();
     }
 }
 

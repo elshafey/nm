@@ -1,7 +1,7 @@
 <ul>
     <li>
         <a href="<?php echo site_url('admin/career/create') ?>"><?php echo lang('careers_form_create_page_title') ?></a>
-        <a style="float: right" href="<?php echo site_url('admin/careers-main') ?>">
+        <a style="float: right" href="<?php echo site_url('admin/staticpage/edit/careers') ?>">
             <?php echo lang('careers_main_page_txt') ?>
         </a>
     </li>

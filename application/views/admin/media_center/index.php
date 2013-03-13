@@ -1,6 +1,11 @@
 <ul>
     <li>
-        <a href="<?php echo site_url('admin/'.$controller.'/create') ?>"><?php echo lang($controller.'_form_create_page_title') ?></a>
+        <a href="<?php echo site_url('admin/'.$controller.'/create') ?>">
+            <?php echo lang($controller.'_form_create_page_title') ?>
+        </a>
+        <a style="float: right" href="<?php echo site_url('admin/staticpage/edit/'.$controller) ?>">
+            <?php echo lang($controller.'_main_page_txt') ?>
+        </a>
     </li>
     <li>
         <table id="list2"></table>

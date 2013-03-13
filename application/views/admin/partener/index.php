@@ -1,6 +1,11 @@
 <ul>
     <li>
-        <a href="<?php echo site_url('admin/partener/create') ?>"><?php echo lang('parteners_form_create_page_title') ?></a>
+        <a href="<?php echo site_url('admin/partener/create') ?>">
+            <?php echo lang('parteners_form_create_page_title') ?>
+        </a>
+        <a style="float: right" href="<?php echo site_url('admin/staticpage/edit/partener') ?>">
+            <?php echo lang('partener_main_page_txt') ?>
+        </a>
     </li>
     <?php if ($responce) { ?>
         <li>

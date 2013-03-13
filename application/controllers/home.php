@@ -57,17 +57,20 @@ class Home extends My_Controller {
 
     public function publishing_solutions($id) {
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_publishing_solutions') . '</span>';
-        $this->side_menu_page($id, 'PublishingSoluionsTable');
+        $this->get_inside_banner(Urls::URL_PREFIX_PUBLISHING_SOLUTIONS);
+        $this->side_menu_page($id, 'PublishingSolutionsTable');
     }
 
     public function educational_solutions($id) {
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_educational_solutions') . '</span>';
-        $this->side_menu_page($id, 'EducationalSoluionsTable');
+        $this->get_inside_banner(Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS);
+        $this->side_menu_page($id, 'EducationalSolutionsTable');
     }
 
     public function digital_solutions($id) {
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_digital_solutions') . '</span>';
-        $this->side_menu_page($id, 'DigitalSoluionsTable');
+        $this->get_inside_banner(Urls::URL_PREFIX_DIGITAL_SOLUTIONS);
+        $this->side_menu_page($id, 'DigitalSolutionsTable');
     }
 
     private function side_menu_page($id, $table) {
@@ -99,7 +102,7 @@ class Home extends My_Controller {
     }
 
     public function careers() {
-        $this->data['page'] = StaticPagesTable::getPage('career');
+        $this->data['page'] = HomePageTable::getPage('careers');
         $this->data['list'] = CareersTable::getList(true);
         $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_careers');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
@@ -112,12 +115,14 @@ class Home extends My_Controller {
         $this->data['item'] = CareersTable::getOneBy('id', $id);
         $this->data['page_title'] = $this->data['item']['job_title'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_CAREERS);
         $this->template->write_view('content', 'home/career_details', $this->data);
         $this->template->render();
     }
 
     public function aboutus($id) {
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_aboutus') . '</span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_ABOUTUS);
         $this->get_common_news_details($id, 'AboutusPages');
     }
 
@@ -129,6 +134,7 @@ class Home extends My_Controller {
 
     public function news_details($id) {
         $this->data['navigator'][] = '<span class="main-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_NEWS_LIST) . '">' . lang('home_menu_media_center_news') . '</a></span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_NEWS_LIST);
         $this->get_common_news_details($id);
     }
 
@@ -140,6 +146,7 @@ class Home extends My_Controller {
 
     public function event_details($id) {
         $this->data['navigator'][] = '<span class="main-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_EVENTS_LIST) . '">' . lang('home_menu_media_center_events') . '</a></span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_EVENTS_LIST);
         $this->get_common_news_details($id, 'Events');
     }
 
@@ -152,6 +159,7 @@ class Home extends My_Controller {
 
     public function press_details($id) {
         $this->data['navigator'][] = '<span class="main-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_PRESS_LIST) . '">' . lang('home_menu_media_center_press_release') . '</a></span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_PRESS_LIST);
         $this->get_common_news_details($id, 'Pressreleases');
     }
 
@@ -174,13 +182,13 @@ class Home extends My_Controller {
         $this->data['portfolios'] = PortfoliosTable::getList(true);
         $this->data['page_title'] = $this->data['page']['page_title'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-
         $this->template->write_view('content', 'home/portfolio', $this->data);
         $this->template->render();
     }
 
     public function portfolio_details($id) {
         $page = StaticPagesTable::getPage('portfolio');
+        $this->get_inside_banner(Urls::URL_PREFIX_PORTFOLIO);
         $this->data['navigator'][] = '<span class="main-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_PORTFOLIO) . '">' . $page['page_title'][get_locale()] . '</a></span>';
         $this->get_common_news_details($id, 'Portfolios');
     }
@@ -313,6 +321,7 @@ class Home extends My_Controller {
             }
         }
         $page = StaticPagesTable::getPage('become_agent');
+        $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', Urls::URL_PREFIX_PARTNERS);
         $this->data['page'] = $page;
         $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_become_agent');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
@@ -320,7 +329,6 @@ class Home extends My_Controller {
         $this->template->write_view('content', 'home/become_agent', $this->data);
         $this->template->render();
     }
-
 
     public function request_proposal(){
         if ($_POST) {
@@ -356,7 +364,6 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-
     public function capatcha() {
         require 'application/libraries/capatcha.php';
         new Captcha(120, 26);
@@ -364,11 +371,17 @@ class Home extends My_Controller {
 
     private function get_common_data() {
         $this->data['aboutus'] = AboutusPagesTable::getList(true);
-        $this->data['publishing_solutions'] = PublishingSoluionsTable::getList(true);
-        $this->data['educational_solutions'] = EducationalSoluionsTable::getList(true);
-        $this->data['digital_solutions'] = DigitalSoluionsTable::getList(true);
+        $this->data['publishing_solutions'] = PublishingSolutionsTable::getList(true);
+        $this->data['educational_solutions'] = EducationalSolutionsTable::getList(true);
+        $this->data['digital_solutions'] = DigitalSolutionsTable::getList(true);
         $this->data['original_path'] = implode('/', $this->uri->rsegments);
-        $this->data['url'] = UrlsTable::getOneBy('url_prefix', $this->data['original_path']);
+        $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);
+        
+        if(!$this->data['url']){
+            $this->data['original_path'].='/';
+            $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);
+        }
+        
     }
 
     private function get_common_news($model = 'News') {
@@ -390,6 +403,13 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
+    private function get_inside_banner($url_prefix){
+        $url=StaticUrlsTable::getOneBy('url_prefix', $url_prefix);
+        $this->data['url']['img']=$url['img'];
+        $this->data['url']['img_alt']=$url['img_alt'];
+        $this->data['url']['img_title']=$url['img_title'];
+    }
+    
 }
 
 /* End of file: dashboard.php */

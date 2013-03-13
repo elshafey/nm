@@ -11,10 +11,10 @@ require_once APPPATH.'controllers/admin/side_menu.php';
  *
  * @author elshafey
  */
-class Digital_soluions extends Side_menu{
+class Publishing_solutions extends Side_menu{
     
-    protected $_model='DigitalSoluions';
-    protected $_controller='digital_soluions';
+    protected $_model='PublishingSolutions';
+    protected $_controller='publishing_solutions';
     
     public function __construct() {
         parent::__construct();

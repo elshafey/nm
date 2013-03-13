@@ -170,7 +170,7 @@ class Forms {
     public function addURLInfo($field) {
         $cms = $this->cms;
         $this->cms = $field['value'];
-        $this->buildFields(array('routed', 'meta_title', 'meta_keywords', 'meta_description'));
+        $this->buildFields($this->cms->render_fields);
         $this->cms = $cms;
     }
 

@@ -8,3 +8,12 @@
         </li>
     </ul>
 </form>
+
+<?php if($type=='aboutus'||$type=='publishing_solutions'||$type=='educational_solutions'||$type=='digital_solutions'){ ?>
+<script>
+    $('#li_routed').hide();
+    $('#li_meta_title').hide();
+    $('#li_meta_keywords').hide();
+    $('#li_meta_description').hide();
+</script>
+<?php } ?>

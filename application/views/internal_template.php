@@ -29,7 +29,11 @@
             <?php $this->load->view('top-menu', array('is_internal' => true)) ?>
             <div class="clear"></div>
             <div class="inside-banner">
-                <img width="907" height="137" src="<?php echo base_url(); ?>layout/images/inside-banner.png" >
+                <?php if (isset($url['img']) && $url['img']) { ?>
+                <img width="907" height="137" alt="<?php echo $url['img_alt'] ?>" title="<?php echo $url['img_title'] ?>" src="<?php echo base_url().$url['img']; ?>" />
+                <?php } else { ?>
+                <img width="907" height="137" src="<?php echo base_url(); ?>layout/images/inside-banner.png" />
+                <?php } ?>
             </div>
             <div class="clear"></div>
 

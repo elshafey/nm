@@ -12,6 +12,7 @@ class Urls extends CMS {
     var $namespace = 'url';
 
     const URL_PREFIX_ABOUTUS_PAGE       = 'home/aboutus/';
+    const URL_PREFIX_ABOUTUS            = 'home/aboutus/';
     const URL_PREFIX_BOOK               = 'home/preview_book/';
     const URL_PREFIX_BOOK_CATEGORY      = 'home/view_category/';
     const URL_PREFIX_BOOK_SUBCATEGORY   = 'home/view_subcategory/';
@@ -72,7 +73,7 @@ class Urls extends CMS {
             'outType' => 'content',
             'validation' => 'xss_clean',
         ));
-        $this->render_fields=array('routed','meta_title','meta_keywords','meta_description','url_prefix');
+        $this->render_fields=array('routed','meta_title','meta_keywords','meta_description');
         unset($this->columns['page_order']);
         unset($this->columns['is_active']);
     }

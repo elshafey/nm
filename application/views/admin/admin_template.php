@@ -82,13 +82,13 @@ if (isset($page_header)) {
                         <a href="javascript:;">Side Menu</a>
                         <ul class="sub-menu" class="noJS" >
                             <li>
-                                <a href="<?php echo site_url('admin/publishing_soluions') ?>">Publishing Solutions</a>
+                                <a href="<?php echo site_url('admin/publishing_solutions') ?>">Publishing Solutions</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('admin/educational_soluions') ?>">Educational Solutions</a>
+                                <a href="<?php echo site_url('admin/educational_solutions') ?>">Educational Solutions</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('admin/digital_soluions') ?>">Digital Solutions</a>
+                                <a href="<?php echo site_url('admin/digital_solutions') ?>">Digital Solutions</a>
                             </li>
                         </ul>
                          |

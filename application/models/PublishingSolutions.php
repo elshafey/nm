@@ -1,8 +1,8 @@
 <?php
 
-class DigitalSoluions extends SideMenu {
+class PublishingSolutions extends SideMenu {
 
-    var $namespace = 'digital_soluions';
+    var $namespace = 'publishing_solutions';
 
     public function setUp() {
         parent::setUp();
@@ -10,7 +10,7 @@ class DigitalSoluions extends SideMenu {
                 array(
                     'name' => 'url',
                     'outType' => 'url',
-                    'value' => new Urls(Urls::URL_PREFIX_DIGITAL_SOLUTIONS),
+                    'value' => new Urls(Urls::URL_PREFIX_PUBLISHING_SOLUTIONS),
         ));
     }
 

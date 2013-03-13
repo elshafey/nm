@@ -18,6 +18,7 @@ class Staticpage extends CMSController {
     var $url_prefix = '';
 
     protected $_render_fields=array(
+        'home'=>array('page_title','page_content','video_path','video_image'),
         'achievements'=>array('page_title','page_content','page_url'),
         'portfolio'=>array('page_title','page_content','page_url'),
         'careers'=>array('page_title','page_content','page_url'),
@@ -66,23 +67,48 @@ class Staticpage extends CMSController {
                 $this->url_prefix = Urls::URL_PREFIX_FAQS;
                 $this->_redirect = 'faq';
                 break;
+            case 'aboutus':
+                $this->url_prefix = Urls::URL_PREFIX_ABOUTUS;
+                $this->_redirect = 'aboutus';
+                $this->data['view_url']=false;
+                break;
+            case 'publishing_solutions':
+                $this->url_prefix = Urls::URL_PREFIX_PUBLISHING_SOLUTIONS;
+                $this->_redirect = 'publishing_solutions';
+                $this->data['view_url']=false;
+                break;
+            case 'educational_solutions':
+                $this->url_prefix = Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS;
+                $this->_redirect = 'educational_solutions';
+                $this->data['view_url']=false;
+                break;
+            case 'digital_solutions':
+                $this->url_prefix = Urls::URL_PREFIX_DIGITAL_SOLUTIONS;
+                $this->_redirect = 'digital_solutions';
+                $this->data['view_url']=false;
+                break;
+            case 'news':
+                $this->url_prefix = Urls::URL_PREFIX_NEWS_LIST;
+                $this->_redirect = 'news';
+                break;
+            case 'events':
+                $this->url_prefix = Urls::URL_PREFIX_EVENTS_LIST;
+                $this->_redirect = 'events';
+                break;
+            case 'news':
+                $this->url_prefix = Urls::URL_PREFIX_PRESS_LIST;
+                $this->_redirect = 'pressreleases';
+                break;
+            case 'partener':
+                $this->url_prefix = Urls::URL_PREFIX_PARTNERS;
+                $this->_redirect = 'partener';
+                break;
             default:
                 break;
         }
-        $page = StaticPagesTable::getPage($type);
-        $model = $this->_model;
         
-        /* @var $cms CMS */
-        if ($page){
-            $cms=new $model($page['id']);
-            $this->data['id'] = $page['id'];
-        }else {
-            $cms=new $model();
-        }
+        $cms=  $this->get_cms($type);
         $cms->setUpColumn(array('name'=>'type','value'=>$type));
-        if(isset($this->_render_fields[$type])){
-            $cms->render_fields=$this->_render_fields[$type];
-        }
         /* @var $form Forms */
         $form = new Forms($cms);
 
@@ -100,11 +126,35 @@ class Staticpage extends CMSController {
                 redirect('admin/' . $this->_redirect);
             }
         }
+        $this->data['type']=$type;
         $this->data['form'] = $form;
         $this->data['cancel']=  $this->_redirect;
         $this->load_view('form');
     }
 
+    /**
+     *
+     * @param string $type
+     * @return CMS 
+     */
+    private function get_cms($type){
+        $page = StaticPagesTable::getPage($type);
+        $model = $this->_model;
+        
+        /* @var $cms CMS */
+        if ($page){
+            $cms=new $model($page['id']);
+            $this->data['id'] = $page['id'];
+        }else {
+            $cms=new $model();
+        }
+        
+        if(isset($this->_render_fields[$type])){
+            $cms->render_fields=$this->_render_fields[$type];
+        }
+        
+        return $cms;
+    }
 }
 
 ?>

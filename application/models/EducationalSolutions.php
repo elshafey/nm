@@ -1,8 +1,8 @@
 <?php
 
-class PublishingSoluions extends SideMenu {
+class EducationalSolutions extends SideMenu {
 
-    var $namespace = 'publishing_soluions';
+    var $namespace = 'educational_solutions';
 
     public function setUp() {
         parent::setUp();
@@ -10,7 +10,7 @@ class PublishingSoluions extends SideMenu {
                 array(
                     'name' => 'url',
                     'outType' => 'url',
-                    'value' => new Urls(Urls::URL_PREFIX_PUBLISHING_SOLUTIONS),
+                    'value' => new Urls(Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS),
         ));
     }
 

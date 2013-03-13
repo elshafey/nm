@@ -4,14 +4,14 @@
  *
  * @author elshafey
  */
-class DigitalSoluionsTable extends CMSTable {
+class PublishingSolutionsTable extends CMSTable {
     
     /**
      *
-     * @return DigitalSoluions 
+     * @return AboutusPages 
      */
     public static function getInstance(){
-        return new DigitalSoluions();
+        return new PublishingSolutions();
     }
 }
 
