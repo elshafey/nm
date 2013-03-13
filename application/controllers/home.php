@@ -102,7 +102,7 @@ class Home extends My_Controller {
     }
 
     public function careers() {
-        $this->data['page'] = HomePageTable::getPage('careers');
+        $this->data['page'] = StaticPagesTable::getPage('careers');
         $this->data['list'] = CareersTable::getList(true);
         $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_careers');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
