@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <?php echo print_meta_data($url,isset($page_title) ? $page_title : lang('page_title')) ?>
+        <?php echo print_meta_data($url, isset($page_title) ? $page_title : lang('page_title')) ?>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/nahdet-misr.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/coolMenu.css"/>
         <?php echo $_styles ?>
@@ -29,23 +29,20 @@
             <a href="<?php echo base_url() ?>" class="arabic-link"></a>
 
             <div class="clear"></div>
-            <?php $this->load->view('top-menu',array('is_internal'=>false)) ?>
+            <?php $this->load->view('top-menu', array('is_internal' => false)) ?>
             <div class="clear"></div>
-            <?php if ($original_path == 'home/index') { ?>
-                <div id="logo-banner">
-                    <a href="<?php echo base_url() ?>" class="nahdit-mist-group-logo"></a>
-                    <div class="banner  theme-default">
-                        <div id="slider" class="nivoSlider">
-                            <?php foreach ($banners as $banner) { ?>
-                                <a href="<?php echo base_url() . $banner['path'] ?>" >
-                                    <img src="<?php echo base_url() . $banner['path'] ?>" title="<?php echo $banner['title'] ?>" alt="<?php echo $banner['alt'] ?>" width="660" height="300" />
-                                </a>
-                            <?php } ?>
-                        </div>
+            <div id="logo-banner">
+                <a href="<?php echo base_url() ?>" class="nahdit-mist-group-logo"></a>
+                <div class="banner  theme-default">
+                    <div id="slider" class="nivoSlider">
+                        <?php foreach ($banners as $banner) { ?>
+                            <a href="<?php echo base_url() . $banner['path'] ?>" >
+                                <img src="<?php echo base_url() . $banner['path'] ?>" title="<?php echo $banner['title'] ?>" alt="<?php echo $banner['alt'] ?>" width="660" height="300" />
+                            </a>
+                        <?php } ?>
                     </div>
                 </div>
-            <?php } ?>
-
+            </div>
             <div class="clear"></div>
 
             <div id="search-box">
