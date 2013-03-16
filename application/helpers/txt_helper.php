@@ -36,5 +36,5 @@ function more_less_str($str){
 }
 
 function sub_string_from_start($string,$length){
-    return htmlspecialchars(substr(htmlspecialchars_decode(strip_tags($string)), 0,$length).((strlen($string)>$length)?'...':''));
+    return (substr(htmlspecialchars_decode(strip_tags($string)), 0,$length).((strlen($string)>$length)?'...':''));
 }

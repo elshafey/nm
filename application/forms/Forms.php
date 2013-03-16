@@ -251,7 +251,8 @@ class Forms {
                 $li.=form_error($new_fld);
                 $li.='</li>';
                 if ($field['outType'] == 'content') {
-                    $html.= sprintf($li, load_editor($new_fld, $value[$key]));
+//                    pre_print($_POST);
+                    $html.= sprintf($li, load_editor($new_fld, htmlspecialchars_decode($value[$key])));
                 } else {
                     $html.= sprintf($li, sprintf($field_html, $new_fld, $new_fld, $value[$key]));
                 }

@@ -38,11 +38,11 @@
                         <td width="750"><?php echo n2nl($faq['answer_en-us']) ?></td>
                     </tr>
                     <tr>
-                        <td width="170"><?php echo lang('faqs_question_en-us') ?></td>
+                        <td width="170"><?php echo lang('faqs_question_ar-eg') ?></td>
                         <td  class="question" width="750"><?php echo $faq['question_ar-eg'] ?></td>
                     </tr>
                     <tr>
-                        <td width="170"><?php echo lang('faqs_answer_en-us') ?></td>
+                        <td width="170"><?php echo lang('faqs_answer_ar-eg') ?></td>
                         <td width="750"><?php echo n2nl($faq['answer_ar-eg']) ?></td>
                     </tr>
                 </table>

@@ -129,6 +129,7 @@ class Home extends My_Controller {
     public function news() {
         $this->data['page_title'] = lang('home_menu_media_center_news');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_media_center_news') . '</span>';
+        $this->data['url_prefix']=  Urls::URL_PREFIX_NEWS_DETAILS;
         $this->get_common_news();
     }
 
@@ -141,6 +142,7 @@ class Home extends My_Controller {
     public function events() {
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_media_center_events') . '</span>';
         $this->data['page_title'] = lang('home_menu_media_center_events');
+        $this->data['url_prefix']=  Urls::URL_PREFIX_EVENT_DETAILS;
         $this->get_common_news('Events');
     }
 
@@ -151,7 +153,7 @@ class Home extends My_Controller {
     }
 
     public function press() {
-
+        $this->data['url_prefix']=  Urls::URL_PREFIX_PRESS_DETAILS;
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_media_center_press_release') . '</span>';
         $this->data['page_title'] = lang('home_menu_media_center_press_release');
         $this->get_common_news('Pressreleases');

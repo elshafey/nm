@@ -17,6 +17,7 @@
   * @property CI_URI $uri
   * @property CI_Lang $lang
   * @property CI_Loader $load
+  * @property CKEditor $ckeditor
   * 
   */
 class My_Controller extends CI_Controller {

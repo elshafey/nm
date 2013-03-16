@@ -1,7 +1,7 @@
 <?php
 
 function load_editor($element, $value = '') {
-
+    /* @var $CI My_Controller */
     $CI = get_instance();
     $CI->ckeditor->basePath = base_url() . 'application/third_party/ckeditor/';
     $CI->ckeditor->ToolbarSet = 'Advanced';
