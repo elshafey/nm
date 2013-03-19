@@ -1,9 +1,9 @@
 <div class="about-us">
     <div class="about-us-left">
         <a id="vedio" href="#?w=420" rel="popup_name" class="poplight" style="font-size: 112% !important;">
-            <img src="<?php echo base_url() . $home_page['video_image'] ?>" width="189" height="103" />
+            <img src="<?php echo base_url() . $home_page['video_image'] ?>" width="228"/>
         </a>
-        <div class="home-title"><?php echo $home_page['page_title'][get_locale()] ?></div>
+<!--        <div class="home-title"><?php echo $home_page['page_title'][get_locale()] ?></div>-->
     </div>
     <div class="about-us-right">
         <?php echo $home_page['page_content'][get_locale()] ?>

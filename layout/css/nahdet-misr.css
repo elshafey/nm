@@ -940,3 +940,7 @@ a.next, a.prev {
     color: #828282 !important;
     font-size: 12px  !important;
 }
+.news-img{
+    float: left;
+    margin-right: 8px;
+}

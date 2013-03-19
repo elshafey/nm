@@ -48,7 +48,9 @@ if (isset($page_header)) {
                 <div class="header_separator"></div>
                 <div class="header_title"><?php echo isset($page_title) ? $page_title : '' ?></div>
                 <div class="clear"></div>
-
+                
+                <?php if(isset($this->session->userdata['is_login'])&&$this->session->userdata['is_login']){ ?>
+                
                 <ul id="menu" class="menu" style="float: left;width:100%">
                     
                     <li>
@@ -118,7 +120,7 @@ if (isset($page_header)) {
                         <a href="<?php echo site_url('admin/login/logout') ?>" >Logout</a>
                     </li>
                 </ul>
-
+                <?php } ?>
             </div>
             <?php if (isset($msg_type) && $msg_type != '' && isset($msg_text) && $msg_text != '') { ?>    
                 <div id="identity-message" class="cls-message-<?php echo $msg_type ?>">

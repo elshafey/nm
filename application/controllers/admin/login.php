@@ -23,8 +23,6 @@ class Login extends CMSController{
             
             if($username == 'nahdet_misr' && $password == 'nahdet_misr@1'){
                 $this->session->set_userdata('is_login' , true);
-                session_start();
-                $_SESSION['IsAuthorized']=true;
                 redirect(site_url('admin/dashboard'));
             }else{
                 redirect(site_url('admin/login'));

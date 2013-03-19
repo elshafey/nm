@@ -1,6 +1,8 @@
 <?php
 
-class Dashboard extends My_Controller{
+require_once APPPATH.'controllers/admin/CMSController.php';
+
+class Dashboard extends CMSController{
     
     public function __construct() {
         parent::__construct();

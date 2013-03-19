@@ -44,11 +44,11 @@
     <li class="sub-title" style="margin-top: 25px;">Search</li>
     <li><a href="<?php echo site_url('home/advanced_search') ?>"><?php echo lang('home_menu_advances_search') ?></a></li>
 
-    <li class="sub-title" style="margin-top: 25px;">Our Social Pages</li>
+<!--    <li class="sub-title" style="margin-top: 25px;">Our Social Pages</li>
     <li><a href="">Facebook</a></li>
     <li><a href="">Twitter</a></li>
     <li><a href="">Linkedin</a></li>
-    <li><a href="">Youtube</a></li>
+    <li><a href="">Youtube</a></li>-->
 </ul>
 <div class="clear"></div>
 <div class="copyrights">

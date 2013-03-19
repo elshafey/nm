@@ -53,6 +53,9 @@ $lang['news_page_content_en-us']             ='Page content in English';
 $lang['news_page_content_ar-eg']             ='Page content in Arabic';
 $lang['news_page_order']                     ='Page order';
 $lang['news_is_active']                     ='Is active?';
+$lang['news_img']                     ='Upload image';
+$lang['news_img_alt']                     ='Image alt';
+$lang['news_img_title']                     ='Image title';
 $lang['news_form_edit_page_title']           ='Edit news page';
 
 

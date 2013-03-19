@@ -35,15 +35,36 @@ class News extends CMS {
         ));
         $this->setUpColumn(
                 array(
+                    'name' => 'img',
+                    'validation' => 'required|xss_clean',
+                    'required' => false,
+                    'outType' => 'img_uploader',
+                    'value' => '',
+        ));
+        $this->setUpColumn(
+                array(
+                    'name' => 'img_alt',
+                    'validation' => 'required|xss_clean',
+                    'required' => true,
+                    'outType' => 'textbox',
+                    'value' => '',
+        ));
+        $this->setUpColumn(
+                array(
+                    'name' => 'img_title',
+                    'validation' => 'required|xss_clean',
+                    'required' => true,
+                    'outType' => 'textbox',
+                    'value' => '',
+        ));
+        $this->setUpColumn(
+                array(
                     'name' => 'page_url',
                     'outType' => 'url',
                     'value' => new Urls(Urls::URL_PREFIX_NEWS_DETAILS),
         ));
-        array_unshift($this->render_fields, 'page_url');
-        array_unshift($this->render_fields, 'page_content');
-        array_unshift($this->render_fields, 'page_title');
         
-        
+        $this->render_fields=array('page_title','page_content','img','img_alt','img_title','page_url','page_order','is_active');
     }
 
 }

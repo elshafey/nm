@@ -19,12 +19,12 @@
                 <div class="logo-inside"></div>
             </a>
             <a href="<?php echo base_url() ?>" class="arabic-link arabic-link-inside"></a>
-            <div class="social-network-inside" id="social-network">
+<!--            <div class="social-network-inside" id="social-network">
                 <a class="facebook" href=""></a>
                 <a class="twitter" href=""></a>
                 <a class="linkedin" href=""></a>
                 <a class="youtube" href=""></a>
-            </div>
+            </div>-->
             <div class="clear"></div>
             <?php $this->load->view('top-menu', array('is_internal' => true)) ?>
             <div class="clear"></div>
