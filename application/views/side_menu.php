@@ -22,7 +22,13 @@
         <?php } ?>
     </ul> 
 <?php } ?>
-
-<div class="bar-title"><span>Custom Solutions</span></div>
+<?php if ($custom_solutions) { ?>
+    <div class="bar-title" style="margin-top: 0px;"><span><?php echo lang('home_custom_solutions') ?></span></div>
+    <ul>
+        <?php foreach ($custom_solutions as $key => $value) { ?>
+            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_CUSTOM_SOLUTIONS.$value['id']) ?>"><?php echo $value['name'][get_locale()] ?></a></li>
+        <?php } ?>
+    </ul> 
+<?php } ?>
 
 <img src="<?php echo base_url() ?>layout/images/for-limited-time-img.jpg" width="162" height="174" />

@@ -73,6 +73,12 @@ class Home extends My_Controller {
         $this->side_menu_page($id, 'DigitalSolutionsTable');
     }
 
+    public function custom_solutions($id) {
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_custom_solutions') . '</span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_DIGITAL_SOLUTIONS);
+        $this->side_menu_page($id, 'CustomSolutionsTable');
+    }
+
     private function side_menu_page($id, $table) {
         $page = $table::getOneBy('id', $id);
         $this->data['downloads'] = CMSTable::getListBy('parent', $id, true, SIDE_MENU_DOWNLOADS_NAMESPACE);
@@ -376,6 +382,7 @@ class Home extends My_Controller {
         $this->data['publishing_solutions'] = PublishingSolutionsTable::getList(true);
         $this->data['educational_solutions'] = EducationalSolutionsTable::getList(true);
         $this->data['digital_solutions'] = DigitalSolutionsTable::getList(true);
+        $this->data['custom_solutions'] = CustomSolutionsTable::getList(true);
         $this->data['original_path'] = implode('/', $this->uri->rsegments);
         $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);
         

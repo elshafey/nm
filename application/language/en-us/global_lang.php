@@ -151,6 +151,7 @@ $lang['staticpage_pressreleases_form_edit_page_title'] ='Edit main press release
 $lang['staticpage_publishing_solutions_form_edit_page_title']       ='Edit publishing solutions pages inside banner';
 $lang['staticpage_educational_solutions_form_edit_page_title']       ='Edit educational solutions pages inside banner';
 $lang['staticpage_digital_solutions_form_edit_page_title']       ='Edit digital solutions pages inside banner';
+$lang['staticpage_custom_solutions_form_edit_page_title']       ='Edit custom solutions pages inside banner';
 $lang['staticpage_partener_form_edit_page_title']                 ='Edit partener pages inside banners';
 
 
@@ -280,6 +281,26 @@ $lang['digital_solutions_content_en-us']      ='Page content in English';
 $lang['digital_solutions_content_ar-eg']      ='Page content in Arabic';
 $lang['digital_solutions_page_order']      ='Page order';
 $lang['digital_solutions_is_active']      ='Is active?';
+
+
+///////////////////Custom Solutions///////////////
+$lang['custom_solutions_index_page_title']      ='Custom Solutions';
+$lang['custom_solutions_main_page_txt']             ='Edit custom solutions pages inside banner';
+$lang['custom_solutions_form_create_page_title']      ='Create new custom solutions page';
+$lang['custom_solutions_form_edit_page_title']      ='Edit custom solutions page';
+$lang['custom_solutions_manage_downloads']      ='Manage page downloads';
+$lang['custom_solutions_side_menu_downloads_form_create_page_title']      ='Add new download';
+$lang['custom_solutions_downloads_form_create_page_title']      ='Add new download';
+$lang['custom_solutions_downloads_form_edit_page_title']      ='Edit download';
+$lang['custom_solutions_manage_page_content']      ='Manage page content';
+$lang['custom_solutions_name_en-us']      ='Page name in English';
+$lang['custom_solutions_name_ar-eg']      ='Page name in Arabic';
+$lang['custom_solutions_title_en-us']      ='Page title in English';
+$lang['custom_solutions_title_ar-eg']      ='Page title in Arabic';
+$lang['custom_solutions_content_en-us']      ='Page content in English';
+$lang['custom_solutions_content_ar-eg']      ='Page content in Arabic';
+$lang['custom_solutions_page_order']      ='Page order';
+$lang['custom_solutions_is_active']      ='Is active?';
 
 
 ///////////////////Publishing Solutions///////////////

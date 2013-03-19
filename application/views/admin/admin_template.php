@@ -92,6 +92,9 @@ if (isset($page_header)) {
                             <li>
                                 <a href="<?php echo site_url('admin/digital_solutions') ?>">Digital Solutions</a>
                             </li>
+                            <li>
+                                <a href="<?php echo site_url('admin/custom_solutions') ?>">Custom Solutions</a>
+                            </li>
                         </ul>
                          |
                     </li>

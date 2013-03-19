@@ -32,8 +32,12 @@
         <?php foreach ($digital_solutions as $key => $value) { ?>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_DIGITAL_SOLUTIONS.$value['id']) ?>"><?php echo $value['name'][get_locale()] ?></a></li>
         <?php } ?>
-
-        <li class="sub-title">Custom Solutions</li>
+            
+        <li class="sub-title"><?php echo lang('home_custom_solutions') ?></li>
+        <?php foreach ($custom_solutions as $key => $value) { ?>
+            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_CUSTOM_SOLUTIONS.$value['id']) ?>"><?php echo $value['name'][get_locale()] ?></a></li>
+        <?php } ?>
+            
     </ul>
 <?php } ?>
 <ul>

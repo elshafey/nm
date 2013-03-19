@@ -8,6 +8,7 @@ $lang['home_career_job_description']       = 'Job description:';
 $lang['home_publishing_solutions']      ='Publishing Solutions';
 $lang['home_educational_solutions']      ='Educational Solutions';
 $lang['home_digital_solutions']      ='Digital Solutions';
+$lang['home_custom_solutions']      ='Custom Solutions';
 $lang['home_partners_content']      ='Content Partners';
 $lang['home_partners_business']      ='Business Partners';
 $lang['home_book_pages']            ='Pages';
