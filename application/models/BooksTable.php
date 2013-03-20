@@ -106,7 +106,7 @@ class BooksTable extends CMSTable {
         if (isset($criteria['isbn']) && $criteria['isbn'] != '') {
             $q->setParameter('3', "%{$criteria['isbn']}%");
             $q->setParameter('15', 'isbn');
-            $q->setParameter('116', $cms->namespace);
+            $q->setParameter('16', $cms->namespace);
         }
 
         if (isset($criteria['category']) && $criteria['category'] != '') {

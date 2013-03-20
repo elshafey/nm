@@ -36,9 +36,7 @@
                 <div class="banner  theme-default">
                     <div id="slider" class="nivoSlider">
                         <?php foreach ($banners as $banner) { ?>
-                            <a href="<?php echo base_url() . $banner['path'] ?>" >
                                 <img src="<?php echo base_url() . $banner['path'] ?>" title="<?php echo $banner['title'] ?>" alt="<?php echo $banner['alt'] ?>" width="660" height="300" />
-                            </a>
                         <?php } ?>
                     </div>
                 </div>
