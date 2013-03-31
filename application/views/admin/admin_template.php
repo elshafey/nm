@@ -42,87 +42,92 @@ if (isset($page_header)) {
     ?>
     <body class="<?php echo $body_classes; ?>">
 
+        <div id="header">
+            <a href="<?php echo site_url('admin') ?>" class="logo"></a>
+            <div class="page-title"><?php echo isset($page_title) ? $page_title : '' ?></div>
+            <div class="welcome-user">
+<!--                Welcome, <span>Ahmed</span> -->
+                <a href="<?php echo site_url('admin/login/logout') ?>">Sign out</a>
+            </div>
+        </div>
+        <div class="clear"></div>
         <div id="wrapper">
-            <div id="header">
-<!--                <a class="logo" href="<?php echo site_url('admin') ?>"></a>-->
-                <div class="header_separator"></div>
-                <div class="header_title"><?php echo isset($page_title) ? $page_title : '' ?></div>
-                <div class="clear"></div>
-                
-                <?php if(isset($this->session->userdata['is_login'])&&$this->session->userdata['is_login']){ ?>
-                
-                <ul id="menu" class="menu" style="float: left;width:100%">
-                    
-                    <li>
-                        <a href="<?php echo site_url('admin/home') ?>">Home</a> |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/aboutus') ?>">About Us</a> |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/banner') ?>">Home Rotator</a> |
-                    </li>
-                    <li>
-                        <a href="javascript:;">Media Center</a>
-                        <ul class="sub-menu" class="noJS" >
-                            <li>
-                                <a href="<?php echo site_url('admin/news') ?>">News</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('admin/events') ?>">Events</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('admin/pressreleases') ?>">Press releases</a>
-                            </li>
-                        </ul>
-                         |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/book') ?>">Books</a> |
-                    </li>
-                    <li>
-                        <a href="javascript:;">Side Menu</a>
-                        <ul class="sub-menu" class="noJS" >
-                            <li>
-                                <a href="<?php echo site_url('admin/publishing_solutions') ?>">Publishing Solutions</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('admin/educational_solutions') ?>">Educational Solutions</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('admin/digital_solutions') ?>">Digital Solutions</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('admin/custom_solutions') ?>">Custom Solutions</a>
-                            </li>
-                        </ul>
-                         |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/portfolio') ?>">Portfolios</a> |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/download') ?>">Downloads</a> |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/career') ?>">Careers</a> |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/faq') ?>">Faqs</a> |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/achievements') ?>">Achievements</a> |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/contactus') ?>">Contact Us</a> |
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('admin/partener') ?>">Partners</a>
-                    </li>
-                    <li  style="float: right;font-size: 10px;">
-                        <a href="<?php echo site_url('admin/login/logout') ?>" >Logout</a>
-                    </li>
-                </ul>
+            <div id="top-menu">
+
+                <?php if (isset($this->session->userdata['is_login']) && $this->session->userdata['is_login']) { ?>
+
+                    <ul id="menu" class="menu" style="float: left;width:100%">
+
+                        <li>
+                            <a href="<?php echo site_url('admin/home') ?>">Home</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/aboutus') ?>">About Us</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/banner') ?>">Home Rotator</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Media Center</a>
+                            <ul class="sub-menu" class="noJS" >
+                                <li>
+                                    <a href="<?php echo site_url('admin/news') ?>">News</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('admin/events') ?>">Events</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('admin/pressreleases') ?>">Press releases</a>
+                                </li>
+                            </ul>
+                            <span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/book') ?>">Books</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Side Menu</a>
+                            <ul class="sub-menu" class="noJS" >
+                                <li>
+                                    <a href="<?php echo site_url('admin/publishing_solutions') ?>">Publishing Solutions</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('admin/educational_solutions') ?>">Educational Solutions</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('admin/digital_solutions') ?>">Digital Solutions</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('admin/custom_solutions') ?>">Custom Solutions</a>
+                                </li>
+                            </ul>
+                            <span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/portfolio') ?>">Portfolios</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/download') ?>">Downloads</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/career') ?>">Careers</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/faq') ?>">Faqs</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/achievements') ?>">Achievements</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/contactus') ?>">Contact Us</a><span>|</span>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('admin/partener') ?>">Partners</a>
+                        </li>
+                        <!--                                <li  style="float: right;font-size: 10px;">
+                                                            <a href="<?php echo site_url('admin/login/logout') ?>" >Logout</a>
+                                                        </li>-->
+                    </ul>
                 <?php } ?>
             </div>
             <?php if (isset($msg_type) && $msg_type != '' && isset($msg_text) && $msg_text != '') { ?>    
