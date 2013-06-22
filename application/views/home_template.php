@@ -20,12 +20,12 @@
     <body>
         <div id="upper-header"></div>
         <div id="wrapper">
-<!--            <div id="social-network">
+            <div id="social-network">
                 <a href="" class="facebook"></a>
                 <a href="" class="twitter"></a>
                 <a href="" class="linkedin"></a>
                 <a href="" class="youtube"></a>
-            </div>-->
+            </div>
             <a href="<?php echo base_url() ?>" class="arabic-link"></a>
 
             <div class="clear"></div>
@@ -46,7 +46,7 @@
             <div id="search-box">
                 <div class="search-left"></div>
                 <div class="search-middle">
-                    <div class="search-middle-title">Search Products</div>
+                    <div class="search-middle-title">Search</div>
                     <form action="<?php echo site_url('home/quick_search') ?>">
                         <input id="quick_search" type="text" value="<?php echo set_value('q') ?>" class="search-box" name="q" />
                     </form>
