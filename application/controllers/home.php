@@ -55,28 +55,52 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function publishing_solutions($id) {
-        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_publishing_solutions') . '</span>';
+    public function publishing_solutions($id = '') {
         $this->get_inside_banner(Urls::URL_PREFIX_PUBLISHING_SOLUTIONS);
-        $this->side_menu_page($id, 'PublishingSolutionsTable');
+        if ($id) {
+            $this->data['navigator'][] = '<span class="sub-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_PUBLISHING_SOLUTIONS) . '">' . lang('home_publishing_solutions') . '</a></span>';
+            $this->side_menu_page($id, 'PublishingSolutionsTable');
+        } else {
+            $this->side_menu_main_page('publishing_solutions');
+        }
     }
 
-    public function educational_solutions($id) {
-        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_educational_solutions') . '</span>';
+    public function educational_solutions($id = '') {
         $this->get_inside_banner(Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS);
-        $this->side_menu_page($id, 'EducationalSolutionsTable');
+        if ($id) {
+            $this->data['navigator'][] = '<span class="sub-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS) . '">' . lang('home_educational_solutions') . '</a></span>';
+            $this->side_menu_page($id, 'EducationalSolutionsTable');
+        } else {
+            $this->side_menu_main_page('educational_solutions');
+        }
     }
 
-    public function digital_solutions($id) {
-        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_digital_solutions') . '</span>';
+    public function digital_solutions($id = '') {
         $this->get_inside_banner(Urls::URL_PREFIX_DIGITAL_SOLUTIONS);
-        $this->side_menu_page($id, 'DigitalSolutionsTable');
+        if ($id) {
+            $this->data['navigator'][] = '<span class="sub-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_DIGITAL_SOLUTIONS) . '">' . lang('home_digital_solutions') . '</a></span>';
+            $this->side_menu_page($id, 'DigitalSolutionsTable');
+        } else {
+            $this->side_menu_main_page('digital_solutions');
+        }
     }
 
-    public function custom_solutions($id) {
-        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_custom_solutions') . '</span>';
+    public function custom_solutions($id = '') {
         $this->get_inside_banner(Urls::URL_PREFIX_DIGITAL_SOLUTIONS);
-        $this->side_menu_page($id, 'CustomSolutionsTable');
+        if ($id) {
+            $this->data['navigator'][] = '<span class="sub-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_CUSTOM_SOLUTIONS) . '">' . lang('home_custom_solutions') . '</a></span>';
+            $this->side_menu_page($id, 'CustomSolutionsTable');
+        } else {
+            $this->side_menu_main_page('custom_solutions');
+        }
+    }
+
+    private function side_menu_main_page($type) {
+        $this->data['page'] = StaticPagesTable::getPage($type);
+        $this->data['page_title'] = $this->data['page']['page_title'][get_locale()];
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
+        $this->template->write_view('content', 'home/side_menu_main_page', $this->data);
+        $this->template->render();
     }
 
     private function side_menu_page($id, $table) {
@@ -99,12 +123,10 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function achievements() {
-        $this->data['page'] = StaticPagesTable::getPage('achievements');
-        $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_achievements');
-        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-        $this->template->write_view('content', 'home/achievements', $this->data);
-        $this->template->render();
+    public function achievements($id) {
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_achievements') . '</span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_ACHIEVEMENTS);
+        $this->get_common_news_details($id, 'Achievements');
     }
 
     public function careers() {
@@ -132,10 +154,16 @@ class Home extends My_Controller {
         $this->get_common_news_details($id, 'AboutusPages');
     }
 
+    public function affiliated_companies($id) {
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_affiliated_companies') . '</span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_AFFILIATED_COMPANIES);
+        $this->get_common_news_details($id, 'AffiliatedCompanies');
+    }
+
     public function news() {
         $this->data['page_title'] = lang('home_menu_media_center_news');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_media_center_news') . '</span>';
-        $this->data['url_prefix']=  Urls::URL_PREFIX_NEWS_DETAILS;
+        $this->data['url_prefix'] = Urls::URL_PREFIX_NEWS_DETAILS;
         $this->get_common_news();
     }
 
@@ -148,7 +176,7 @@ class Home extends My_Controller {
     public function events() {
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_media_center_events') . '</span>';
         $this->data['page_title'] = lang('home_menu_media_center_events');
-        $this->data['url_prefix']=  Urls::URL_PREFIX_EVENT_DETAILS;
+        $this->data['url_prefix'] = Urls::URL_PREFIX_EVENT_DETAILS;
         $this->get_common_news('Events');
     }
 
@@ -159,7 +187,7 @@ class Home extends My_Controller {
     }
 
     public function press() {
-        $this->data['url_prefix']=  Urls::URL_PREFIX_PRESS_DETAILS;
+        $this->data['url_prefix'] = Urls::URL_PREFIX_PRESS_DETAILS;
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_media_center_press_release') . '</span>';
         $this->data['page_title'] = lang('home_menu_media_center_press_release');
         $this->get_common_news('Pressreleases');
@@ -288,7 +316,7 @@ class Home extends My_Controller {
                         . "Comment: {$_POST['comment']}<br>"
                         . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
-                
+
                 send_email(CONTACT_US_EMAIL, 'Contact Us Form', $body);
                 redirect('/');
             }
@@ -304,7 +332,7 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function become_partner(){
+    public function become_partner() {
         if ($_POST) {
             $this->form_validation->set_error_delimiters('<span class="frm_error_msg">', '</span>');
             $this->form_validation->set_rules('full_name', '', 'required|xss_clean');
@@ -323,7 +351,7 @@ class Home extends My_Controller {
                         . "Comment: {$_POST['comment']}<br>"
                         . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
-                
+
                 send_email(CONTACT_US_EMAIL, 'Becom Agent Form', $body);
                 redirect('/');
             }
@@ -338,7 +366,7 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function request_proposal(){
+    public function request_proposal() {
         if ($_POST) {
 
             $this->form_validation->set_error_delimiters('<span class="frm_error_msg">', '</span>');
@@ -358,7 +386,7 @@ class Home extends My_Controller {
                         . "Comment: {$_POST['comment']}<br>"
                         . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
-                
+
                 send_email(CONTACT_US_EMAIL, 'Request Propsal Form', $body);
                 redirect('/');
             }
@@ -379,18 +407,19 @@ class Home extends My_Controller {
 
     private function get_common_data() {
         $this->data['aboutus'] = AboutusPagesTable::getList(true);
+        $this->data['affiliated_companies'] = AffiliatedCompaniesTable::getList(true);
+        $this->data['achievements'] = AchievementsTable::getList(true);
         $this->data['publishing_solutions'] = PublishingSolutionsTable::getList(true);
         $this->data['educational_solutions'] = EducationalSolutionsTable::getList(true);
         $this->data['digital_solutions'] = DigitalSolutionsTable::getList(true);
         $this->data['custom_solutions'] = CustomSolutionsTable::getList(true);
         $this->data['original_path'] = implode('/', $this->uri->rsegments);
         $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);
-        
-        if(!$this->data['url']){
+
+        if (!$this->data['url']) {
             $this->data['original_path'].='/';
             $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);
         }
-        
     }
 
     private function get_common_news($model = 'News') {
@@ -412,13 +441,13 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    private function get_inside_banner($url_prefix){
-        $url=StaticUrlsTable::getOneBy('url_prefix', $url_prefix);
-        $this->data['url']['img']=$url['img'];
-        $this->data['url']['img_alt']=$url['img_alt'];
-        $this->data['url']['img_title']=$url['img_title'];
+    private function get_inside_banner($url_prefix) {
+        $url = StaticUrlsTable::getOneBy('url_prefix', $url_prefix);
+        $this->data['url']['img'] = $url['img'];
+        $this->data['url']['img_alt'] = $url['img_alt'];
+        $this->data['url']['img_title'] = $url['img_title'];
     }
-    
+
 }
 
 /* End of file: dashboard.php */

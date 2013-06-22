@@ -9,7 +9,7 @@
     </ul>
 </form>
 
-<?php if($type=='aboutus'||$type=='publishing_solutions'||$type=='educational_solutions'||$type=='digital_solutions'){ ?>
+<?php if($type=='aboutus'||$type=='achievements'||$type=='affiliated_companies'){ ?>
 <script>
     $('#li_routed').hide();
     $('#li_meta_title').hide();

@@ -43,6 +43,7 @@ $lang['home_menu_careers']='Careers';
 $lang['home_menu_faqs']='FAQ';
 $lang['home_menu_achievements']='Achievements';
 $lang['home_menu_aboutus']='About Us';
+$lang['home_menu_affiliated_companies']='Affiliated Companies';
 $lang['home_menu_advances_search']='Advanced Search';
 $lang['home_menu_quick_search']='Search Result';
 $lang['home_menu_contact_us']       ='Contact Us';

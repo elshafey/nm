@@ -13,6 +13,7 @@ class Urls extends CMS {
 
     const URL_PREFIX_ABOUTUS_PAGE       = 'home/aboutus/';
     const URL_PREFIX_ABOUTUS            = 'home/aboutus/';
+    const URL_PREFIX_AFFILIATED_COMPANIES= 'home/affiliated_companies/';
     const URL_PREFIX_BOOK               = 'home/preview_book/';
     const URL_PREFIX_BOOK_CATEGORY      = 'home/view_category/';
     const URL_PREFIX_BOOK_SUBCATEGORY   = 'home/view_subcategory/';

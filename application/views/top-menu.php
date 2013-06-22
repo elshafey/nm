@@ -13,7 +13,27 @@
                 </ul>
             </li>
             <li class="menu-separator">|</li>
-            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_ACHIEVEMENTS) ?>"><?php echo lang('home_menu_achievements') ?></a></li>
+            <li>
+                <a href="javascript:"><?php echo lang('home_menu_affiliated_companies') ?></a>
+                <ul class="sub-menu noJS">
+                    <?php foreach ($affiliated_companies as $value) { ?>
+                        <li>
+                            <a href="<?php echo get_routed_url(Urls::URL_PREFIX_AFFILIATED_COMPANIES . $value['id']) ?>"><?php echo $value['page_title'][get_locale()] ?></a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <li class="menu-separator">|</li>
+            <li>
+                <a href="javascript:"><?php echo lang('home_menu_achievements') ?></a>
+                <ul class="sub-menu noJS">
+                    <?php foreach ($achievements as $value) { ?>
+                        <li>
+                            <a href="<?php echo get_routed_url(Urls::URL_PREFIX_ACHIEVEMENTS . $value['id']) ?>"><?php echo $value['page_title'][get_locale()] ?></a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </li>
             <li class="menu-separator">|</li>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_PORTFOLIO) ?>"><?php echo lang('home_menu_portfolio') ?></a></li>
             <li class="menu-separator">|</li>

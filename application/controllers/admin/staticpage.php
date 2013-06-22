@@ -19,11 +19,15 @@ class Staticpage extends CMSController {
 
     protected $_render_fields=array(
         'home'=>array('page_title','page_content','video_path','video_image'),
-        'achievements'=>array('page_title','page_content','page_url'),
+//        'achievements'=>array('page_title','page_content','page_url'),
         'portfolio'=>array('page_title','page_content','page_url'),
         'careers'=>array('page_title','page_content','page_url'),
         'downloads'=>array('page_title','page_content','page_url'),
         'contactus'=>array('page_title','page_content','page_url'),
+        'digital_solutions'=>array('page_title','page_content','page_url'),
+        'educational_solutions'=>array('page_title','page_content','page_url'),
+        'publishing_solutions'=>array('page_title','page_content','page_url'),
+        'custom_solutions'=>array('page_title','page_content','page_url'),
     );
 
 
@@ -40,8 +44,13 @@ class Staticpage extends CMSController {
                 break;
             case 'achievements':
                 $this->url_prefix = Urls::URL_PREFIX_ACHIEVEMENTS;
-                $this->_model = 'HomePage';
-                $this->_redirect = 'achievements';
+                $this->data['view_url']=false;
+                $this->_redirect = 'achievement';
+                break;
+            case 'affiliated_companies':
+                $this->url_prefix = Urls::URL_PREFIX_AFFILIATED_COMPANIES;
+                $this->data['view_url']=false;
+                $this->_redirect = 'affiliated_companies';
                 break;
             case 'portfolio':
                 $this->url_prefix = Urls::URL_PREFIX_PORTFOLIO;
@@ -75,17 +84,26 @@ class Staticpage extends CMSController {
             case 'publishing_solutions':
                 $this->url_prefix = Urls::URL_PREFIX_PUBLISHING_SOLUTIONS;
                 $this->_redirect = 'publishing_solutions';
-                $this->data['view_url']=false;
+                $this->_model = 'HomePage';
+//                $this->data['view_url']=false;
                 break;
             case 'educational_solutions':
                 $this->url_prefix = Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS;
                 $this->_redirect = 'educational_solutions';
-                $this->data['view_url']=false;
+                $this->_model = 'HomePage';
+//                $this->data['view_url']=false;
                 break;
             case 'digital_solutions':
                 $this->url_prefix = Urls::URL_PREFIX_DIGITAL_SOLUTIONS;
                 $this->_redirect = 'digital_solutions';
-                $this->data['view_url']=false;
+                $this->_model = 'HomePage';
+//                $this->data['view_url']=false;
+                break;
+            case 'custom_solutions':
+                $this->url_prefix = Urls::URL_PREFIX_CUSTOM_SOLUTIONS;
+                $this->_redirect = 'custom_solutions';
+                $this->_model = 'HomePage';
+//                $this->data['view_url']=false;
                 break;
             case 'news':
                 $this->url_prefix = Urls::URL_PREFIX_NEWS_LIST;
@@ -111,7 +129,7 @@ class Staticpage extends CMSController {
         $cms->setUpColumn(array('name'=>'type','value'=>$type));
         /* @var $form Forms */
         $form = new Forms($cms);
-
+        
         if ($form->process()) {
             $message = array(
                 'msg_type' => 'success',

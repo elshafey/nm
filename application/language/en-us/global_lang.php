@@ -42,6 +42,31 @@ $lang['aboutus_page_order']                     ='Page order';
 $lang['aboutus_is_active']                     ='Is active?';
 $lang['aboutus_form_edit_page_title']           ='Edit about us page';
 
+////////////// achievment controller /////////////
+$lang['achievement_index_page_title']         ='Manage achievements';
+$lang['achievements_main_page_txt']             ='Edit achievements pages inside banner';
+$lang['achievement_form_create_page_title']         ='Create new page';
+$lang['achievements_page_title_en-us']               ='Page title in English';
+$lang['achievements_page_title_ar-eg']               ='Page title in Arabic';
+$lang['achievements_page_content_en-us']             ='Page content in English';
+$lang['achievements_page_content_ar-eg']             ='Page content in Arabic';
+$lang['achievements_page_order']                     ='Page order';
+$lang['achievements_is_active']                     ='Is active?';
+$lang['achievement_form_edit_page_title']           ='Edit achievements page';
+
+
+////////////// achievment controller /////////////
+$lang['affiliated_companies_index_page_title']         ='Manage affiliated companies';
+$lang['affiliated_companies_main_page_txt']             ='Edit affiliated companies pages inside banner';
+$lang['affiliated_companies_form_create_page_title']         ='Create new page';
+$lang['affiliated_companies_page_title_en-us']               ='Page title in English';
+$lang['affiliated_companies_page_title_ar-eg']               ='Page title in Arabic';
+$lang['affiliated_companies_page_content_en-us']             ='Page content in English';
+$lang['affiliated_companies_page_content_ar-eg']             ='Page content in Arabic';
+$lang['affiliated_companies_page_order']                     ='Page order';
+$lang['affiliated_companies_is_active']                     ='Is active?';
+$lang['affiliated_companies_form_edit_page_title']           ='Edit affiliated companies page';
+
 
 ////////////// News controller /////////////
 $lang['news_index_page_title']         ='Manage news';
@@ -148,11 +173,13 @@ $lang['staticpage_aboutus_form_edit_page_title']       ='Edit about us pages ins
 $lang['staticpage_news_form_edit_page_title']       ='Edit main news page data';
 $lang['staticpage_events_form_edit_page_title']       ='Edit main events page data';
 $lang['staticpage_pressreleases_form_edit_page_title'] ='Edit main press releases page data';
-$lang['staticpage_publishing_solutions_form_edit_page_title']       ='Edit publishing solutions pages inside banner';
-$lang['staticpage_educational_solutions_form_edit_page_title']       ='Edit educational solutions pages inside banner';
-$lang['staticpage_digital_solutions_form_edit_page_title']       ='Edit digital solutions pages inside banner';
-$lang['staticpage_custom_solutions_form_edit_page_title']       ='Edit custom solutions pages inside banner';
+$lang['staticpage_publishing_solutions_form_edit_page_title']       ='Edit publishing solutions main page';
+$lang['staticpage_educational_solutions_form_edit_page_title']       ='Edit educational solutions main page';
+$lang['staticpage_digital_solutions_form_edit_page_title']       ='Edit digital solutions main page';
+$lang['staticpage_custom_solutions_form_edit_page_title']       ='Edit custom solutions main page';
 $lang['staticpage_partener_form_edit_page_title']                 ='Edit partener pages inside banners';
+$lang['staticpage_affiliated_companies_form_edit_page_title']             ='Edit affiliated companies pages inside banner';
+$lang['staticpage_achievements_form_edit_page_title']             ='Edit achievements pages inside banner';
 
 
 ////////////// Banners controller /////////////
@@ -265,7 +292,7 @@ $lang['side_menu_downloads_main_page_txt']                  ='Edit downloads mai
 
 ///////////////////Digital Solutions///////////////
 $lang['digital_solutions_index_page_title']      ='Digital Solutions';
-$lang['digital_solutions_main_page_txt']             ='Edit digital solutions pages inside banner';
+$lang['digital_solutions_main_page_txt']             ='Edit digital solutions main page';
 $lang['digital_solutions_form_create_page_title']      ='Create new digital solutions page';
 $lang['digital_solutions_form_edit_page_title']      ='Edit digital solutions page';
 $lang['digital_solutions_manage_downloads']      ='Manage page downloads';
@@ -285,7 +312,7 @@ $lang['digital_solutions_is_active']      ='Is active?';
 
 ///////////////////Custom Solutions///////////////
 $lang['custom_solutions_index_page_title']      ='Custom Solutions';
-$lang['custom_solutions_main_page_txt']             ='Edit custom solutions pages inside banner';
+$lang['custom_solutions_main_page_txt']             ='Edit custom solutions main page';
 $lang['custom_solutions_form_create_page_title']      ='Create new custom solutions page';
 $lang['custom_solutions_form_edit_page_title']      ='Edit custom solutions page';
 $lang['custom_solutions_manage_downloads']      ='Manage page downloads';
@@ -305,7 +332,7 @@ $lang['custom_solutions_is_active']      ='Is active?';
 
 ///////////////////Publishing Solutions///////////////
 $lang['publishing_solutions_index_page_title']      ='Publishing Solutions';
-$lang['publishing_solutions_main_page_txt']             ='Edit publishing solutions pages inside banner';
+$lang['publishing_solutions_main_page_txt']             ='Edit publishing solutions main page';
 $lang['publishing_solutions_form_create_page_title']      ='Create new publishing solutions page';
 $lang['publishing_solutions_form_edit_page_title']      ='Edit publishing solutions page';
 $lang['publishing_solutions_manage_downloads']      ='Manage page downloads';
@@ -325,7 +352,7 @@ $lang['publishing_solutions_is_active']      ='Is active?';
 
 ///////////////////Educational Solutions///////////////
 $lang['educational_solutions_index_page_title']      ='Educational Solutions';
-$lang['educational_solutions_main_page_txt']             ='Edit educational solutions pages inside banner';
+$lang['educational_solutions_main_page_txt']             ='Edit educational solutions main page';
 $lang['educational_solutions_form_create_page_title']      ='Create new educational solutions page';
 $lang['educational_solutions_form_edit_page_title']      ='Edit educational solutions page';
 $lang['educational_solutions_manage_downloads']      ='Manage page downloads';
