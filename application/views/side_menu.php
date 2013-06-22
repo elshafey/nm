@@ -1,5 +1,7 @@
 
-<div class="bar-title" style="margin-top: 0px;"><span><?php echo lang('home_publishing_solutions') ?></span></div>
+<div class="bar-title" style="margin-top: 0px;">
+    <a href="<?php echo get_routed_url(Urls::URL_PREFIX_PUBLISHING_SOLUTIONS) ?>"><span><?php echo lang('home_publishing_solutions') ?></span></a>
+</div>
 <?php if ($publishing_solutions) { ?>
     <ul>
         <?php foreach ($publishing_solutions as $key => $value) { ?>
@@ -8,7 +10,9 @@
     </ul> 
 <?php } ?>
 
-<div class="bar-title" style="margin-top: 0px;"><span><?php echo lang('home_educational_solutions') ?></span></div>
+<div class="bar-title" style="margin-top: 0px;">
+    <a href="<?php echo get_routed_url(Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS) ?>"><span><?php echo lang('home_educational_solutions') ?></span></a>
+</div>
 <?php if ($educational_solutions) { ?>
     <ul>
         <?php foreach ($educational_solutions as $key => $value) { ?>
@@ -17,7 +21,9 @@
     </ul> 
 <?php } ?>
 
-<div class="bar-title" style="margin-top: 0px;"><span><?php echo lang('home_digital_solutions') ?></span></div>
+<div class="bar-title" style="margin-top: 0px;">
+    <a href="<?php echo get_routed_url(Urls::URL_PREFIX_DIGITAL_SOLUTIONS) ?>"><span><?php echo lang('home_digital_solutions') ?></span></a>
+</div>
 <?php if ($digital_solutions) { ?>
     <ul>
         <?php foreach ($digital_solutions as $key => $value) { ?>
