@@ -142,6 +142,7 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
         if ($sourceImageAttr === false) {
             return false;
         }
+        echo '<pre>';print_r($sourceImageAttr);
         $sourceImageWidth = isset($sourceImageAttr[0]) ? $sourceImageAttr[0] : 0;
         $sourceImageHeight = isset($sourceImageAttr[1]) ? $sourceImageAttr[1] : 0;
         $sourceImageMime = isset($sourceImageAttr["mime"]) ? $sourceImageAttr["mime"] : "";
@@ -170,7 +171,7 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
         else {
             $oSize = array('Width' => $iFinalWidth, 'Height' => $iFinalHeight);
         }
-
+        
         CKFinder_Connector_Utils_Misc::setMemoryForImage($sourceImageWidth, $sourceImageHeight, $sourceImageBits, $sourceImageChannels);
 
         switch ($sourceImageAttr['mime'])
@@ -235,7 +236,7 @@ class CKFinder_Connector_CommandHandler_Thumbnail extends CKFinder_Connector_Com
             return false;
         }
 
-
+        echo '<pre>';print_r($oSize);
         $oThumbImage = imagecreatetruecolor($oSize["Width"], $oSize["Height"]);
         //imagecopyresampled($oThumbImage, $oImage, 0, 0, 0, 0, $oSize["Width"], $oSize["Height"], $sourceImageWidth, $sourceImageHeight);
         CKFinder_Connector_Utils_Misc::fastImageCopyResampled($oThumbImage, $oImage, 0, 0, 0, 0, $oSize["Width"], $oSize["Height"], $sourceImageWidth, $sourceImageHeight, (int)max(floor($quality/20), 1));
