@@ -1,5 +1,4 @@
 <?php
-
 /*
  * CKFinder
  * ========
@@ -19,6 +18,7 @@
  * @subpackage Connector
  * @copyright CKSource - Frederico Knabben
  */
+
 /**
  * Protect against sending warnings to the browser.
  * Comment out this line during debugging.
@@ -54,7 +54,6 @@ require_once CKFINDER_CONNECTOR_LIB_DIR . "/Utils/Misc.php";
  * hooks class
  */
 require_once CKFINDER_CONNECTOR_LIB_DIR . "/Core/Hooks.php";
-
 /**
  * Simple function required by config.php - discover the server side path
  * to the directory relative to the "$baseUrl" attribute
@@ -65,11 +64,11 @@ require_once CKFINDER_CONNECTOR_LIB_DIR . "/Core/Hooks.php";
  * @return string
  */
 function resolveUrl($baseUrl) {
-    $fileSystem = & CKFinder_Connector_Core_Factory::getInstance("Utils_FileSystem");
+    $fileSystem =& CKFinder_Connector_Core_Factory::getInstance("Utils_FileSystem");
     return $fileSystem->getDocumentRootPath() . $baseUrl;
 }
 
-$utilsSecurity = & CKFinder_Connector_Core_Factory::getInstance("Utils_Security");
+$utilsSecurity =& CKFinder_Connector_Core_Factory::getInstance("Utils_Security");
 $utilsSecurity->getRidOfMagicQuotes();
 
 /**
@@ -85,40 +84,11 @@ $config['Plugins'] = array();
 require_once CKFINDER_CONNECTOR_CONFIG_FILE_PATH;
 
 CKFinder_Connector_Core_Factory::initFactory();
-$connector = & CKFinder_Connector_Core_Factory::getInstance("Core_Connector");
+$connector =& CKFinder_Connector_Core_Factory::getInstance("Core_Connector");
 
-$images = scandir($baseDir . 'books_images');
-array_shift($images);
-array_shift($images);
-echo '<pre>';print_r($_GET);
-//exit;
-//(
-//    [upload] => Array
-//        (
-//            [name] => Asfour le Salone 003.jpg
-//            [type] => image/jpeg
-//            [tmp_name] => /tmp/php3wjgXS
-//            [error] => 0
-//            [size] => 165401
-//        )
-//
-//)
-$_config = & CKFinder_Connector_Core_Factory::getInstance("Core_Config");
-require_once CKFINDER_CONNECTOR_LIB_DIR . "/CommandHandler/Thumbnail.php";
-        $_imagesConfig = $_config->getImagesConfig();
-        foreach ($images as $image) {
-        $_FILES['upload'] = array(
-            'name' => $image,
-            'type' => 'image/jpeg',
-            'tmp_name' => $baseDir . 'books_images/' . $image,
-            'error' => 0,
-            'size' => 165401,
-        );
-        CKFinder_Connector_CommandHandler_Thumbnail::createThumb($baseDir . 'books_images/' . $image, $baseDir . '_thumbs/Images/' . $image, 100, 100, $_imagesConfig->getQuality(), true) ;
-    }
-exit;
-if (isset($_GET['command'])) {
-   $connector->executeCommand($_GET['command']); 
-} else {
+if(isset($_GET['command'])) {
+    $connector->executeCommand($_GET['command']);
+}
+else {
     $connector->handleInvalidCommand();
 }
