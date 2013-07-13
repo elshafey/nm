@@ -201,6 +201,7 @@ $lang['partener_index_page_title']            ='Manage partners';
 $lang['partener_form_edit_page_title']            ='Partners';
 $lang['partener_main_page_txt']                 ='Edit partener pages inside banners';
 $lang['parteners_form_create_page_title']         ='Create new partner';
+$lang['partener_form_create_page_title']         ='Create new partner';
 $lang['partener_form_edit_page_title']            ='Edit partner';
 $lang['parteners_grid_preview']                   ='Preview';
 $lang['parteners_path']                           ='Select image';
