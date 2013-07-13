@@ -41,5 +41,6 @@ define('MAX_INBOX_COUNT',20);
 define('ROUTS_ITEM_TEMPLATE','$route["%s"]        ="%s";');
 define('SIDE_MENU_DOWNLOADS_NAMESPACE','side_menu_downloads');
 define('CONTACT_US_EMAIL', 'admin@nahdet-misr.com');
+define('CAREERS_EMAIL', 'jobs@nahdetmisr.com');
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

@@ -67,10 +67,19 @@ class Parteners extends CMS {
                     'value' => '',
         ));
 
+        $this->setUpColumn(array(
+            'name' => 'description',
+            'outType' => 'textarea',
+            'validation' => 'required|xss_clean',
+            'required' => true,
+            'multi' => true,
+            'value' => $value,
+        ));
         array_unshift($this->render_fields, 'title');
         array_unshift($this->render_fields, 'alt');
         array_unshift($this->render_fields, 'path');
         array_unshift($this->render_fields, 'type');
+        array_unshift($this->render_fields, 'description');
         array_unshift($this->render_fields, 'name');
     }
 

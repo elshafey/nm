@@ -31,6 +31,42 @@ $lang['home_contact_us_ask_about']      ='Ask about';
 $lang['home_contact_us_fiil_form']      ='Or fill form';
 $lang['home_btn_send']      ='Send';
 
+/////////////////////////career form/////////////////////////
+$lang['home_careers_apply_title']       ='Add your application to our database';
+$lang['home_careers_apply_brief']       ='If there are no openings that match your skills and qualifications in our current vacancies, please fill in the application below and attach your résumé. Your application will be added to our database and you will be contacted as soon as a position that matches your qualifications is open. ';
+$lang['home_careers_apply_interest_title']       ='Please choose your field of interest:';
+$lang['home_careers_apply_interests']       =
+        array(
+            'finance'=>'Finance',
+            'hr'=>'Human Resources',
+            'markettin'=>'Marketing',
+            'sales'=>'Sales',
+            'export'=>'Export',
+            'publishing'=>'Publishing',
+            'graphics'=>'Graphics',
+            'it'=>'Information Technology',
+            'purchasing'=>'Procurement/Purchasing',
+            'quality'=>'Quality',
+            'pm'=>'Project Management',
+            'right'=>'Rights',
+            'admin'=>'Administration',
+            'dev'=>'Business Development',
+            'edu'=>'Educational Services',
+            'br'=>'Public Relations',
+            'health'=>'Health and Safety',
+            );
+$lang['home_careers_apply_name']       ='Name';
+$lang['home_careers_apply_mobile']       ='Mobile Number';
+$lang['home_careers_apply_home_number']       ='Home Number';
+$lang['home_careers_apply_email']       ='Email Address';
+$lang['home_careers_apply_birthday']       ='Birthday: Day/Month/Year';
+$lang['home_careers_apply_nationality']       ='Nationality';
+$lang['home_careers_apply_military']       ='Military Status';
+$lang['home_careers_apply_marital']       ='Marital Status';
+$lang['home_careers_apply_position']       ='Current Position';
+$lang['home_careers_apply_employer']       ='Employer';
+$lang['home_careers_apply_start_date']       ='Start Date: Month/Year';
+$lang['home_careers_apply_brief_description']       ='Brief description for responsibilities';
 
 //////////////////menu//////////////////////////////
 $lang['home_menu_media_center_news']='News';

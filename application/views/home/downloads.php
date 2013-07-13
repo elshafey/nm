@@ -10,6 +10,8 @@
                 <li>
                     <a href="<?php echo  base_url() . $download['path'] ?>" class="download-pdf"></a>
                     <a target="_blank" class="download-item" href="<?php echo  base_url() . $download['path'] ?>" ><?php echo $download['name'][get_locale()] ?></a>
+                    <br>
+                    <span><?php echo $download['description'][get_locale()] ?></span>
                 </li>
             </ul>
         <?php } ?>

@@ -130,10 +130,51 @@ class Home extends My_Controller {
     }
 
     public function careers() {
+        if($_POST){
+            $this->form_validation->set_error_delimiters('<span class="frm_error_msg">', '</span>');
+            $this->form_validation->set_rules('interests', '', 'xss_clean');
+            $this->form_validation->set_rules('name', '', 'required|xss_clean');
+            $this->form_validation->set_rules('mobile', '', 'required|xss_clean');
+            $this->form_validation->set_rules('home_number', '', 'xss_clean');
+            $this->form_validation->set_rules('birthday', '', 'required|xss_clean');
+            $this->form_validation->set_rules('email', '', 'required|valid_email|xss_clean');
+            $this->form_validation->set_rules('security_code', '', 'required|capatcha|xss_clean');
+            $this->form_validation->set_rules('nationality', '', 'required|xss_clean');
+            $this->form_validation->set_rules('military', '', 'required|xss_clean');
+            $this->form_validation->set_rules('marital', '', 'required|xss_clean');
+            $this->form_validation->set_rules('position', '', 'xss_clean');
+            $this->form_validation->set_rules('employer', '', 'xss_clean');
+            $this->form_validation->set_rules('start_date', '', 'xss_clean');
+            $this->form_validation->set_rules('brief_description', '', 'required|xss_clean');
+            if ($this->form_validation->run()) {
+                $interests=lang('home_careers_apply_interests');
+                foreach ($_POST['interests'] as $key => $value) {
+                    $_POST['interests'][$key]=$interests[$key];
+                }
+                $body =
+                        lang('home_careers_apply_interest_title').": ".  implode(' - ', $_POST['interests'])."<br>"
+                        . lang('home_careers_apply_name').": {$_POST['name']}<br>"
+                        . lang('home_careers_apply_mobile').": {$_POST['mobile']}<br>"
+                        . lang('home_careers_apply_home_number').": {$_POST['home_number']}<br>"
+                        . lang('home_careers_apply_email').": {$_POST['email']}<br>"
+                        . lang('home_careers_apply_birthday').": {$_POST['birthday']}<br>"
+                        . lang('home_careers_apply_nationality').": {$_POST['nationality']}<br>"
+                        . lang('home_careers_apply_military').": {$_POST['military']}<br>"
+                        . lang('home_careers_apply_marital').": {$_POST['marital']}<br>"
+                        . lang('home_careers_apply_position').": {$_POST['position']}<br>"
+                        . lang('home_careers_apply_employer').": {$_POST['employer']}<br>"
+                        . lang('home_careers_apply_start_date').": {$_POST['start_date']}<br>"
+                        . lang('home_careers_apply_brief_description').": {$_POST['brief_description']}<br>"
+                ;
+                send_email(CAREERS_EMAIL, $_POST['name'].' Application', $body);
+                redirect('/');
+            }
+        }
         $this->data['page'] = StaticPagesTable::getPage('careers');
         $this->data['list'] = CareersTable::getList(true);
         $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_careers');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
+        $this->template->add_css('layout/css/form.css');
         $this->template->write_view('content', 'home/careers', $this->data);
         $this->template->render();
     }
@@ -233,9 +274,9 @@ class Home extends My_Controller {
 
         $this->data['partners']['content'] = PartenersTable::getListBy('type', 1, true);
         $this->data['partners']['business'] = PartenersTable::getListBy('type', 2, true);
-
-        $this->data['page_title'] = lang('home_menu_partners');
-        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_partners') . '</span>';
+        $this->data['page'] = StaticPagesTable::getPage('partener');
+        $this->data['page_title'] = $this->data['page']['page_title'][get_locale()];
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' .  $this->data['page_title'] . '</span>';
         $this->template->write_view('content', 'home/partners', $this->data);
         $this->template->render();
     }

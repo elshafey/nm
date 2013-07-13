@@ -20,6 +20,7 @@ class Staticpage extends CMSController {
     protected $_render_fields=array(
         'home'=>array('page_title','page_content','video_path','video_image'),
 //        'achievements'=>array('page_title','page_content','page_url'),
+        'partener'=>array('page_title','page_content','page_url'),
         'portfolio'=>array('page_title','page_content','page_url'),
         'careers'=>array('page_title','page_content','page_url'),
         'downloads'=>array('page_title','page_content','page_url'),
@@ -119,6 +120,7 @@ class Staticpage extends CMSController {
                 break;
             case 'partener':
                 $this->url_prefix = Urls::URL_PREFIX_PARTNERS;
+                $this->_model = 'HomePage';
                 $this->_redirect = 'partener';
                 break;
             default:
