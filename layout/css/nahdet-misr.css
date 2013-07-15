@@ -959,3 +959,6 @@ a.next, a.prev {
     float: left;
     margin-right: 8px;
 }
+.interests li{
+    width:50%;
+}

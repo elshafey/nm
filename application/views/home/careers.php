@@ -32,7 +32,7 @@
             <li>
                 <h2><?php echo lang('home_careers_apply_interest_title') ?></h2>
                 
-                <ul>
+                <ul class="interests">
                     <?php foreach (lang('home_careers_apply_interests') as $k => $value) { ?>
                         <li>
                             <input class="chkbox" type="checkbox" name="interests[<?php echo $k ?>]" value="<?php echo $value ?>" <?php echo  set_checkbox('interests', $value ) ?> id="<?php echo "interests_$k" ?>" />
