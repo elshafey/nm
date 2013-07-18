@@ -72,5 +72,5 @@
 </ul>
 <div class="clear"></div>
 <div class="copyrights">
-    &copy; 2013 Nadet Misr | All Rights Reserved | <a href="">Privacy Statement</a>
+    &copy; 2013 Nahdet Misr | All Rights Reserved | <a href="">Privacy Statement</a>
 </div>

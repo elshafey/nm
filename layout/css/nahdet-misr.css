@@ -546,7 +546,7 @@ a:hover{
 }
 
 .partner-frame{
-    background-image: url(../images/partner-frame.png);
+    /*background-image: url(../images/partner-frame.png);*/
     background-repeat: no-repeat;
     width: 134px;
     height: 111px;
@@ -564,6 +564,9 @@ a:hover{
     clear: both;
     float: left;
     width: 135px;
+}
+.partners-group{
+ float: left;   
 }
 .h-line{
     clear: both;
