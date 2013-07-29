@@ -11,7 +11,7 @@
             <div class="partner-frame">
                 <img height="111" width="134" src="<?php echo base_url() . $value['path'] ?>" alt="<?php echo $value['alt'] ?>" title="<?php echo $value['title'] ?>" />
             </div>
-            <div class="partner-name" style="clear: both"><?php echo $value['name'][get_locale()] ?></div>
+            
         </div>
         <?php if ($key%5 == 4) { ?> </div><? } ?>
     <? } ?>
@@ -28,7 +28,7 @@
             <div class="partner-frame">
                 <img height="111" width="134" src="<?php echo base_url() . $value['path'] ?>" alt="<?php echo $value['alt'] ?>" title="<?php echo $value['title'] ?>" />
             </div>
-            <div class="partner-name" style="clear: both"><?php echo $value['name'][get_locale()] ?></div>
+            
         </div>
         <?php if ($key%5 == 4) { ?> </div><? } ?>
     <? } ?>

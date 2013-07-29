@@ -422,7 +422,7 @@ body{
 }
 
 #footer .wrapper .copyrights{
-    width: 350px;
+    width: 357px;
     margin: 0 auto;
     bottom: -146px;
     position: relative;
@@ -523,12 +523,13 @@ a:hover{
     color: #272727;	
     position: relative;
     top: -10px;
+    text-align: center;
 }
 
 .request-proposal a{
     position: relative;
-    top: 12px;
-    left: 19px;	
+    top: 9px;
+    /*left: 19px;*/	
 }
 
 .inside-title{
@@ -929,8 +930,8 @@ a.next, a.prev {
     font-size:14px;
     color: #a4a4a4;
     position: relative;
-    top: 25px;
-    left: 20px;
+    top: 20px;
+    left: 90px;
 }
 .search-box{
     background-color: #FFFFFF;
