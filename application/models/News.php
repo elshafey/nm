@@ -45,7 +45,7 @@ class News extends CMS {
                 array(
                     'name' => 'img_alt',
                     'validation' => 'required|xss_clean',
-                    'required' => true,
+                    'required' => false,
                     'outType' => 'textbox',
                     'value' => '',
         ));
@@ -53,7 +53,7 @@ class News extends CMS {
                 array(
                     'name' => 'img_title',
                     'validation' => 'required|xss_clean',
-                    'required' => true,
+                    'required' => false,
                     'outType' => 'textbox',
                     'value' => '',
         ));
