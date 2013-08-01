@@ -21,6 +21,7 @@ class Staticpage extends CMSController {
         'home'=>array('page_title','page_content','video_path','video_image'),
 //        'achievements'=>array('page_title','page_content','page_url'),
         'partener'=>array('page_title','page_content','page_url'),
+        'projects'=>array('page_title','page_content','page_url'),
         'portfolio'=>array('page_title','page_content','page_url'),
         'careers'=>array('page_title','page_content','page_url'),
         'downloads'=>array('page_title','page_content','page_url'),
@@ -123,6 +124,10 @@ class Staticpage extends CMSController {
                 $this->url_prefix = Urls::URL_PREFIX_PARTNERS;
                 $this->_model = 'HomePage';
                 $this->_redirect = 'partener';
+            case 'projects':
+                $this->url_prefix = Urls::URL_PREFIX_PROJECTS_LIST;
+                $this->_model = 'HomePage';
+                $this->_redirect = 'project';
                 break;
             default:
                 break;

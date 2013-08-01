@@ -42,6 +42,23 @@ $lang['aboutus_page_order']                     ='Page order';
 $lang['aboutus_is_active']                     ='Is active?';
 $lang['aboutus_form_edit_page_title']           ='Edit about us page';
 
+////////////// projects controller /////////////
+$lang['project_index_page_title']         ='Manage projects';
+$lang['project_main_page_txt']             ='Edit main page text';
+$lang['staticpage_projects_form_edit_page_title']             ='Edit main projects page text';
+$lang['project_form_create_page_title']         ='Create new page';
+$lang['project_page_title_en-us']               ='Page title in English';
+$lang['project_page_title_ar-eg']               ='Page title in Arabic';
+$lang['project_page_content_en-us']             ='Page content in English';
+$lang['project_page_content_ar-eg']             ='Page content in Arabic';
+$lang['projects_page_title_en-us']               ='Page title in English';
+$lang['projects_page_title_ar-eg']               ='Page title in Arabic';
+$lang['projects_page_content_en-us']             ='Page content in English';
+$lang['projects_page_content_ar-eg']             ='Page content in Arabic';
+$lang['project_page_order']                     ='Page order';
+$lang['project_is_active']                     ='Is active?';
+$lang['project_form_edit_page_title']           ='Edit about us page';
+
 ////////////// achievment controller /////////////
 $lang['achievement_index_page_title']         ='Manage achievements';
 $lang['achievements_main_page_txt']             ='Edit achievements pages inside banner';
@@ -78,6 +95,7 @@ $lang['news_page_content_en-us']             ='Page content in English';
 $lang['news_page_content_ar-eg']             ='Page content in Arabic';
 $lang['news_page_order']                     ='Page order';
 $lang['news_is_active']                     ='Is active?';
+$lang['news_is_home']                     ='View in home?';
 $lang['news_img']                     ='Upload image';
 $lang['news_img_alt']                     ='Image alt';
 $lang['news_img_title']                     ='Image title';

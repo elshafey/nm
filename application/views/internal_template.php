@@ -56,11 +56,13 @@
                     <?php $this->load->view('side_menu') ?>
                 </div>
                 <div class="right">
+                    
                     <?php echo top_side_link() ?>
                     <div class="navigator">
                         <span class="main-item"><a href="<?php echo base_url() ?>">Home Page</a></span>
                         <?php echo implode('', $navigator) ?>
                     </div>
+                    <h1 style="color: #00153E;margin-bottom: 10px;margin-top: -26px;"><?php echo $page_title ?></h1>
                     <?php echo $content ?>
                 </div>
             </div>

@@ -85,3 +85,4 @@ $lang['home_menu_quick_search']='Search Result';
 $lang['home_menu_contact_us']       ='Contact Us';
 $lang['home_menu_become_agent']       ='Become a Partner';
 $lang['home_menu_request_prposal']       ='Request for Proposal';
+$lang['home_menu_projects']       ='Projects';

@@ -64,7 +64,17 @@ class News extends CMS {
                     'value' => new Urls(Urls::URL_PREFIX_NEWS_DETAILS),
         ));
         
-        $this->render_fields=array('page_title','page_content','img','img_alt','img_title','page_url','page_order','is_active');
+        
+        $this->setUpColumn(
+                array(
+                    'name' => 'is_home',
+                    'validation' => 'xss_clean',
+                    'required' => false,
+                    'outType' => 'checkbox',
+                    'value' => '',
+        ));
+        
+        $this->render_fields=array('page_title','page_content','img','img_alt','img_title','page_url','page_order','is_home','is_active');
     }
 
 }

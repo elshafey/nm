@@ -55,7 +55,7 @@ class CMSTable {
         $CI = get_instance();
         /* @var $qb \Doctrine\ORM\QueryBuilder */
         $qb = $CI->doctrine->em->createQueryBuilder();
-
+        $qb->orderBy('p.pageOrder');
         if ($cms->isParentField($field)) {
             $qb->select('p,pd')
                     ->from('\Entities\Pages', 'p')

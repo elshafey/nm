@@ -32,6 +32,8 @@ class Urls extends CMS {
     const URL_PREFIX_DOWNLOADS          = 'home/downloads/';
     const URL_PREFIX_FAQS               = 'home/faqs/';
     const URL_PREFIX_ACHIEVEMENTS       = 'home/achievements/';
+    const URL_PREFIX_PROJECTS           = 'home/projects/';
+    const URL_PREFIX_PROJECTS_LIST       = 'home/projects_main/';
     const URL_PREFIX_PUBLISHING_SOLUTIONS       = 'home/publishing_solutions/';
     const URL_PREFIX_DIGITAL_SOLUTIONS       = 'home/digital_solutions/';
     const URL_PREFIX_EDUCATIONAL_SOLUTIONS       = 'home/educational_solutions/';

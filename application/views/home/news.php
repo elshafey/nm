@@ -6,7 +6,7 @@
                 <?php echo $item['page_title'][get_locale()] ?>
             </a>
             <div style="margin-top: 5px;">
-                <?php if ($item['img']) { ?>
+                <?php if (isset($item['img'])&&$item['img']) { ?>
                     <img class="news-img" width="73" src="<?php echo base_url() . page_thumb($item['img']) ?>" title="<?php echo $item['img_title'] ?>" alt="<?php echo $item['img_alt'] ?>" />
                 <?php } ?>
                 <p>

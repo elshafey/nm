@@ -137,7 +137,16 @@
                             <a href="<?php echo site_url('admin/faq') ?>">Faqs</a><span>|</span>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('admin/achievement') ?>">Achievements</a><span>|</span>
+                            <a href="javascript:;">Achievements</a>
+                            <ul class="sub-menu" class="noJS" >
+                                <li>
+                                    <a href="<?php echo site_url('admin/achievement') ?>">Awards & Achievements Main</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('admin/project') ?>">Projects</a>
+                                </li>
+                            </ul>
+                            <span>|</span>
                         </li>
                         <li>
                             <a href="<?php echo site_url('admin/contactus') ?>">Contact Us</a>

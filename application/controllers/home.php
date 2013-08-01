@@ -26,7 +26,7 @@ class Home extends My_Controller {
     public function index() {
         $this->template->set_template('home');
         $this->data['home_page'] = StaticPagesTable::getPage('home');
-        $this->data['news'] = NewsTable::getLatest();
+        $this->data['news'] = NewsTable::getListBy('is_home',1);
         $this->data['banners'] = BannersTable::getList(true);
         $this->data['latest_release'] = BooksTable::getListBy('is_latest_release', '1');
         $this->data['most_popular'] = BooksTable::getListBy('is_most_popular', '1');
@@ -212,6 +212,19 @@ class Home extends My_Controller {
         $this->data['navigator'][] = '<span class="main-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_NEWS_LIST) . '">' . lang('home_menu_media_center_news') . '</a></span>';
         $this->get_inside_banner(Urls::URL_PREFIX_NEWS_LIST);
         $this->get_common_news_details($id);
+    }
+
+    public function projects_main() {
+        $this->data['page_title'] = lang('home_menu_projects');
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_projects') . '</span>';
+        $this->data['url_prefix'] = Urls::URL_PREFIX_PROJECTS;
+        $this->get_common_news('Projects');
+    }
+
+    public function projects($id) {
+        $this->data['navigator'][] = '<span class="main-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_PROJECTS_LIST) . '">' . lang('home_menu_projects') . '</a></span>';
+        $this->get_inside_banner(Urls::URL_PREFIX_PROJECTS_LIST);
+        $this->get_common_news_details($id,'Projects');
     }
 
     public function events() {

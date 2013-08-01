@@ -27,6 +27,7 @@
             <li>
                 <a href="javascript:"><?php echo lang('home_menu_achievements') ?></a>
                 <ul class="sub-menu noJS">
+                    <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_PROJECTS_LIST) ?>"><?php echo lang('home_menu_projects') ?></a></li>
                     <?php foreach ($achievements as $value) { ?>
                         <li>
                             <a href="<?php echo get_routed_url(Urls::URL_PREFIX_ACHIEVEMENTS . $value['id']) ?>"><?php echo $value['page_title'][get_locale()] ?></a>
