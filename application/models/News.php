@@ -36,7 +36,7 @@ class News extends CMS {
         $this->setUpColumn(
                 array(
                     'name' => 'img',
-                    'validation' => 'required|xss_clean',
+                    'validation' => 'xss_clean',
                     'required' => false,
                     'outType' => 'img_uploader',
                     'value' => '',
@@ -44,16 +44,16 @@ class News extends CMS {
         $this->setUpColumn(
                 array(
                     'name' => 'img_alt',
-                    'validation' => 'required|xss_clean',
-                    'required' => false,
+                    'validation' => 'xss_clean',
+                    'required' => true,
                     'outType' => 'textbox',
                     'value' => '',
         ));
         $this->setUpColumn(
                 array(
                     'name' => 'img_title',
-                    'validation' => 'required|xss_clean',
-                    'required' => false,
+                    'validation' => 'xss_clean',
+                    'required' => true,
                     'outType' => 'textbox',
                     'value' => '',
         ));
