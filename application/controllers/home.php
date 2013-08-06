@@ -333,7 +333,7 @@ class Home extends My_Controller {
             $this->form_validation->set_rules('subcategory', '', 'xss_clean');
             $this->form_validation->run();
             if ($_POST['category'])
-                $this->data['subcategories'] = SubCategoriesTable::getListByCat($_POST['category']);
+                $this->data['subcategories'] = SubCategoriesTable::getListByCat($_POST['category'],true);
         }
         $this->data['categories'] = CategoriesTable::getList(true);
         $this->data['page_title'] = lang('home_menu_advances_search');
@@ -344,7 +344,7 @@ class Home extends My_Controller {
     }
 
     public function get_subcategories($id) {
-        $this->data['subcategories'] = SubCategoriesTable::getListByCat($id);
+        $this->data['subcategories'] = SubCategoriesTable::getListByCat($id,true);
         $this->load->view('home/_subcategories', $this->data);
     }
 
