@@ -14,7 +14,7 @@
 
 <ul>
 
-    <li class="title"><span>Navigation</span></li>
+    <li class="title"><span>Our Solutions</span></li>
     <li class="sub-title">
         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_PUBLISHING_SOLUTIONS) ?>">
             <?php echo lang('home_publishing_solutions') ?></a></li>
@@ -34,7 +34,7 @@
     <?php } ?>
 </ul>
 
-<ul>        	
+<ul style="margin-top: 24px;">        	
     <li class="sub-title">
         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_DIGITAL_SOLUTIONS) ?>">
         <?php echo lang('home_digital_solutions') ?>

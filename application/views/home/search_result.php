@@ -15,9 +15,7 @@
                         <a class="read-more" href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK . $book['id']) ?>"><?php echo lang('global_more') ?></a>
                     </p>
                 </div>   
-                <?php if ($count > $k + 1) { ?>
                     <div class="h-line" style="margin-bottom: 0px;border-bottom: none"></div>
-                <?php } ?>
             </li>
         <?php } ?>
     </ul>
