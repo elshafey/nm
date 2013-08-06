@@ -105,7 +105,7 @@ class Home extends My_Controller {
 
     private function side_menu_page($id, $table) {
         $page = $table::getOneBy('id', $id);
-        $this->data['downloads'] = CMSTable::getListBy('parent', $id, true, SIDE_MENU_DOWNLOADS_NAMESPACE);
+        $this->data['downloads'] = DownloadsTable::getListBy('parent', $id, true, SIDE_MENU_DOWNLOADS_NAMESPACE);
         $this->data['page_title'] = $page['title'][get_locale()];
         $this->data['page']['page_content'][get_locale()] = $page['content'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
