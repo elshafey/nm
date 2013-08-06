@@ -2,7 +2,7 @@
 
 <div class="book-title"><?php echo $book['title'][get_locale()] ?></div>
 <div class="book-pages"><?php echo $book['pages_count'] ?> <?php echo lang('home_book_pages') ?></div>
-<div class="book-code">ISBN: <?php echo $book['pages_count'] ?></div>
+<div class="book-code">ISBN: <?php echo $book['isbn'] ?></div>
 <div class="book-code"><?php echo lang('home_book_author') ?>: <?php echo $book['author'][get_locale()] ?></div>
 <div class="book-code"><?php echo lang('home_book_category') ?>: <?php echo $book['SubCategories']['Categories']['name'][get_locale()] ?></div>
 <div class="book-code"><?php echo lang('home_book_subcategory') ?>: <?php echo $book['SubCategories']['name'][get_locale()] ?></div>

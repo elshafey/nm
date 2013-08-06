@@ -34,7 +34,7 @@ class BooksTable extends CMSTable {
                 ->join('c.PageDetails', 'cd');
 
         if ($active_only)
-            $qb->andWhere('p.is_active=1');
+            $qb->andWhere('p.isActive=1');
         if ($limit) {
             $qb->setMaxResults($limit);
         }

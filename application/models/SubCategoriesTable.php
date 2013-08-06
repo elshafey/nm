@@ -29,7 +29,7 @@ class SubCategoriesTable extends CMSTable {
                 ->orderBy('p.pageOrder ', ' ASC ');
 
         if ($active_only)
-            $qb->andWhere('p.is_active=1');
+            $qb->andWhere('p.isActive=1');
         if ($limit) {
             $qb->setMaxResults($limit);
         }
