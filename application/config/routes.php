@@ -56,6 +56,7 @@ $route['admin/events/(:any)']   =    'admin/media_center/$1';
 $route['admin/category']              ='admin/book/index';
 $route['admin/subcategory']              ='admin/book/index';
 $route['admin/home']            ='admin/staticpage/edit/home';
+$route['admin/side-banner']            ='admin/staticpage/edit/side-banner';
 $route['admin/portfolio-main']            ='admin/staticpage/edit/portfolio';
 $route['admin/careers-main']            ='admin/staticpage/edit/career';
 $route['admin/downloads-main']            ='admin/staticpage/edit/downloads';

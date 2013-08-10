@@ -469,7 +469,8 @@ class Home extends My_Controller {
         $this->data['custom_solutions'] = CustomSolutionsTable::getList(true);
         $this->data['original_path'] = implode('/', $this->uri->rsegments);
         $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);
-
+        $this->data['side_banner']=  StaticPagesTable::getPage('side-banner');
+        
         if (!$this->data['url']) {
             $this->data['original_path'].='/';
             $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);

@@ -60,6 +60,26 @@ class HomePage extends StaticPages {
                     'value' => '',
         ));
         
+        
+        $this->setUpColumn(
+                array(
+                    'name' => 'side_banner',
+                    'validation' => 'required|xss_clean',
+                    'required' => false,
+                    'outType' => 'img_uploader',
+                    'value' => '',
+        ));
+        
+        
+        $this->setUpColumn(
+                array(
+                    'name' => 'ajax_banner',
+                    'validation' => 'required|xss_clean',
+                    'required' => false,
+                    'outType' => 'img_uploader',
+                    'value' => '',
+        ));
+        
         array_unshift($this->render_fields, 'video_image');
         array_unshift($this->render_fields, 'video_path');
         array_unshift($this->render_fields, 'page_content');

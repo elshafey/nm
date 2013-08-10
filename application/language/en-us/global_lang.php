@@ -200,6 +200,9 @@ $lang['staticpage_custom_solutions_form_edit_page_title']       ='Edit custom so
 $lang['staticpage_partener_form_edit_page_title']                 ='Edit partener pages inside banners';
 $lang['staticpage_affiliated_companies_form_edit_page_title']             ='Edit affiliated companies pages inside banner';
 $lang['staticpage_achievements_form_edit_page_title']             ='Edit achievements pages inside banner';
+$lang['staticpage_side-banner_form_edit_page_title']             ='Managing side banner images';
+$lang['staticpages_side_banner']                                ='Select side banner';
+$lang['staticpages_ajax_banner']                                ='Select detailed image';
 
 
 ////////////// Banners controller /////////////

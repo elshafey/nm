@@ -64,6 +64,9 @@
                                     <a href="<?php echo site_url('admin/home') ?>">Home Page</a>
                                 </li>
                                 <li>
+                                    <a href="<?php echo site_url('admin/side-banner') ?>">Side Banner</a>
+                                </li>
+                                <li>
                                     <a href="<?php echo site_url('admin/banner') ?>">Home Rotator</a>
                                 </li>
 
