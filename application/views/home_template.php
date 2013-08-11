@@ -50,6 +50,7 @@
                     <form action="<?php echo site_url('home/quick_search') ?>">
                         <input id="quick_search" type="text" value="<?php echo set_value('q') ?>" class="search-box" name="q" />
                     </form>
+                    <span class="search-separator">|</span>
                     <a class="advanced-search" href="<?php echo site_url('home/advanced_search') ?>"><?php echo lang('home_menu_advances_search') ?></a>
                 </div>
                 <div class="search-right"></div>

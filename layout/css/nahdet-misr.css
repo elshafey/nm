@@ -266,6 +266,8 @@ body{
 #content .left ul{
     margin-left: 18px;	
     margin-top: 15px;
+    width:142px;
+    margin-bottom: 10px;
 }
 #content .left ul li{
     color: #272727;
@@ -296,9 +298,9 @@ body{
     margin-top: 10px;
 }
 #content .right .about-us .about-us-right{
-    margin-left: 45px;
+    margin-left: 52px;
     float: left;
-    width: 465px;
+    width: 458px;
 }
 #content .right .about-us .about-us-right p{
     text-align: justify;
@@ -373,7 +375,7 @@ body{
     background-position: right bottom;
     display: block;
     width: 907px;
-    height: 390px;
+    height: 453px;
     margin: 0 auto;
 }
 
@@ -426,7 +428,7 @@ body{
 #footer .wrapper .copyrights{
     width: 357px;
     margin: 0 auto;
-    bottom: -186px;
+    bottom: -95px;
     position: relative;
     color: #676767;
     font-size: 11px;
@@ -933,7 +935,7 @@ a.next, a.prev {
     font-size:14px;
     color: #a4a4a4;
     position: relative;
-    top: 20px;
+    top: 25px;
     left: 90px;
 }
 .search-box{
@@ -1007,4 +1009,10 @@ a.next, a.prev {
     -webkit-box-shadow:0 0 25px #111;
     -moz-box-shadow:0 0 25px #111;
     max-width:940px;
+}
+.search-separator{
+    color: #AAAAAA;
+    position: relative;
+    right: 42px;
+    top: 25px;
 }
