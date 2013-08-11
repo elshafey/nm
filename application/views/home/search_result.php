@@ -3,19 +3,21 @@
         <?php $count = count($books) ?>
         <?php foreach ($books as $k => $book) { ?>
             <li>
-                <a class="result-title" href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK . $book['id']) ?>">
-                    <?php echo $book['title'][get_locale()] ?>
-                </a>
-                <div style="margin-top: 5px;">
+        <!--                <a class="result-title" href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK . $book['id']) ?>">
+                <?php echo $book['title'][get_locale()] ?>
+                </a>-->
+                <div style="">
                     <?php if ($book['img']) { ?>
-                        <img class="news-img" width="73" src="<?php echo base_url() . page_thumb($book['img']) ?>" title="<?php echo $book['img_title'] ?>" alt="<?php echo $book['img_alt'] ?>" />
+                        <div class="news-thumbnail">
+                            <img  style="height: auto" src="<?php echo base_url() . page_thumb($book['img']) ?>" title="<?php echo $book['img_title'] ?>" alt="<?php echo $book['img_alt'] ?>" />
+                        </div>
+                        <!--<img class="news-img" width="73" src="<?php echo base_url() . page_thumb($book['img']) ?>" title="<?php echo $book['img_title'] ?>" alt="<?php echo $book['img_alt'] ?>" />-->
                     <?php } ?>
-                    <p>
-                        <?php echo sub_string_from_start($book['brief_description'][get_locale()], 100) ?>
-                        <a class="read-more" href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK . $book['id']) ?>"><?php echo lang('global_more') ?></a>
-                    </p>
+                    <a class="news-title"href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK . $book['id']) ?>"><?php echo $book['title'][get_locale()] ?></a>
+                    <div class="book-code" style="color: #272727;margin-top: 8px;">ISBN: <?php echo $book['isbn'] ?></div>
+                    <div class="book-code" style="color: #272727"><?php echo lang('home_book_author') ?>: <?php echo $book['author'][get_locale()] ?></div>
                 </div>   
-                    <div class="h-line" style="margin-bottom: 0px;border-bottom: none"></div>
+                <div class="h-line" style="margin-bottom: 0px;border-bottom: none"></div>
             </li>
         <?php } ?>
     </ul>

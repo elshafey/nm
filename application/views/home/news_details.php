@@ -1,4 +1,4 @@
-<?php if(isset($item['img'])){ ?>
+<?php if(isset($item['img'])&&$item['img']){ ?>
 <div class="full-img">
     <img src="<?php echo base_url().$item['img'] ?>" alt="<?php echo $item['img_alt'] ?>" title="<?php echo $item['img_title'] ?>" />
 </div>
