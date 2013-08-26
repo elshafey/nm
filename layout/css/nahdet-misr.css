@@ -260,7 +260,8 @@ body{
     left: 5px;
     top: 3px;
     color: #FFF;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 #content .left ul{
@@ -268,6 +269,7 @@ body{
     margin-top: 15px;
     width:142px;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 #content .left ul li{
     color: #272727;
@@ -447,13 +449,15 @@ a:hover{
 }
 
 .logo-inside{
-    background-image: url(../images/logo-inside.png);
-    width: 191px;
-    height: 79px;
+    background-image: url("../images/logo-inside.png");
+    background-repeat: no-repeat;
+    background-size: auto 100%;
     display: block;
     float: left;
-    margin-top:15px;
-    margin-bottom:10px;
+    height: 79px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    width: 46px;
 }
 
 .inside-banner{

@@ -200,7 +200,7 @@ class Books extends CMS {
         $output = curl_exec($ch);
         curl_close($ch);
         $xml = simplexml_load_string($output);
-
+        
         /* @var $CI My_Controller */
         $CI = get_instance();
         //inserting access key

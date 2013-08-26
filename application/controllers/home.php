@@ -20,13 +20,21 @@ class Home extends My_Controller {
         $this->get_common_data();
     }
 
+    function under_costruction(){
+        $this->data['navigator'] = array('<span class="sub-item"> &gt; تحت الإنشاء</span>');
+        $this->data['page_title'] = 'تحت الإنشاء';
+        
+        $this->template->write_view('content', 'home/under_costruction', $this->data);
+        $this->template->render();
+    }
+
     /**
      * Index - Display the default page view
      */
     public function index() {
         $this->template->set_template('home');
         $this->data['home_page'] = StaticPagesTable::getPage('home');
-        $this->data['news'] = NewsTable::getListBy('is_home',1);
+        $this->data['news'] = NewsTable::getListBy('is_home', 1);
         $this->data['banners'] = BannersTable::getList(true);
         $this->data['latest_release'] = BooksTable::getListBy('is_latest_release', '1');
         $this->data['most_popular'] = BooksTable::getListBy('is_most_popular', '1');
@@ -130,7 +138,7 @@ class Home extends My_Controller {
     }
 
     public function careers() {
-        if($_POST){
+        if ($_POST) {
             $this->form_validation->set_error_delimiters('<span class="frm_error_msg">', '</span>');
             $this->form_validation->set_rules('interests', '', 'xss_clean');
             $this->form_validation->set_rules('name', '', 'required|xss_clean');
@@ -147,26 +155,26 @@ class Home extends My_Controller {
             $this->form_validation->set_rules('start_date', '', 'xss_clean');
             $this->form_validation->set_rules('brief_description', '', 'required|xss_clean');
             if ($this->form_validation->run()) {
-                $interests=lang('home_careers_apply_interests');
+                $interests = lang('home_careers_apply_interests');
                 foreach ($_POST['interests'] as $key => $value) {
-                    $_POST['interests'][$key]=$interests[$key];
+                    $_POST['interests'][$key] = $interests[$key];
                 }
                 $body =
-                        lang('home_careers_apply_interest_title').": ".  implode(' - ', $_POST['interests'])."<br>"
-                        . lang('home_careers_apply_name').": {$_POST['name']}<br>"
-                        . lang('home_careers_apply_mobile').": {$_POST['mobile']}<br>"
-                        . lang('home_careers_apply_home_number').": {$_POST['home_number']}<br>"
-                        . lang('home_careers_apply_email').": {$_POST['email']}<br>"
-                        . lang('home_careers_apply_birthday').": {$_POST['birthday']}<br>"
-                        . lang('home_careers_apply_nationality').": {$_POST['nationality']}<br>"
-                        . lang('home_careers_apply_military').": {$_POST['military']}<br>"
-                        . lang('home_careers_apply_marital').": {$_POST['marital']}<br>"
-                        . lang('home_careers_apply_position').": {$_POST['position']}<br>"
-                        . lang('home_careers_apply_employer').": {$_POST['employer']}<br>"
-                        . lang('home_careers_apply_start_date').": {$_POST['start_date']}<br>"
-                        . lang('home_careers_apply_brief_description').": {$_POST['brief_description']}<br>"
+                        lang('home_careers_apply_interest_title') . ": " . implode(' - ', $_POST['interests']) . "<br>"
+                        . lang('home_careers_apply_name') . ": {$_POST['name']}<br>"
+                        . lang('home_careers_apply_mobile') . ": {$_POST['mobile']}<br>"
+                        . lang('home_careers_apply_home_number') . ": {$_POST['home_number']}<br>"
+                        . lang('home_careers_apply_email') . ": {$_POST['email']}<br>"
+                        . lang('home_careers_apply_birthday') . ": {$_POST['birthday']}<br>"
+                        . lang('home_careers_apply_nationality') . ": {$_POST['nationality']}<br>"
+                        . lang('home_careers_apply_military') . ": {$_POST['military']}<br>"
+                        . lang('home_careers_apply_marital') . ": {$_POST['marital']}<br>"
+                        . lang('home_careers_apply_position') . ": {$_POST['position']}<br>"
+                        . lang('home_careers_apply_employer') . ": {$_POST['employer']}<br>"
+                        . lang('home_careers_apply_start_date') . ": {$_POST['start_date']}<br>"
+                        . lang('home_careers_apply_brief_description') . ": {$_POST['brief_description']}<br>"
                 ;
-                send_email(CAREERS_EMAIL, $_POST['name'].' Application', $body);
+                send_email(CAREERS_EMAIL, $_POST['name'] . ' Application', $body);
                 redirect('/');
             }
         }
@@ -224,7 +232,7 @@ class Home extends My_Controller {
     public function projects($id) {
         $this->data['navigator'][] = '<span class="main-item"> &gt; <a href="' . get_routed_url(Urls::URL_PREFIX_PROJECTS_LIST) . '">' . lang('home_menu_projects') . '</a></span>';
         $this->get_inside_banner(Urls::URL_PREFIX_PROJECTS_LIST);
-        $this->get_common_news_details($id,'Projects');
+        $this->get_common_news_details($id, 'Projects');
     }
 
     public function events() {
@@ -253,20 +261,6 @@ class Home extends My_Controller {
         $this->get_common_news_details($id, 'Pressreleases');
     }
 
-    public function generate_models() {
-
-        if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
-            try {
-                echo '<pre>';
-                $this->doctrine->generateEntities();
-            } catch (Exception $exc) {
-
-                echo $exc->__toString();
-                exit;
-            }
-        }
-    }
-
     public function portfolio() {
         $this->data['page'] = StaticPagesTable::getPage('portfolio');
         $this->data['portfolios'] = PortfoliosTable::getList(true);
@@ -289,7 +283,7 @@ class Home extends My_Controller {
         $this->data['partners']['business'] = PartenersTable::getListBy('type', 2, true);
         $this->data['page'] = StaticPagesTable::getPage('partener');
         $this->data['page_title'] = $this->data['page']['page_title'][get_locale()];
-        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' .  $this->data['page_title'] . '</span>';
+        $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->template->write_view('content', 'home/partners', $this->data);
         $this->template->render();
     }
@@ -333,7 +327,7 @@ class Home extends My_Controller {
             $this->form_validation->set_rules('subcategory', '', 'xss_clean');
             $this->form_validation->run();
             if ($_POST['category'])
-                $this->data['subcategories'] = SubCategoriesTable::getListByCat($_POST['category'],true);
+                $this->data['subcategories'] = SubCategoriesTable::getListByCat($_POST['category'], true);
         }
         $this->data['categories'] = CategoriesTable::getList(true);
         $this->data['page_title'] = lang('home_menu_advances_search');
@@ -344,7 +338,7 @@ class Home extends My_Controller {
     }
 
     public function get_subcategories($id) {
-        $this->data['subcategories'] = SubCategoriesTable::getListByCat($id,true);
+        $this->data['subcategories'] = SubCategoriesTable::getListByCat($id, true);
         $this->load->view('home/_subcategories', $this->data);
     }
 
@@ -469,8 +463,8 @@ class Home extends My_Controller {
         $this->data['custom_solutions'] = CustomSolutionsTable::getList(true);
         $this->data['original_path'] = implode('/', $this->uri->rsegments);
         $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);
-        $this->data['side_banner']=  StaticPagesTable::getPage('side-banner');
-        
+        $this->data['side_banner'] = StaticPagesTable::getPage('side-banner');
+
         if (!$this->data['url']) {
             $this->data['original_path'].='/';
             $this->data['url'] = StaticUrlsTable::getOneBy('url_prefix', $this->data['original_path']);
@@ -501,6 +495,148 @@ class Home extends My_Controller {
         $this->data['url']['img'] = $url['img'];
         $this->data['url']['img_alt'] = $url['img_alt'];
         $this->data['url']['img_title'] = $url['img_title'];
+    }
+
+    public function generate_models() {
+
+        if ($_SERVER["REMOTE_ADDR"] == "127.0.0.1") {
+            try {
+                echo '<pre>';
+                $this->doctrine->generateEntities();
+            } catch (Exception $exc) {
+
+                echo $exc->__toString();
+                exit;
+            }
+        }
+    }
+
+    public function import_books() {
+        require 'PHPExcel-1.7.7/PHPExcel.php';
+        $objPHPExcel = PHPExcel_IOFactory::load('uploads/books.xls');
+
+        $k = 1;
+        foreach ($objPHPExcel->getSheet()->getRowIterator(3) as $row) {
+            echo $row->getRowIndex().'<br>';
+            $_POST = array();
+            $book_post = array();
+            foreach ($row->getCellIterator() as $cell) {
+                if ($cell->getColumn() == 'A') {
+                    $book_post['isbn'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'D') {
+                    $book_post['pages_count'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'E') {
+                    $book_post['title_en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'F') {
+                    $book_post['title_ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'G') {
+                    $book_post['author_en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'H') {
+                    $book_post['author_ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'I') {
+                    $book_post['brief_description_en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'J') {
+                    $book_post['brief_description_ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'K') {
+                    $book_post['preview'] = 'uploads/files/' . $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'L') {
+                    $book_post['img'] = 'uploads/images/' . $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'B') {
+                    $category = CategoriesTable::getOneBy('name', $cell->getValue());
+                    if ($category) {
+                        $category_id = $category['id'];
+                    } else {
+                        $category_post['name_en-us'] = $cell->getValue();
+                        $category_post['name_ar-eg'] = $cell->getValue();
+                        $category_post['page_order'] = $k;
+                        $category_post['is_active'] = 1;
+                        $_POST = $category_post;
+                        $form = new Forms(new Categories());
+                        $form->process();
+                        $category_id = $form->cms->page->getId();
+                    }
+                }
+
+                if ($cell->getColumn() == 'C') {
+                    $subcategory = SubCategoriesTable::getOneBy('name', $cell->getValue());
+                    if ($subcategory) {
+                        $subcategory_id = $subcategory['id'];
+                    } else {
+                        $subcategory_post['name_en-us'] = $cell->getValue();
+                        $subcategory_post['name_ar-eg'] = $cell->getValue();
+                        $subcategory_post['page_order'] = $k;
+                        $subcategory_post['is_active'] = 1;
+                        $subcategory_post['parent_id'] = $category_id;
+                        $_POST = $subcategory_post;
+                        $form = new Forms(new SubCategories());
+                        $form->process();
+                        pre_print($form->cms->page);
+                        $subcategory_id = $form->cms->page->getId();
+                    }
+                }
+            }
+
+            if ($book_post['title_en-us'] == '')
+                $book_post['title_en-us'] = $book_post['title_ar-eg'];
+
+            if ($book_post['title_ar-eg'] == '')
+                $book_post['title_ar-eg'] = $book_post['title_en-us'];
+
+            if ($book_post['brief_description_en-us'] == '')
+                $book_post['brief_description_en-us'] = $book_post['brief_description_ar-eg'];
+
+            if ($book_post['brief_description_ar-eg'] == '')
+                $book_post['brief_description_ar-eg'] = $book_post['brief_description_en-us'];
+
+            if ($book_post['author_en-us'] == '')
+                $book_post['author_en-us'] = $book_post['author_ar-eg'];
+
+            if ($book_post['author_ar-eg'] == '')
+                $book_post['author_ar-eg'] = $book_post['author_en-us'];
+
+            $book_post['img_alt'] = $book_post['img'];
+            $book_post['img_title'] = $book_post['title_en-us'];
+            $book_post['meta_title'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
+            $book_post['meta_keywords'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
+            $book_post['meta_description'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
+            $book_post['is_active'] = 1;
+            $book_post['is_latest_release'] = 0;
+            $book_post['is_most_popular'] = 0;
+
+            $book_post['category'] = $category_id;
+            $book_post['parent_id'] = $subcategory_id;
+            $book_post['page_order'] = $k;
+            $book_post['routed'] = Urls::URL_PREFIX_BOOK;
+            $_POST=$book_post;
+            $form = new Forms(new Books());
+            if(!$form->process()){
+                $errors[]=$book_post;
+                echo $form->renderFields();
+            }
+            $k++;
+        }
+        
+        pre_print($errors);
     }
 
 }

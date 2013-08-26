@@ -16,7 +16,7 @@ class Forms {
      *
      * @var CMS 
      */
-    private $cms;
+    public $cms;
 
     /** @var My_Controller   */
     static $CI;

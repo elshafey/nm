@@ -18,7 +18,7 @@
             <a href="<?php echo base_url() ?>">
                 <div class="logo-inside"></div>
             </a>
-            <a href="<?php echo base_url() ?>" class="arabic-link arabic-link-inside"></a>
+            <a href="<?php echo base_url().'home/under_costruction' ?>" class="arabic-link arabic-link-inside"></a>
             <div class="social-network-inside" id="social-network">
                 <a class="facebook" href=""></a>
                 <a class="twitter" href=""></a>

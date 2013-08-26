@@ -26,13 +26,13 @@
                 <a href="" class="linkedin"></a>
                 <a href="" class="youtube"></a>
             </div>
-            <a href="<?php echo base_url() ?>" class="arabic-link"></a>
+            <a href="<?php echo base_url().'home/under_costruction' ?>" class="arabic-link"></a>
 
             <div class="clear"></div>
             <?php $this->load->view('top-menu', array('is_internal' => false)) ?>
             <div class="clear"></div>
             <div id="logo-banner">
-                <a href="<?php echo base_url() ?>" class="nahdit-mist-group-logo"></a>
+                <a class="nahdit-mist-group-logo"></a>
                 <div class="banner  theme-default">
                     <div id="slider" class="nivoSlider">
                         <?php foreach ($banners as $banner) { ?>
