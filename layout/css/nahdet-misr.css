@@ -1031,3 +1031,10 @@ a.next, a.prev {
     width:65px;
     height: 65px;
 }
+#pagination a, #pagination strong {
+  border: 1px solid #CCCCCC;
+  float: left;
+  margin-right: 2px;
+  padding: 3px;
+  text-align: center;
+}

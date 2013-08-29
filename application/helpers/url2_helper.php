@@ -29,6 +29,24 @@ function get_seeker_job_template() {
             . '</a> - ' . '%s';
 }
 
+function convert_post_to_get($arr = array()) {
+    if (!$arr)
+        $arr = $_POST;
+    $query_string='';
+    if (count($arr)) {
+        foreach ($arr as $key => $value) {
+            if (!is_array($value)) {
+                $query_string.= $key . '=' . $value . '&';
+            } else {
+                foreach ($value as $sub_value) {
+                    $query_string.= $key . '[]=' . $sub_value . '&';
+                }
+            }
+        }
+    }
+    return $query_string;
+}
+
 function save_url() {
 
     $urls = UrlsTable::getList();

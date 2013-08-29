@@ -1,23 +1,22 @@
 <?php
 
 /**
- * Description of AboutusPagesTable
+ * Description of SubCategories2
  *
  * @author elshafey
  */
-class SubCategoriesTable extends CMSTable {
+class SubCategories2Table extends SubCategoriesTable {
 
     /**
      *
      * @return AboutusPages 
      */
     public static function getInstance() {
-        return new SubCategories();
+        return new SubCategories2();
     }
 
     public static function getListByCat($parent_id, $active_only = false, $limit = '', $offset = '') {
-        $cms = self::getInstance();
-        
+        $cms = SubCategories2Table::getInstance();
         /* @var My_Controller  */
         $CI = get_instance();
         /* @var $qb \Doctrine\ORM\QueryBuilder */
@@ -37,7 +36,7 @@ class SubCategoriesTable extends CMSTable {
         if ($offset) {
             $qb->setFirstResult($offset);
         }
-        
+
         $res = $qb->getQuery()
                 ->setParameter('1', "" . $cms->namespace)
                 ->setParameter('2', "" . $parent_id)
@@ -73,8 +72,8 @@ class SubCategoriesTable extends CMSTable {
         }
 
         $res = $qb->getQuery()
-                ->setParameter('1', "subcategories")
-                ->setParameter('3', "categories")
+                ->setParameter('1', "subcategories2")
+                ->setParameter('3', "subcategories")
                 ->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
 
         return (self::getFloatHydration($res));

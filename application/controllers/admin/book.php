@@ -48,8 +48,9 @@ class Book extends CMSController {
             $responce->rows[$k]['cell'] = array(
                 $page['title']['en-us'],
                 $page['title']['ar-eg'],
-                $page['Subcategories']['name'][get_locale()],
-                $page['Subcategories']['Categories']['name'][get_locale()],
+                $page['Subcategories2']['name'][get_locale()],
+                $page['Subcategories2']['Subcategories']['name'][get_locale()],
+                $page['Subcategories2']['Subcategories']['Categories']['name'][get_locale()],
                 ($page['is_latest_release'])? lang('books_is_latest_release_view'):'-',
                 $page['is_most_popular']? lang('books_is_most_popular_view'):'-',
                 order_icon($page['page_order'], $this->data['controller'], $page['id']),
@@ -117,7 +118,6 @@ class Book extends CMSController {
                 $page['name']['ar-eg'],
                 order_icon($page['page_order'], $this->data['controller'], $page['id']),
                 active_icon($page['is_active'], $this->data['controller'], $page['id']),
-                $page['Categories']['name'][get_locale()],
                 '<a href="' . site_url("admin/{$this->data['controller']}/edit/{$page['id']}") . '">' . lang('global_edit') . ' </a>',
                 '<a class="delete_lnk" href="' . site_url("admin/{$this->data['controller']}/delete/{$page['id']}") . '">' . lang('global_delete') . ' </a>'
             );
@@ -126,7 +126,39 @@ class Book extends CMSController {
         echo json_encode($responce);
     }
 
-    public function get_subcategories($cat_id) {
+    public function subcategories2_list() {
+        $this->data['controller']='subcategory2';
+        $pages = SubCategories2Table::getList();
+        
+        $per_page = 10;
+        $count = count($pages);
+        $curPage = 1;
+        $total_pages = ceil($count / $per_page);
+
+        $responce = new stdClass();
+
+        $responce->page = $curPage;
+        $responce->total = $total_pages;
+        $responce->records = $count;
+//        pre_print($jobSeekers);
+        foreach ($pages as $k => $page) {
+            //$jobSeekers[$key]["rate"] = evaluate_rate($jobSeeker["js_id"]);
+
+            $responce->rows[$k]['id'] = $page["id"];
+            $responce->rows[$k]['cell'] = array(
+                $page['name']['en-us'],
+                $page['name']['ar-eg'],
+                order_icon($page['page_order'], $this->data['controller'], $page['id']),
+                active_icon($page['is_active'], $this->data['controller'], $page['id']),
+                '<a href="' . site_url("admin/{$this->data['controller']}/edit/{$page['id']}") . '">' . lang('global_edit') . ' </a>',
+                '<a class="delete_lnk" href="' . site_url("admin/{$this->data['controller']}/delete/{$page['id']}") . '">' . lang('global_delete') . ' </a>'
+            );
+        }
+        
+        echo json_encode($responce);
+    }
+
+    public function get_subcategories2($cat_id) {
 
         $cms = new CMS();
         $cms->namespace = 'books';
@@ -136,11 +168,29 @@ class Book extends CMSController {
             'outType' => 'select',
             'validation' => 'required|xss_clean',
             'required' => true,
-            'select_list' => SubCategoriesTable::getListByCat($cat_id),
+            'select_list' => SubCategories2Table::getListByCat($cat_id),
             'select_txt_field' => 'name',
             'value' => ''
         ));
         echo $form->getFieldHTML('parent_id');
+    }
+
+    public function get_subcategories($cat_id) {
+
+        $cms = new CMS();
+        $cms->namespace = 'books';
+        $form = new Forms($cms);
+        $form->addSelect(array(
+            'name' => 'subcategory',
+            'outType' => 'select',
+            'validation' => 'required|xss_clean',
+            'required' => true,
+            'select_list' => SubCategoriesTable::getListByCat($cat_id),
+            'select_txt_field' => 'name',
+            'value' => ''
+        ));
+        
+        echo $form->getFieldHTML('subcategory');
     }
 
 }

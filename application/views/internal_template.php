@@ -10,6 +10,7 @@
         <script src="<?php echo base_url(); ?>layout/js/jquery/jquery-1.7.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>layout/js/content.js" type="text/javascript"></script>
         <?php echo $_scripts ?>
+        <?php if(isset($meta_share)) echo $meta_share; ?>
     </head>
 
     <body>

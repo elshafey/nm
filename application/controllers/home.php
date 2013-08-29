@@ -20,10 +20,10 @@ class Home extends My_Controller {
         $this->get_common_data();
     }
 
-    function under_costruction(){
+    function under_costruction() {
         $this->data['navigator'] = array('<span class="sub-item"> &gt; تحت الإنشاء</span>');
         $this->data['page_title'] = 'تحت الإنشاء';
-        
+
         $this->template->write_view('content', 'home/under_costruction', $this->data);
         $this->template->render();
     }
@@ -293,6 +293,11 @@ class Home extends My_Controller {
         $this->data['book'] = BooksTable::getOneBy('id', $id);
         $this->data['book']['SubCategories'] = SubCategoriesTable::getOneBy('id', $this->data['book']['parent_id']);
         $this->data['book']['SubCategories']['Categories'] = CategoriesTable::getOneBy('id', $this->data['book']['category']);
+        $this->data['meta_share'] =
+                '<meta property="og:url" content="' . base_url() . 'home/preview_book/' . $id . '"/>' .
+                '<meta property="og:image" content="' . base_url() . $this->data['book']['img'] . '" />' .
+                '<meta property="og:site_name" content="Nahdet Misr"/>' .
+                '<meta property="og:description" content="' . $this->data['book']['title'][get_locale()] . '"/>';
 
         $this->data['page_title'] = $this->data['book']['title'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
@@ -304,9 +309,12 @@ class Home extends My_Controller {
         if (!$_GET || !isset($_GET['q']) && $_GET['q'])
             redirect('/');
         $_POST = $_GET;
+        
         $this->form_validation->set_rules('q', '', 'xss_clean');
         $this->form_validation->run();
-        $this->data['books'] = BooksTable::quickSearch($_POST['q']);
+        $this->data['books'] = BooksTable::quickSearch($_POST['q'], 10, $pager);
+        $this->setup_pagination();
+        
         $this->data['page_title'] = lang('home_menu_quick_search');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
 
@@ -314,20 +322,27 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function advanced_search() {
+    public function advanced_search($pager = 0) {
+        if ($_GET)
+            $_POST = $_GET;
 
         if ($_POST) {
 
-            $this->data['books'] = BooksTable::advancedSearch($_POST);
-
+            $this->data['books'] = BooksTable::advancedSearch($_POST, 10, $pager);
+            $this->setup_pagination();
+            
             $this->form_validation->set_rules('title', '', 'xss_clean');
             $this->form_validation->set_rules('author', '', 'xss_clean');
             $this->form_validation->set_rules('isbn', '', 'xss_clean');
             $this->form_validation->set_rules('category', '', 'xss_clean');
             $this->form_validation->set_rules('subcategory', '', 'xss_clean');
+            $this->form_validation->set_rules('subcategory2', '', 'xss_clean');
             $this->form_validation->run();
             if ($_POST['category'])
                 $this->data['subcategories'] = SubCategoriesTable::getListByCat($_POST['category'], true);
+            
+            if(isset($_POST['subcategory'])&&$_POST['subcategory'])
+                $this->data['subcategories2'] = SubCategories2Table::getListByCat($_POST['subcategory'], true);
         }
         $this->data['categories'] = CategoriesTable::getList(true);
         $this->data['page_title'] = lang('home_menu_advances_search');
@@ -337,9 +352,28 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
+    private function setup_pagination($action='advanced_search') {
+        
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'home/advanced_search/';
+        $config['total_rows'] = BooksTable::getCount();
+        $config['per_page'] = 10;
+        $config['uri_segment'] = 3;
+        $config['num_links'] = 4;
+        
+        $this->pagination->initialize($config);
+        $this->data['pagination'] = $this->pagination->create_links();
+        
+    }
+
     public function get_subcategories($id) {
         $this->data['subcategories'] = SubCategoriesTable::getListByCat($id, true);
         $this->load->view('home/_subcategories', $this->data);
+    }
+
+    public function get_subcategories2($id) {
+        $this->data['subcategories2'] = SubCategories2Table::getListByCat($id, true);
+        $this->load->view('home/_subcategories2', $this->data);
     }
 
     public function contact_us() {
@@ -516,8 +550,8 @@ class Home extends My_Controller {
         $objPHPExcel = PHPExcel_IOFactory::load('uploads/books.xls');
 
         $k = 1;
-        foreach ($objPHPExcel->getSheet()->getRowIterator(3) as $row) {
-            echo $row->getRowIndex().'<br>';
+        foreach ($objPHPExcel->getSheet()->getRowIterator(3) as $i => $row) {
+            pre_print($i, FALSE);
             $_POST = array();
             $book_post = array();
             foreach ($row->getCellIterator() as $cell) {
@@ -525,94 +559,128 @@ class Home extends My_Controller {
                     $book_post['isbn'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'D') {
+                if ($cell->getColumn() == 'H') {
                     $book_post['pages_count'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'E') {
+                if ($cell->getColumn() == 'I') {
                     $book_post['title_en-us'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'F') {
+                if ($cell->getColumn() == 'J') {
                     $book_post['title_ar-eg'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'G') {
+                if ($cell->getColumn() == 'K') {
                     $book_post['author_en-us'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'H') {
+                if ($cell->getColumn() == 'L') {
                     $book_post['author_ar-eg'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'I') {
+                if ($cell->getColumn() == 'M') {
                     $book_post['brief_description_en-us'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'J') {
+                if ($cell->getColumn() == 'N') {
                     $book_post['brief_description_ar-eg'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'K') {
-                    $book_post['preview'] = 'uploads/files/' . $cell->getValue();
+                if ($cell->getColumn() == 'O') {
+                    $book_post['preview'] = 'uploads/files/' . $cell->getValue() . '.pdf';
                 }
 
-                if ($cell->getColumn() == 'L') {
-                    $book_post['img'] = 'uploads/images/' . $cell->getValue();
+                if ($cell->getColumn() == 'P') {
+                    $book_post['img'] = 'uploads/images/' . $cell->getValue() . '.jpeg';
                 }
 
                 if ($cell->getColumn() == 'B') {
-                    $category = CategoriesTable::getOneBy('name', $cell->getValue());
-                    if ($category) {
-                        $category_id = $category['id'];
-                    } else {
-                        $category_post['name_en-us'] = $cell->getValue();
-                        $category_post['name_ar-eg'] = $cell->getValue();
-                        $category_post['page_order'] = $k;
-                        $category_post['is_active'] = 1;
-                        $_POST = $category_post;
-                        $form = new Forms(new Categories());
-                        $form->process();
-                        $category_id = $form->cms->page->getId();
-                    }
+                    $cat['ar-eg'] = $cell->getValue();
                 }
 
                 if ($cell->getColumn() == 'C') {
-                    $subcategory = SubCategoriesTable::getOneBy('name', $cell->getValue());
-                    if ($subcategory) {
-                        $subcategory_id = $subcategory['id'];
-                    } else {
-                        $subcategory_post['name_en-us'] = $cell->getValue();
-                        $subcategory_post['name_ar-eg'] = $cell->getValue();
-                        $subcategory_post['page_order'] = $k;
-                        $subcategory_post['is_active'] = 1;
-                        $subcategory_post['parent_id'] = $category_id;
-                        $_POST = $subcategory_post;
-                        $form = new Forms(new SubCategories());
-                        $form->process();
-                        pre_print($form->cms->page);
-                        $subcategory_id = $form->cms->page->getId();
-                    }
+                    $cat['en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'D') {
+                    $subcat['ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'E') {
+                    $subcat['en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'F') {
+                    $subcat2['ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'G') {
+                    $subcat2['en-us'] = $cell->getValue();
                 }
             }
 
-            if ($book_post['title_en-us'] == '')
-                $book_post['title_en-us'] = $book_post['title_ar-eg'];
 
-            if ($book_post['title_ar-eg'] == '')
-                $book_post['title_ar-eg'] = $book_post['title_en-us'];
+            $category = CategoriesTable::getOneBy('name', $cat['en-us']);
+            if ($category) {
+                $category_id = $category['id'];
+            } else {
+                $category_post['name_en-us'] = $cat['en-us'];
+                $category_post['name_ar-eg'] = $cat['ar-eg'];
+                $category_post['page_order'] = $k;
+                $category_post['is_active'] = 1;
+                $_POST = $category_post;
+                $form = new Forms(new Categories());
 
-            if ($book_post['brief_description_en-us'] == '')
-                $book_post['brief_description_en-us'] = $book_post['brief_description_ar-eg'];
+                if ($form->process()) {
+                    $category = CategoriesTable::getOneBy('name', $cat['en-us']);
+                    $category_id = $category['id'];
+                } else {
+                    echo $form->renderFields();
+                }
+            }
 
-            if ($book_post['brief_description_ar-eg'] == '')
-                $book_post['brief_description_ar-eg'] = $book_post['brief_description_en-us'];
+            $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
+            if ($subcategory) {
+                $subcategory_id = $subcategory['id'];
+            } else {
+                $subcategory_post['name_en-us'] = $subcat['en-us'];
+                $subcategory_post['name_ar-eg'] = $subcat['ar-eg'];
+                $subcategory_post['page_order'] = $k;
+                $subcategory_post['is_active'] = 1;
+                $subcategory_post['parent_id'] = $category_id;
+                $_POST = $subcategory_post;
+                $form = new Forms(new SubCategories());
+                if ($form->process()) {
+                    $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
+                    $subcategory_id = $subcategory['id'];
+                } else {
+                    echo $form->renderFields();
+                }
+//                        pre_print($form->cms->page);
+            }
 
-            if ($book_post['author_en-us'] == '')
-                $book_post['author_en-us'] = $book_post['author_ar-eg'];
+            $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
+            if ($subcategory2) {
+                $subcategory2_id = $subcategory['id'];
+            } else {
+                $subcategory2_post['name_en-us'] = $subcat2['en-us'];
+                $subcategory2_post['name_ar-eg'] = $subcat2['ar-eg'];
+                $subcategory2_post['page_order'] = $k;
+                $subcategory2_post['is_active'] = 1;
+                $subcategory2_post['parent_id'] = $subcategory_id;
+                $subcategory2_post['category'] = $category_id;
+                $_POST = $subcategory2_post;
+                $form = new Forms(new SubCategories2());
+                if ($form->process()) {
+                    $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
+                    $subcategory2_id = $subcategory2['id'];
+                } else {
+                    echo $form->renderFields();
+                }
+//                        pre_print($form->cms->page);
+            }
 
-            if ($book_post['author_ar-eg'] == '')
-                $book_post['author_ar-eg'] = $book_post['author_en-us'];
 
             $book_post['img_alt'] = $book_post['img'];
             $book_post['img_title'] = $book_post['title_en-us'];
@@ -624,19 +692,21 @@ class Home extends My_Controller {
             $book_post['is_most_popular'] = 0;
 
             $book_post['category'] = $category_id;
-            $book_post['parent_id'] = $subcategory_id;
+            $book_post['subcategory'] = $subcategory_id;
+            $book_post['parent_id'] = $subcategory2_id;
             $book_post['page_order'] = $k;
             $book_post['routed'] = Urls::URL_PREFIX_BOOK;
-            $_POST=$book_post;
+//            pre_print($book_post);
+            $_POST = $book_post;
             $form = new Forms(new Books());
-            if(!$form->process()){
-                $errors[]=$book_post;
-                echo $form->renderFields();
+            if (!$form->process()) {
+                $errors[] = $book_post;
             }
             $k++;
         }
         
-        pre_print($errors);
+        if($errors)
+            file_put_contents ('non-uploded.txt', serialize ($errors));
     }
 
 }

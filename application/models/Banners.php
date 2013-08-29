@@ -22,6 +22,14 @@ class Banners extends CMS {
         ));
         $this->setUpColumn(
                 array(
+                    'name' => 'link',
+                    'validation' => 'required|xss_clean',
+                    'required' => true,
+                    'outType' => 'textbox',
+                    'value' => '',
+        ));
+        $this->setUpColumn(
+                array(
                     'name' => 'alt',
                     'validation' => 'required|xss_clean',
                     'required' => true,
@@ -39,6 +47,7 @@ class Banners extends CMS {
         
         array_unshift($this->render_fields, 'title');
         array_unshift($this->render_fields, 'alt');
+        array_unshift($this->render_fields, 'link');
         array_unshift($this->render_fields, 'path');
         
     }

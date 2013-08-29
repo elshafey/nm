@@ -26,7 +26,7 @@
                 <a href="" class="linkedin"></a>
                 <a href="" class="youtube"></a>
             </div>
-            <a href="<?php echo base_url().'home/under_costruction' ?>" class="arabic-link"></a>
+            <a href="<?php echo base_url() . 'home/under_costruction' ?>" class="arabic-link"></a>
 
             <div class="clear"></div>
             <?php $this->load->view('top-menu', array('is_internal' => false)) ?>
@@ -36,7 +36,9 @@
                 <div class="banner  theme-default">
                     <div id="slider" class="nivoSlider">
                         <?php foreach ($banners as $banner) { ?>
+                            <a href="<?php echo $banner['link'] ?>">
                                 <img src="<?php echo base_url() . $banner['path'] ?>" title="<?php echo $banner['title'] ?>" alt="<?php echo $banner['alt'] ?>" width="660" height="300" />
+                            </a>
                         <?php } ?>
                     </div>
                 </div>

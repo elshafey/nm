@@ -10,6 +10,12 @@ class Books extends CMS {
             $this->setUpColumn(
                     array(
                         'name' => 'parent_id',
+                        'select_list' => SubCategories2Table::getListByCat($this->subcategory),
+                    )
+            );
+            $this->setUpColumn(
+                    array(
+                        'name' => 'subcategory',
                         'select_list' => SubCategoriesTable::getListByCat($this->category),
                     )
             );
@@ -31,6 +37,18 @@ class Books extends CMS {
                     'validation' => 'required|xss_clean',
                     'required' => true,
                     'select_list' => CategoriesTable::getList(),
+                    'select_txt_field' => 'name',
+                    'value' => '',
+                )
+        );
+
+        $this->setUpColumn(
+                array(
+                    'name' => 'subcategory',
+                    'outType' => 'select',
+                    'validation' => 'required|xss_clean',
+                    'required' => true,
+                    'select_list' => array(),
                     'select_txt_field' => 'name',
                     'value' => '',
                 )
@@ -182,13 +200,15 @@ class Books extends CMS {
         array_unshift($this->render_fields, 'brief_description');
         array_unshift($this->render_fields, 'title');
         array_unshift($this->render_fields, 'parent_id');
+        array_unshift($this->render_fields, 'subcategory');
         array_unshift($this->render_fields, 'category');
+        
     }
 
     function onFlush(\Entities\Pages &$page) {
         parent::onFlush($page);
         $path = getcwd() . '/' . $this->preview;
-
+        
         $ch = curl_init('http://api.scribd.com/api?method=docs.upload&api_key=3r190500l02rmjeficw4l');
         $post_data = array(
             'file' => '@' . $path,
@@ -237,6 +257,7 @@ class Books extends CMS {
         $CI->doctrine->em->persist($pageDetail);
 
         $CI->doctrine->em->flush();
+//        exit;
     }
 
 }

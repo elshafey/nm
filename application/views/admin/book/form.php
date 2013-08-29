@@ -10,16 +10,32 @@
 </form>
 <script>
     if($('#category').val()==''){
+        $('#li_subcategory').hide();
+    }
+    if($('#subcategory').val()==''){
         $('#li_parent_id').hide();
     }
     $('#category').change(function(){
         if($('#category').val()==''){
+            $('#li_subcategory').slideUp();
+        }else{
+            if($('#li_subcategory').not(':visible')){
+                $('#li_subcategory').slideDown();
+            }
+            $.get('<?php echo site_url('admin/book/get_subcategories/') ?>/'+$(this).val(),function(data){
+                $('#li_subcategory').html($(data).html());
+            });
+            
+        }
+    });
+    $('#subcategory').live('change',function(){
+        if($('#subcategory').val()==''){
             $('#li_parent_id').slideUp();
         }else{
             if($('#li_parent_id').not(':visible')){
                 $('#li_parent_id').slideDown();
             }
-            $.get('<?php echo site_url('admin/book/get_subcategories/') ?>/'+$(this).val(),function(data){
+            $.get('<?php echo site_url('admin/book/get_subcategories2/') ?>/'+$(this).val(),function(data){
                 $('#li_parent_id').html($(data).html());
             });
             

@@ -11,8 +11,13 @@ class BooksTable extends CMSTable {
      *
      * @return Books 
      */
+    static $count=0;
     public static function getInstance() {
         return new Books();
+    }
+
+    public static function getCount() {
+        return self::$count;
     }
 
     public static function getList($active_only = false, $limit = '', $offset = '') {
@@ -25,8 +30,12 @@ class BooksTable extends CMSTable {
                 ->join('b.PageDetails', 'bd', Doctrine\ORM\Query\Expr\Join::WITH, 'b.namespace= ?1')
                 ->orderBy('b.pageOrder ', ' ASC ');
 
+        $qb->addSelect('s2,s2d')
+                ->join('b.parent', 's2', Doctrine\ORM\Query\Expr\Join::WITH, 's2.namespace= ?4')
+                ->join('s2.PageDetails', 's2d');
+
         $qb->addSelect('s,sd')
-                ->join('b.parent', 's', Doctrine\ORM\Query\Expr\Join::WITH, 's.namespace= ?2')
+                ->join('s2.parent', 's', Doctrine\ORM\Query\Expr\Join::WITH, 's.namespace= ?2')
                 ->join('s.PageDetails', 'sd');
 
         $qb->addSelect('c,cd')
@@ -44,6 +53,7 @@ class BooksTable extends CMSTable {
 
         $res = $qb->getQuery()
                 ->setParameter('1', "books")
+                ->setParameter('4', "subcategories2")
                 ->setParameter('2', "subcategories")
                 ->setParameter('3', "categories")
                 ->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
@@ -51,7 +61,7 @@ class BooksTable extends CMSTable {
         return (self::getFloatHydration($res));
     }
 
-    public static function advancedSearch($criteria) {
+    public static function advancedSearch($criteria, $limit = '', $offset = '') {
 
         /* @var My_Controller  */
         $CI = get_instance();
@@ -83,8 +93,13 @@ class BooksTable extends CMSTable {
                     ->andWhere('c.value LIKE ?4 ');
         }
 
-        if (isset($criteria['subcategory']) && $criteria['subcategory'] != '') {
+        if (isset($criteria['subcategory2']) && $criteria['subcategory2'] != '') {
             $qb->andWhere('p.parent = ?5 ');
+        }
+
+        if (isset($criteria['subcategory']) && $criteria['subcategory'] != '') {
+            $qb->join('p.PageDetails', 's', Doctrine\ORM\Query\Expr\Join::WITH, ' s.name= ?19 AND p.namespace = ?20 ')
+                    ->andWhere('s.value LIKE ?6 ');
         }
         $qb->andWhere('p.isActive = 1');
         /* @var $q Doctrine\ORM\Query */
@@ -116,15 +131,34 @@ class BooksTable extends CMSTable {
         }
 
         if (isset($criteria['subcategory']) && $criteria['subcategory'] != '') {
-            $q->setParameter('5', $criteria['subcategory']);
+            $q->setParameter('6', $criteria['subcategory']);
+            $q->setParameter('19', 'subcategory');
+            $q->setParameter('20', $cms->namespace);
+        }
+        
+
+        if (isset($criteria['subcategory2']) && $criteria['subcategory2'] != '') {
+            $q->setParameter('5', $criteria['subcategory2']);
+        }
+        if ($limit)
+            $q->setMaxResults($limit);
+
+        if ($offset) {
+            $q->setFirstResult($offset);
         }
 
-        $res = $q->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
+        if ($limit || $offset) {
+            $res = new \Doctrine\ORM\Tools\Pagination\Paginator($q->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
+            self::$count=$res->count();
+        } else {
+            $res = $q->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
+            self::$count=  count($res);
+        }
 
         return (self::getFloatHydration($res));
     }
 
-    public static function quickSearch($q) {
+    public static function quickSearch($q, $limit = '', $offset = '') {
 
         /* @var My_Controller  */
         $CI = get_instance();
@@ -147,9 +181,23 @@ class BooksTable extends CMSTable {
         $query->setParameter('2', "%$q%");
         $query->setParameter('3', "%$q%");
         $query->setParameter('4', "%$q%");
-        
-//        echo $query->getSQL();exit;
-        return (self::getFloatHydration($query->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY)));
+
+        if ($limit)
+            $q->setMaxResults($limit);
+
+        if ($offset) {
+            $q->setFirstResult($offset);
+        }
+
+        if ($limit || $offset) {
+            $res = new \Doctrine\ORM\Tools\Pagination\Paginator($q->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
+            self::$count=$res->count();
+        } else {
+            $res = $q->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
+            self::$count=  count($res);
+        }
+
+        return (self::getFloatHydration($res));
     }
 
 }

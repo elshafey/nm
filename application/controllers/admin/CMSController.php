@@ -109,7 +109,7 @@ class CMSController extends My_Controller {
 
     protected function edit_logic($id) {
         $model = $this->_model;
-
+        
         /* @var $form Forms */
         $form = new Forms(new $model($id));
 

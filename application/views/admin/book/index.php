@@ -9,6 +9,16 @@
     </li>
     <li>&nbsp;</li>
     <li>&nbsp;</li>
+    <li class="section_title"><?php echo lang('subcategories2_section_title') ?></li>
+    <li>
+        <a href="<?php echo site_url('admin/subcategory2/create') ?>"><?php echo lang('subcategory2_form_create_page_title') ?></a>
+    </li>
+    <li>
+        <table id="list4"></table>
+        <div id="pager4"></div>
+    </li>
+    <li>&nbsp;</li>
+    <li>&nbsp;</li>
     <li class="section_title"><?php echo lang('subcategories_section_title') ?></li>
     <li>
         <a href="<?php echo site_url('admin/subcategory/create') ?>"><?php echo lang('subcategory_form_create_page_title') ?></a>
@@ -31,6 +41,7 @@
     <li>&nbsp;</li>
 </ul>
 
-<?php build_grid(array('title_en-us', 'title_ar-eg','subcategory_name','category_name','is_latest_release','is_most_popular'), 'books', '','1','admin/book/books_list/',false) ?>
-<?php build_grid(array('name_en-us', 'name_ar-eg','category_name'), 'subcategories', '','2','admin/book/subcategories_list/',false) ?>
+<?php build_grid(array('title_en-us', 'title_ar-eg','subcategory2_name','subcategory_name','category_name','is_latest_release','is_most_popular'), 'books', '','1','admin/book/books_list/',false) ?>
+<?php build_grid(array('name_en-us', 'name_ar-eg',), 'subcategories2', '','4','admin/book/subcategories2_list/',false) ?>
+<?php build_grid(array('name_en-us', 'name_ar-eg',), 'subcategories', '','2','admin/book/subcategories_list/',false) ?>
 <?php build_grid(array('name_en-us', 'name_ar-eg'), 'categories', '','3','admin/book/categories_list/',false) ?>

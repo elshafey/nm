@@ -21,6 +21,18 @@
             </li>
         <?php } ?>
     </ul>
+    <div id="pagination">
+        <?php if (isset($pagination) && $pagination) { ?>
+            <?php echo $pagination ?>
+        <?php } ?>
+    </div>
+    <script>
+        var q='?<?php echo convert_post_to_get() ?>';
+        $('#pagination a').each(function(e){
+            $(this).attr('href',$(this).attr('href')+q);
+        });
+    </script>
+
 <?php } else { ?>
     <?php echo lang('home_search_no_result') ?>
 <?php } ?>
