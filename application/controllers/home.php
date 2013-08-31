@@ -610,11 +610,11 @@ class Home extends My_Controller {
                 }
 
                 if ($cell->getColumn() == 'O') {
-                    $book_post['preview'] = 'uploads/files/' . $cell->getValue() . '.pdf';
+                    $book_post['preview'] = 'uploads/files/' . $cell->getValue();
                 }
 
                 if ($cell->getColumn() == 'P') {
-                    $book_post['img'] = 'uploads/images/' . $cell->getValue() . '.jpeg';
+                    $book_post['img'] = 'uploads/images/' . $cell->getValue();
                 }
             }
 
