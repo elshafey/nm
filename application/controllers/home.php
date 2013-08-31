@@ -618,7 +618,7 @@ class Home extends My_Controller {
                 }
             }
 
-
+            $this->form_validation=new My_Form_validation();
             $category = CategoriesTable::getOneBy('name', $cat['en-us']);
             $category_id = '';
             if ($category) {
@@ -630,15 +630,16 @@ class Home extends My_Controller {
                 $category_post['is_active'] = 1;
                 $_POST = $category_post;
                 $form = new Forms(new Categories());
-
                 if ($form->process()) {
                     $category = CategoriesTable::getOneBy('name', $cat['en-us']);
                     $category_id = $category['id'];
                 } else {
-//                    echo $form->renderFields();
+//                    pre_print($this->form_validation->_error_array,false);
+                    echo $form->renderFields();
                 }
             }
 
+            $this->form_validation=new My_Form_validation();
             $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
             $subcategory_id = '';
             if ($subcategory) {
@@ -660,6 +661,7 @@ class Home extends My_Controller {
 //                        pre_print($form->cms->page);
             }
 
+            $this->form_validation=new My_Form_validation();
             $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
             $subcategory2_id = '';
             if ($subcategory2) {
@@ -699,6 +701,8 @@ class Home extends My_Controller {
             $book_post['routed'] = Urls::URL_PREFIX_BOOK;
 //            pre_print($book_post);
             $_POST = $book_post;
+            
+            $this->form_validation=new My_Form_validation();
             $form = new Forms(new Books());
             if (!$form->process()) {
 //                echo $form->renderFields();
