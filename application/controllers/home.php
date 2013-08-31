@@ -711,6 +711,10 @@ class Home extends My_Controller {
         if(isset($errors)&&$errors)
             file_put_contents ('non-uploded.txt', serialize ($errors));
     }
+    
+    public function list_non_uploaded(){
+        pre_print(unserialize('non-uploded.txt'));
+    }
 
 }
 
