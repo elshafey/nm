@@ -9,7 +9,7 @@
                 <div style="">
                     <?php if ($book['img']) { ?>
                         <div class="news-thumbnail">
-                            <img  style="height: auto" src="<?php echo base_url() . page_thumb($book['img']) ?>" title="<?php echo $book['img_title'] ?>" alt="<?php echo $book['img_alt'] ?>" />
+                            <img  style="height: auto" src="<?php echo base_url() . (file_exists(page_thumb($book['img']))? page_thumb($book['img']):$book['img'])  ?>" title="<?php echo $book['img_title'] ?>" alt="<?php echo $book['img_alt'] ?>" />
                         </div>
                         <!--<img class="news-img" width="73" src="<?php echo base_url() . page_thumb($book['img']) ?>" title="<?php echo $book['img_title'] ?>" alt="<?php echo $book['img_alt'] ?>" />-->
                     <?php } ?>
