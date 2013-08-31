@@ -545,6 +545,7 @@ class Home extends My_Controller {
     }
 
     public function import_books() {
+         set_time_limit(0);
         require 'PHPExcel-1.7.7/PHPExcel.php';
         $objPHPExcel = PHPExcel_IOFactory::load('uploads/books.xls');
 
