@@ -309,12 +309,12 @@ class Home extends My_Controller {
         if (!$_GET || !isset($_GET['q']) && $_GET['q'])
             redirect('/');
         $_POST = $_GET;
-        
+
         $this->form_validation->set_rules('q', '', 'xss_clean');
         $this->form_validation->run();
         $this->data['books'] = BooksTable::quickSearch($_POST['q'], 10, $pager);
         $this->setup_pagination();
-        
+
         $this->data['page_title'] = lang('home_menu_quick_search');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
 
@@ -330,7 +330,7 @@ class Home extends My_Controller {
 
             $this->data['books'] = BooksTable::advancedSearch($_POST, 10, $pager);
             $this->setup_pagination();
-            
+
             $this->form_validation->set_rules('title', '', 'xss_clean');
             $this->form_validation->set_rules('author', '', 'xss_clean');
             $this->form_validation->set_rules('isbn', '', 'xss_clean');
@@ -340,8 +340,8 @@ class Home extends My_Controller {
             $this->form_validation->run();
             if ($_POST['category'])
                 $this->data['subcategories'] = SubCategoriesTable::getListByCat($_POST['category'], true);
-            
-            if(isset($_POST['subcategory'])&&$_POST['subcategory'])
+
+            if (isset($_POST['subcategory']) && $_POST['subcategory'])
                 $this->data['subcategories2'] = SubCategories2Table::getListByCat($_POST['subcategory'], true);
         }
         $this->data['categories'] = CategoriesTable::getList(true);
@@ -352,18 +352,17 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    private function setup_pagination($action='advanced_search') {
-        
+    private function setup_pagination($action = 'advanced_search') {
+
         $this->load->library('pagination');
-        $config['base_url'] = base_url().'home/advanced_search/';
+        $config['base_url'] = base_url() . 'home/advanced_search/';
         $config['total_rows'] = BooksTable::getCount();
         $config['per_page'] = 10;
         $config['uri_segment'] = 3;
         $config['num_links'] = 4;
-        
+
         $this->pagination->initialize($config);
         $this->data['pagination'] = $this->pagination->create_links();
-        
     }
 
     public function get_subcategories($id) {
@@ -553,9 +552,33 @@ class Home extends My_Controller {
         foreach ($objPHPExcel->getSheet()->getRowIterator(3) as $i => $row) {
             $_POST = array();
             $book_post = array();
+            echo $row->getRowIndex() . '<br>';
             foreach ($row->getCellIterator() as $cell) {
                 if ($cell->getColumn() == 'A') {
                     $book_post['isbn'] = $cell->getValue();
+                }
+                if ($cell->getColumn() == 'B') {
+                    $cat['ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'C') {
+                    $cat['en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'D') {
+                    $subcat['ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'E') {
+                    $subcat['en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'F') {
+                    $subcat2['ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'G') {
+                    $subcat2['en-us'] = $cell->getValue();
                 }
 
                 if ($cell->getColumn() == 'H') {
@@ -593,35 +616,11 @@ class Home extends My_Controller {
                 if ($cell->getColumn() == 'P') {
                     $book_post['img'] = 'uploads/images/' . $cell->getValue() . '.jpeg';
                 }
-
-                if ($cell->getColumn() == 'B') {
-                    $cat['ar-eg'] = $cell->getValue();
-                }
-
-                if ($cell->getColumn() == 'C') {
-                    $cat['en-us'] = $cell->getValue();
-                }
-
-                if ($cell->getColumn() == 'D') {
-                    $subcat['ar-eg'] = $cell->getValue();
-                }
-
-                if ($cell->getColumn() == 'E') {
-                    $subcat['en-us'] = $cell->getValue();
-                }
-
-                if ($cell->getColumn() == 'F') {
-                    $subcat2['ar-eg'] = $cell->getValue();
-                }
-
-                if ($cell->getColumn() == 'G') {
-                    $subcat2['en-us'] = $cell->getValue();
-                }
             }
 
 
             $category = CategoriesTable::getOneBy('name', $cat['en-us']);
-            $category_id ='';
+            $category_id = '';
             if ($category) {
                 $category_id = $category['id'];
             } else {
@@ -641,7 +640,7 @@ class Home extends My_Controller {
             }
 
             $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
-            $subcategory_id ='';
+            $subcategory_id = '';
             if ($subcategory) {
                 $subcategory_id = $subcategory['id'];
             } else {
@@ -662,7 +661,7 @@ class Home extends My_Controller {
             }
 
             $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
-            $subcategory2_id='';
+            $subcategory2_id = '';
             if ($subcategory2) {
                 $subcategory2_id = $subcategory2['id'];
             } else {
@@ -707,13 +706,13 @@ class Home extends My_Controller {
             }
             $k++;
         }
-        
-        if(isset($errors)&&$errors)
-            file_put_contents ('non-uploded.txt', serialize ($errors));
+
+        if (isset($errors) && $errors)
+            file_put_contents('non-uploded.txt', serialize($errors));
     }
-    
-    public function list_non_uploaded(){
-        pre_print(unserialize(file_get_contents ('non-uploded.txt')));
+
+    public function list_non_uploaded() {
+        pre_print(unserialize(file_get_contents('non-uploded.txt')));
     }
 
 }
