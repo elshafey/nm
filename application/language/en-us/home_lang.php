@@ -16,8 +16,8 @@ $lang['home_book_title']            ='Title';
 $lang['home_book_author']            ='Author';
 $lang['home_book_category']            ='Category';
 $lang['home_book_isbn']            ='ISBN';
-$lang['home_book_subcategory']            ='Subcategory';
-$lang['home_book_subcategory2']            ='Subcategory 2';
+$lang['home_book_subcategory']            ='Subcategory1';
+$lang['home_book_subcategory2']            ='Subcategory2';
 $lang['home_btn_search']                ='Search';
 $lang['home_search_no_result']                ='No results have been found!';
 
