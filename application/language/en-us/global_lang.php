@@ -264,14 +264,26 @@ $lang['categories_name_ar-eg']                     ='Name in Arabic';
 
 
 ////////////// Subcategory controller /////////////
-$lang['subcategories_section_title']                    ='Manage subcategories';
-$lang['subcategory_form_create_page_title']         ='Create new subcategory';
-$lang['subcategories_page_order']                     ='Subcategory order';
+$lang['subcategories_section_title']                    ='Manage subcategories1';
+$lang['subcategory_form_create_page_title']         ='Create new subcategory1';
+$lang['subcategories_page_order']                     ='Subcategory1 order';
 $lang['subcategories_is_active']                      ='Is active?';
-$lang['subcategorie_form_edit_page_title']           ='Edit subcategory';
+$lang['subcategorie_form_edit_page_title']           ='Edit subcategory1';
 $lang['subcategories_name_en-us']                     ='Name in English';
 $lang['subcategories_name_ar-eg']                     ='Name in Arabic';
 $lang['subcategories_category_name']                  ='Category name';
+
+
+////////////// subcategory2 controller /////////////
+$lang['subcategories2_section_title']                    ='Manage subcategories2';
+$lang['subcategory2_form_create_page_title']         ='Create new subcategory2';
+$lang['subcategories2_page_order']                     ='Subcategory2 order';
+$lang['subcategories2_is_active']                      ='Is active?';
+$lang['subcategorie_form_edit_page_title']           ='Edit subcategory2';
+$lang['subcategories2_name_en-us']                     ='Name in English';
+$lang['subcategories2_name_ar-eg']                     ='Name in Arabic';
+$lang['subcategories2_category']                        ='Category name';
+$lang['subcategories2_parent_id']                        ='Subcategory1 name';
 
 
 ////////////// books controller /////////////
@@ -285,9 +297,11 @@ $lang['book_form_edit_page_title']           ='Edit book';
 $lang['books_title_en-us']                     ='Title in English';
 $lang['books_title_ar-eg']                     ='Title in Arabic';
 $lang['books_category']                  ='Category name';
-$lang['books_parent_id']                  ='Subcategory name';
+$lang['books_subcategory']                  ='Subcategory1 name';
+$lang['books_parent_id']                  ='Subcategory2 name';
 $lang['books_category_name']                  ='Category name';
-$lang['books_subcategory_name']                  ='Subcategory name';
+$lang['books_subcategory_name']                  ='Subcategory1 name';
+$lang['books_subcategory2_name']                  ='Subcategory2 name';
 $lang['books_img']                           ='Select image';
 $lang['books_img_alt']                            ='Image alt';
 $lang['books_img_title']                          ='Image title';
