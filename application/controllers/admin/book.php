@@ -40,17 +40,19 @@ class Book extends CMSController {
         $responce->page = $curPage;
         $responce->total = $total_pages;
         $responce->records = $count;
-//        pre_print($jobSeekers);
+//        pre_print($pages);
         foreach ($pages as $k => $page) {
             //$jobSeekers[$key]["rate"] = evaluate_rate($jobSeeker["js_id"]);
-
+            $subcategory2=  SubCategories2Table::getOneBy('id', $page['parent_id']);
+            $subcategory= SubCategoriesTable::getOneBy('id', $page['subcategory']);
+            $category= CategoriesTable::getOneBy('id', $page['category']);
             $responce->rows[$k]['id'] = $page["id"];
             $responce->rows[$k]['cell'] = array(
                 $page['title']['en-us'],
                 $page['title']['ar-eg'],
-                $page['Subcategories2']['name'][get_locale()],
-                $page['Subcategories2']['Subcategories']['name'][get_locale()],
-                $page['Subcategories2']['Subcategories']['Categories']['name'][get_locale()],
+                $subcategory2['name'][get_locale()],
+                $subcategory['name'][get_locale()],
+                $category['name'][get_locale()],
                 ($page['is_latest_release'])? lang('books_is_latest_release_view'):'-',
                 $page['is_most_popular']? lang('books_is_most_popular_view'):'-',
                 order_icon($page['page_order'], $this->data['controller'], $page['id']),

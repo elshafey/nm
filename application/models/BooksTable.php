@@ -20,46 +20,47 @@ class BooksTable extends CMSTable {
         return self::$count;
     }
 
-    public static function getList($active_only = false, $limit = '', $offset = '') {
-        /* @var My_Controller  */
-        $CI = get_instance();
-        /* @var $qb \Doctrine\ORM\QueryBuilder */
-        $qb = $CI->doctrine->em->createQueryBuilder();
-        $qb->select('b,bd')
-                ->from('\Entities\Pages', 'b')
-                ->join('b.PageDetails', 'bd', Doctrine\ORM\Query\Expr\Join::WITH, 'b.namespace= ?1')
-                ->orderBy('b.pageOrder ', ' ASC ');
-
-        $qb->addSelect('s2,s2d')
-                ->join('b.parent', 's2', Doctrine\ORM\Query\Expr\Join::WITH, 's2.namespace= ?4')
-                ->join('s2.PageDetails', 's2d');
-
-        $qb->addSelect('s,sd')
-                ->join('s2.parent', 's', Doctrine\ORM\Query\Expr\Join::WITH, 's.namespace= ?2')
-                ->join('s.PageDetails', 'sd');
-
-        $qb->addSelect('c,cd')
-                ->join('s.parent', 'c', Doctrine\ORM\Query\Expr\Join::WITH, 'c.namespace= ?3')
-                ->join('c.PageDetails', 'cd');
-
-        if ($active_only)
-            $qb->andWhere('p.isActive=1');
-        if ($limit) {
-            $qb->setMaxResults($limit);
-        }
-        if ($offset) {
-            $qb->setFirstResult($offset);
-        }
-
-        $res = $qb->getQuery()
-                ->setParameter('1', "books")
-                ->setParameter('4', "subcategories2")
-                ->setParameter('2', "subcategories")
-                ->setParameter('3', "categories")
-                ->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
-
-        return (self::getFloatHydration($res));
-    }
+//    public static function getList($active_only = false, $limit = '', $offset = '') {
+//        return parent::getList();
+//        /* @var My_Controller  */
+//        $CI = get_instance();
+//        /* @var $qb \Doctrine\ORM\QueryBuilder */
+//        $qb = $CI->doctrine->em->createQueryBuilder();
+//        $qb->select('b,bd')
+//                ->from('\Entities\Pages', 'b')
+//                ->join('b.PageDetails', 'bd', Doctrine\ORM\Query\Expr\Join::WITH, 'b.namespace= ?1')
+//                ->orderBy('b.pageOrder ', ' ASC ');
+//
+//        $qb->addSelect('s2,s2d')
+//                ->join('b.parent', 's2', Doctrine\ORM\Query\Expr\Join::WITH, 's2.namespace= ?4')
+//                ->join('s2.PageDetails', 's2d');
+//
+////        $qb->addSelect('s,sd')
+////                ->join('s2.parent', 's', Doctrine\ORM\Query\Expr\Join::WITH, 's.namespace= ?2')
+////                ->join('s.PageDetails', 'sd');
+////
+////        $qb->addSelect('c,cd')
+////                ->join('s.parent', 'c', Doctrine\ORM\Query\Expr\Join::WITH, 'c.namespace= ?3')
+////                ->join('c.PageDetails', 'cd');
+//
+//        if ($active_only)
+//            $qb->andWhere('p.isActive=1');
+//        if ($limit) {
+//            $qb->setMaxResults($limit);
+//        }
+//        if ($offset) {
+//            $qb->setFirstResult($offset);
+//        }
+//
+//        $res = $qb->getQuery()
+//                ->setParameter('1', "books")
+//                ->setParameter('4', "subcategories2")
+////                ->setParameter('2', "subcategories")
+////                ->setParameter('3', "categories")
+//                ->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
+//
+//        return (self::getFloatHydration($res));
+//    }
 
     public static function advancedSearch($criteria, $limit = '', $offset = '') {
 

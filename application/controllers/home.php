@@ -551,7 +551,6 @@ class Home extends My_Controller {
 
         $k = 1;
         foreach ($objPHPExcel->getSheet()->getRowIterator(3) as $i => $row) {
-            pre_print($i, FALSE);
             $_POST = array();
             $book_post = array();
             foreach ($row->getCellIterator() as $cell) {
@@ -622,6 +621,7 @@ class Home extends My_Controller {
 
 
             $category = CategoriesTable::getOneBy('name', $cat['en-us']);
+            $category_id ='';
             if ($category) {
                 $category_id = $category['id'];
             } else {
@@ -641,6 +641,7 @@ class Home extends My_Controller {
             }
 
             $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
+            $subcategory_id ='';
             if ($subcategory) {
                 $subcategory_id = $subcategory['id'];
             } else {
@@ -661,8 +662,9 @@ class Home extends My_Controller {
             }
 
             $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
+            $subcategory2_id='';
             if ($subcategory2) {
-                $subcategory2_id = $subcategory['id'];
+                $subcategory2_id = $subcategory2['id'];
             } else {
                 $subcategory2_post['name_en-us'] = $subcat2['en-us'];
                 $subcategory2_post['name_ar-eg'] = $subcat2['ar-eg'];
@@ -700,12 +702,13 @@ class Home extends My_Controller {
             $_POST = $book_post;
             $form = new Forms(new Books());
             if (!$form->process()) {
+                echo $form->renderFields();
                 $errors[] = $book_post;
             }
             $k++;
         }
         
-        if($errors)
+        if(isset($errors)&&$errors)
             file_put_contents ('non-uploded.txt', serialize ($errors));
     }
 

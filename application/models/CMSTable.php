@@ -36,11 +36,12 @@ class CMSTable {
         if ($offset) {
             $qb->setFirstResult($offset);
         }
-
+        
         $res =
                 new \Doctrine\ORM\Tools\Pagination\Paginator(
                                 $qb->getQuery()
                                 ->setParameter('1', "" . $cms->namespace)
+                                ->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)
                                 ->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY));
         if ($res) {
             return self::getFloatHydration($res);
