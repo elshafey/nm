@@ -636,7 +636,7 @@ class Home extends My_Controller {
                     $category = CategoriesTable::getOneBy('name', $cat['en-us']);
                     $category_id = $category['id'];
                 } else {
-                    echo $form->renderFields();
+//                    echo $form->renderFields();
                 }
             }
 
@@ -656,7 +656,7 @@ class Home extends My_Controller {
                     $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
                     $subcategory_id = $subcategory['id'];
                 } else {
-                    echo $form->renderFields();
+//                    echo $form->renderFields();
                 }
 //                        pre_print($form->cms->page);
             }
@@ -678,7 +678,7 @@ class Home extends My_Controller {
                     $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
                     $subcategory2_id = $subcategory2['id'];
                 } else {
-                    echo $form->renderFields();
+//                    echo $form->renderFields();
                 }
 //                        pre_print($form->cms->page);
             }
@@ -702,7 +702,7 @@ class Home extends My_Controller {
             $_POST = $book_post;
             $form = new Forms(new Books());
             if (!$form->process()) {
-                echo $form->renderFields();
+//                echo $form->renderFields();
                 $errors[] = $book_post;
             }
             $k++;
