@@ -713,7 +713,7 @@ class Home extends My_Controller {
     }
     
     public function list_non_uploaded(){
-        pre_print(unserialize('non-uploded.txt'));
+        pre_print(unserialize(file_get_contents ('non-uploded.txt')));
     }
 
 }
