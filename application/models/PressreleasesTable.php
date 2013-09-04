@@ -13,6 +13,10 @@ class PressreleasesTable extends CMSTable {
     public static function getInstance(){
         return new Pressreleases();
     }
+    
+    public static function getListUrl(){
+        return Urls::URL_PREFIX_PRESS_LIST;
+    }
 }
 
 ?>

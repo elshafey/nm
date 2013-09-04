@@ -11,8 +11,14 @@ class CMSTable {
      *
      * @return CMS 
      */
+    static $count = 0;
+
     public static function getInstance() {
         return new CMS();
+    }
+
+    public static function getCount() {
+        return self::$count;
     }
 
     public static function getList($active_only = false, $limit = '', $offset = '') {
@@ -36,20 +42,26 @@ class CMSTable {
         if ($offset) {
             $qb->setFirstResult($offset);
         }
-        
-        $res =
-                new \Doctrine\ORM\Tools\Pagination\Paginator(
-                                $qb->getQuery()
-                                ->setParameter('1', "" . $cms->namespace)
-                                ->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)
-                                ->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY));
+
+        $q = $qb->getQuery()
+                ->setParameter('1', "" . $cms->namespace);
+        if ($limit || $offset) {
+            $res =
+                    new \Doctrine\ORM\Tools\Pagination\Paginator(
+                    $q->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)
+                            ->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY));
+            self::$count = $res->count();
+        } else {
+            $res = $q->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
+            self::$count = count($res);
+        }
         if ($res) {
             return self::getFloatHydration($res);
         }
         return array();
     }
 
-    public static function getListBy($field, $value, $active_only = true,$namespace='') {
+    public static function getListBy($field, $value, $active_only = true, $namespace = '') {
         $cms = static::getInstance();
 //        echo '<pre>';
         /* @var My_Controller  */
@@ -66,7 +78,7 @@ class CMSTable {
             if ($active_only)
                 $qb->andWhere('p.isActive= 1 ');
             $q = $qb->getQuery()
-                    ->setParameter('1', "" . ($namespace? $namespace:$cms->namespace))
+                    ->setParameter('1', "" . ($namespace ? $namespace : $cms->namespace))
                     ->setParameter('3', "" . $value)
             ;
         } else {
@@ -78,7 +90,7 @@ class CMSTable {
             if ($active_only)
                 $qb->andWhere('p.isActive= 1 ');
             $q = $qb->getQuery()
-                    ->setParameter('1', "" . ($namespace? $namespace:$cms->namespace))
+                    ->setParameter('1', "" . ($namespace ? $namespace : $cms->namespace))
                     ->setParameter('2', "" . $field)
                     ->setParameter('3', "" . $value)
             ;
@@ -126,7 +138,7 @@ class CMSTable {
         $q->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE);
         $res = $q->setHydrationMode(\Doctrine\ORM\Query::HYDRATE_ARRAY)
                 ->execute();
-        
+
         if ($res) {
             return array_shift(self::getFloatHydration($res));
         }
@@ -136,7 +148,7 @@ class CMSTable {
     public static function getFloatHydration($res) {
 
         $pages = array();
-        $template=self::getModelTemplate();
+        $template = self::getModelTemplate();
         foreach ($res as $i => $rec) {
 
             $page = $template;
@@ -164,14 +176,14 @@ class CMSTable {
         return $pages;
     }
 
-    public static function getModelTemplate(){
-        $template=array();
+    public static function getModelTemplate() {
+        $template = array();
         $cms = static::getInstance();
         foreach ($cms->columns as $column) {
-            if(!isset($column['value'])){
-                $template[$column['name']]='';
-            }elseif(!($column['value'] instanceof CMS)){
-                $template[$column['name']]=  isset($column['value'])? $column['value']:'';
+            if (!isset($column['value'])) {
+                $template[$column['name']] = '';
+            } elseif (!($column['value'] instanceof CMS)) {
+                $template[$column['name']] = isset($column['value']) ? $column['value'] : '';
             }
         }
         return $template;

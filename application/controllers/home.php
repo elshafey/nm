@@ -507,9 +507,26 @@ class Home extends My_Controller {
 
     private function get_common_news($model = 'News') {
 
+        if(isset($_GET['per_page']))
+            $offset=$_GET['per_page'];
+        else
+            $offset=0;
+        
         $modelTable = $model . 'Table';
-        $this->data['list'] = $modelTable::getList(true);
-
+        $this->data['list'] = $modelTable::getList(true,10,$offset);
+        
+        $this->load->library('pagination');
+        $config['base_url'] = get_routed_url($modelTable::getListUrl()).'?';
+        $config['total_rows'] = $modelTable::getCount();
+        $config['per_page'] = 10;
+        $config['use_page_numbers'] = TRUE;
+//        $config['uri_segment'] = 3;
+        $config['num_links'] = 4;
+        $config['page_query_string'] = TRUE;
+        
+        $this->pagination->initialize($config);
+        $this->data['pagination'] = $this->pagination->create_links();
+        
         $this->template->write_view('content', 'home/news', $this->data);
         $this->template->render();
     }
@@ -546,7 +563,7 @@ class Home extends My_Controller {
     }
 
     public function import_books() {
-         set_time_limit(0);
+        set_time_limit(0);
         require 'PHPExcel-1.7.7/PHPExcel.php';
         $objPHPExcel = PHPExcel_IOFactory::load('uploads/books.xls');
 
@@ -611,16 +628,16 @@ class Home extends My_Controller {
                     $book_post['brief_description_ar-eg'] = $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'O'&&$cell->getValue()!='') {
+                if ($cell->getColumn() == 'O' && $cell->getValue() != '') {
                     $book_post['preview'] = 'uploads/files/' . $cell->getValue();
                 }
 
-                if ($cell->getColumn() == 'P'&&$cell->getValue()!='') {
+                if ($cell->getColumn() == 'P' && $cell->getValue() != '') {
                     $book_post['img'] = 'uploads/images/' . $cell->getValue();
                 }
             }
 
-            $this->form_validation=new My_Form_validation();
+            $this->form_validation = new My_Form_validation();
             $category = CategoriesTable::getOneBy('name', $cat['en-us']);
             $category_id = '';
             if ($category) {
@@ -641,7 +658,7 @@ class Home extends My_Controller {
                 }
             }
 
-            $this->form_validation=new My_Form_validation();
+            $this->form_validation = new My_Form_validation();
             $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
             $subcategory_id = '';
             if ($subcategory) {
@@ -663,7 +680,7 @@ class Home extends My_Controller {
 //                        pre_print($form->cms->page);
             }
 
-            $this->form_validation=new My_Form_validation();
+            $this->form_validation = new My_Form_validation();
             $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
             $subcategory2_id = '';
             if ($subcategory2) {
@@ -703,8 +720,8 @@ class Home extends My_Controller {
             $book_post['routed'] = Urls::URL_PREFIX_BOOK;
 //            pre_print($book_post);
             $_POST = $book_post;
-            
-            $this->form_validation=new My_Form_validation();
+
+            $this->form_validation = new My_Form_validation();
             $form = new Forms(new Books());
             if (!$form->process()) {
 //                echo $form->renderFields();

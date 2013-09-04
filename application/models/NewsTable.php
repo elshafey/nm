@@ -18,6 +18,10 @@ class NewsTable extends CMSTable {
         
         return self::getList(true,3);
     }
+    
+    public static function getListUrl(){
+        return Urls::URL_PREFIX_NEWS_LIST;
+    }
 }
 
 ?>

@@ -158,6 +158,7 @@ class Forms {
     }
 
     public function addImgUploader($field) {
+        
         $fld_html = '<input name="%s" class="txtbox" id="%s" value="%s" readonly="readonly">'
                 . ' <input type="button" onclick="' . $field['name'] . 'BrowseServer();" value="' . lang('global_btn_browse') . '">'
                 . ' <span class="star">*</span>'
@@ -254,7 +255,15 @@ class Forms {
                 if ($field['outType'] == 'content') {
 //                    pre_print($_POST);
                     $html.= sprintf($li, load_editor($new_fld, htmlspecialchars_decode($value[$key])));
-                } else {
+                }elseif ($field['outType'] == 'file_uploader') {
+                    $html.= sprintf($li, sprintf($field_html, $new_fld, $new_fld, $value[$key]));
+                    $html=  str_replace('pdfBrowseServer', $field_name.'_'.str_replace('-', '_', $key).'_BrowseServer', $html);
+                    $html=  str_replace('pdfSetFileField', $field_name.'_'.str_replace('-', '_', $key).'_SetFileField', $html);
+                    $html=  str_replace('"pdf"', '"'.$new_fld.'"', $html);
+                    $html=  str_replace('"#pdf"', '"#'.$new_fld.'"', $html);
+//                    echo $html;exit;
+                }
+                else {
                     $html.= sprintf($li, sprintf($field_html, $new_fld, $new_fld, $value[$key]));
                 }
             }

@@ -41,6 +41,17 @@ class News extends CMS {
                     'outType' => 'img_uploader',
                     'value' => '',
         ));
+        
+        $this->setUpColumn(
+                array(
+                    'name' => 'pdf',
+                    'validation' => 'xss_clean',
+                    'required' => false,
+                    'outType' => 'file_uploader',
+                    'multi' => true,
+                    'value' => $value,
+        ));
+        
         $this->setUpColumn(
                 array(
                     'name' => 'img_alt',
@@ -74,7 +85,9 @@ class News extends CMS {
                     'value' => '',
         ));
         
-        $this->render_fields=array('page_title','page_content','img','img_alt','img_title','page_url','page_order','is_home','is_active');
+        
+        
+        $this->render_fields=array('page_title','page_content','pdf','img','img_alt','img_title','page_url','page_order','is_home','is_active');
     }
 
 }

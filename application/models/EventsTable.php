@@ -13,6 +13,10 @@ class EventsTable extends CMSTable {
     public static function getInstance(){
         return new Events();
     }
+    
+    public static function getListUrl(){
+        return Urls::URL_PREFIX_EVENTS_LIST;
+    }
 }
 
 ?>

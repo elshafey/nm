@@ -13,6 +13,10 @@ class ProjectsTable extends CMSTable {
     public static function getInstance(){
         return new Projects();
     }
+    
+    public static function getListUrl(){
+        return Urls::URL_PREFIX_PROJECTS_LIST;
+    }
 }
 
 ?>

@@ -100,6 +100,8 @@ $lang['news_img']                     ='Upload image';
 $lang['news_img_alt']                     ='Image alt';
 $lang['news_img_title']                     ='Image title';
 $lang['news_form_edit_page_title']           ='Edit news page';
+$lang['news_pdf_en-us']                     ='English PDF content';
+$lang['news_pdf_ar-eg']                     ='Arabic PDF content';
 
 
 ////////////// Events controller /////////////
@@ -113,6 +115,8 @@ $lang['events_page_content_ar-eg']             ='Page content in Arabic';
 $lang['events_page_order']                     ='Page order';
 $lang['events_is_active']                     ='Is active?';
 $lang['events_form_edit_page_title']           ='Edit event page';
+$lang['events_pdf_en-us']                     ='English PDF content';
+$lang['events_pdf_ar-eg']                     ='Arabic PDF content';
 
 
 ////////////// Pressreleases controller /////////////
@@ -126,6 +130,8 @@ $lang['pressreleases_page_content_ar-eg']             ='Page content in Arabic';
 $lang['pressreleases_page_order']                     ='Page order';
 $lang['pressreleases_is_active']                     ='Is active?';
 $lang['pressreleases_form_edit_page_title']           ='Edit press release page';
+$lang['pressreleases_pdf_en-us']                     ='English PDF content';
+$lang['pressreleases_pdf_ar-eg']                     ='Arabic PDF content';
 
 
 ////////////// portfolios controller /////////////

@@ -7,7 +7,7 @@
             </a>
             <div style="margin-top: 5px;">
                 <?php if (isset($item['img']) && $item['img']) { ?>
-                    <!--<img class="news-img" width="73" src="<?php echo base_url() . page_thumb($item['img']) ?>" title="<?php echo $item['img_title'] ?>" alt="<?php echo $item['img_alt'] ?>" />-->
+                        <!--<img class="news-img" width="73" src="<?php echo base_url() . page_thumb($item['img']) ?>" title="<?php echo $item['img_title'] ?>" alt="<?php echo $item['img_alt'] ?>" />-->
                     <div class="news-thumbnail">
                         <img src="<?php echo base_url() . page_thumb($item['img']) ?>" title="<?php echo $item['img_title'] ?>" alt="<?php echo $item['img_alt'] ?>" />
                     </div>
@@ -25,3 +25,9 @@
         <?php } ?>
     <?php } ?>
 </div>
+<?php if (isset($pagination)) { ?>
+    <div id="pagination">
+        <?php echo $pagination ?>
+    </div>
+<?php } ?>
+
