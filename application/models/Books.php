@@ -19,6 +19,11 @@ class Books extends CMS {
                         'select_list' => SubCategoriesTable::getListByCat($this->category),
                     )
             );
+            $this->setUpColumn(
+                array(
+                    'name' => 'isbn',
+                    'validation' => 'required||unique[Books('.$id.')]|xss_clean',
+            ));
         }
 //        pre_print($this);
     }
@@ -98,7 +103,7 @@ class Books extends CMS {
         $this->setUpColumn(
                 array(
                     'name' => 'isbn',
-                    'validation' => 'required|xss_clean',
+                    'validation' => 'required||unique[Books]|xss_clean',
                     'required' => true,
                     'outType' => 'textbox',
                     'value' => '',

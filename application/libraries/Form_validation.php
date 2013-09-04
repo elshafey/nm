@@ -509,7 +509,7 @@ class My_Form_validation {
                 }
 
                 // Run the function and grab the result
-                $result = $this->CI->$rule($postdata, $param);
+                $result = $this->CI->$rule($postdata, $param,$row['field']);
 
                 // Re-assign the result to the master data array
                 if ($_in_array == TRUE) {
@@ -549,7 +549,7 @@ class My_Form_validation {
                 }
                 $params = rtrim($params, ",");
 
-                eval('$result = $this->$rule($postdata' . $params . ');');
+                eval('$result = $this->$rule($postdata' . $params . ',$row[\'field\']);');
 
 
                 //echo '$result = $this->'.$rule.'("'.$postdata.'"'.$params.');<br/>';
@@ -1200,22 +1200,24 @@ class My_Form_validation {
      * @param bool $isStatic To determine if the $method is a static function or not
      * @return int 
      */
-    public function unique($str, $class, $method, $idFieldName = '', $idFieldValue = '', $isStatic = true) {
-
-        if ($idFieldName != '' && $idFieldValue == '')
-            return false;
-
-        if ($isStatic) {
-            $OBJ = $class::$method($str);
-        } else {
-            $classOBJ = new $class();
-            $OBJ = $classOBJ->$method($str);
+    public function unique($str,$class,$field) {
+        if($str=='')
+            return true;
+        
+        if(preg_match('/\(/', $class)){
+            $exp=  explode('(', trim($class,')'));
+            $model=$exp[0].'Table';
+            $obj=$model::getOneBy($field,$str);
+            if($obj['id']!=$exp[1]){
+                return false;
+            }
+        }else{
+            $model=$class.'Table';
+            $obj=$model::getOneBy($field,$str);
+            if($obj&&$obj[$field]==$str)
+                return false;
         }
-
-        if ($OBJ && ($idFieldName == '' || $OBJ->$idFieldName != $idFieldValue)) {
-            return false;
-        }
-
+        
         return true;
     }
 

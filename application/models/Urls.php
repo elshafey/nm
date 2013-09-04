@@ -45,13 +45,21 @@ class Urls extends CMS {
         $this->routed = $url_prefix;
         parent::__construct();
     }
+    
+    public function populate(\Entities\Pages &$page) {
+        parent::populate($page);
+        $this->setUpColumn(array(
+            'name' => 'routed',
+            'validation' => 'required|unique[Urls('.$this->id.')]|valid_url_segment|xss_clean',
+        ));
+    }
 
     protected function setUp() {
         parent::setUp();
         $this->setUpColumn(array(
             'name' => 'routed',
             'outType' => 'textbox',
-            'validation' => 'required|uniqe_url[%s]|valid_url_segment|xss_clean',
+            'validation' => 'required|unique[Urls]|valid_url_segment|xss_clean',
             'required' => true,
         ));
         $this->setUpColumn(array(
