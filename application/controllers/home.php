@@ -306,7 +306,7 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function quick_search() {
+    public function quick_search($pager=0) {
         if (!$_GET || !isset($_GET['q']) && $_GET['q'])
             redirect('/');
         $_POST = $_GET;
@@ -314,7 +314,7 @@ class Home extends My_Controller {
         $this->form_validation->set_rules('q', '', 'xss_clean');
         $this->form_validation->run();
         $this->data['books'] = BooksTable::quickSearch($_POST['q'], 10, $pager);
-        $this->setup_pagination();
+        $this->setup_pagination('quick_search');
 
         $this->data['page_title'] = lang('home_menu_quick_search');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
@@ -356,7 +356,7 @@ class Home extends My_Controller {
     private function setup_pagination($action = 'advanced_search') {
 
         $this->load->library('pagination');
-        $config['base_url'] = base_url() . 'home/advanced_search/';
+        $config['base_url'] = base_url() . 'home/'.$action.'/';
         $config['total_rows'] = BooksTable::getCount();
         $config['per_page'] = 10;
         $config['uri_segment'] = 3;

@@ -29,9 +29,10 @@
             }
 
             scribd_doc.addParam('height', 600);
+            scribd_doc.addParam('public', true);
             scribd_doc.write('embedded_resume');
             scribd_doc.addEventListener('iPaperReady', oniPaperReady);
-
+            
 
 
         });

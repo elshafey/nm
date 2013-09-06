@@ -184,17 +184,17 @@ class BooksTable extends CMSTable {
         $query->setParameter('4', "%$q%");
 
         if ($limit)
-            $q->setMaxResults($limit);
+            $query->setMaxResults($limit);
 
         if ($offset) {
-            $q->setFirstResult($offset);
+            $query->setFirstResult($offset);
         }
 
         if ($limit || $offset) {
-            $res = new \Doctrine\ORM\Tools\Pagination\Paginator($q->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
+            $res = new \Doctrine\ORM\Tools\Pagination\Paginator($query->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
             self::$count=$res->count();
         } else {
-            $res = $q->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
+            $res = $query->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
             self::$count=  count($res);
         }
 
