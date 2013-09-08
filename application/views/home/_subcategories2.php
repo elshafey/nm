@@ -6,4 +6,8 @@
             <option value="<?php echo $value['id'] ?>" <?php echo set_select('subcategory2', $value['id']) ?>><?php echo $value['name'][get_locale()] ?></option>
         <?php } ?>
     </select>
+<?php }else{ ?>
+<script>
+    $('#subcategory2_area').hide();
+</script>
 <?php } ?>

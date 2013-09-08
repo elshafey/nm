@@ -16,7 +16,12 @@
         <?php foreach ($news as $item) { ?>
             <div class="news-box">
                 <a href="<?php echo get_routed_url(Urls::URL_PREFIX_NEWS_DETAILS . $item['id']) ?>" class="title"><?php echo $item['page_title'][get_locale()] ?></a>
-                <p><?php echo sub_string_from_start($item['page_content'][get_locale()], 100) ?></p>
+                <p>
+                    <?php echo sub_string_from_start($item['page_content'][get_locale()], 90) ?>
+                    <a class="more" href="<?php echo get_routed_url(Urls::URL_PREFIX_NEWS_DETAILS . $item['id']) ?>">
+                        <?php echo lang('global_more') ?>
+                    </a>
+                </p>
             </div> 
         <?php } ?>
     </div>
@@ -27,7 +32,7 @@
     <div class="home-media">
         <div class="image_carousel">
             <div id="latest">
-                <?php foreach ($most_popular as $value) { ?>
+                <?php foreach ($latest_release as $value) { ?>
                     <div class="carousel-image-container-0">
                         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK.$value['id']) ?>" class="carousel-image-container-1">
                             <div class="carousel-image-container-2" >

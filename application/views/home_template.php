@@ -21,10 +21,10 @@
         <div id="upper-header"></div>
         <div id="wrapper">
             <div id="social-network">
-                <a href="" class="facebook"></a>
-                <a href="" class="twitter"></a>
-                <a href="" class="linkedin"></a>
-                <a href="" class="youtube"></a>
+                <a href="https://www.facebook.com/nahdetmisrgroup?ref=hl" class="facebook"></a>
+                <a href="https://twitter.com/NahdetMisrgroup" class="twitter"></a>
+                <!--<a href="" class="linkedin"></a>-->
+                <a href="http://www.youtube.com/nahdetmisrgroup" class="youtube"></a>
             </div>
             <a href="<?php echo base_url() . 'home/under_costruction' ?>" class="arabic-link"></a>
 

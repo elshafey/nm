@@ -149,10 +149,11 @@ class BooksTable extends CMSTable {
         }
 
         if ($limit || $offset) {
-            $res = new \Doctrine\ORM\Tools\Pagination\Paginator($q->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
+            $res = new \Doctrine\ORM\Tools\Pagination\Paginator(
+                    $q->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
             self::$count=$res->count();
         } else {
-            $res = $q->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
+            $res = $q->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
             self::$count=  count($res);
         }
 
@@ -191,10 +192,10 @@ class BooksTable extends CMSTable {
         }
 
         if ($limit || $offset) {
-            $res = new \Doctrine\ORM\Tools\Pagination\Paginator($query->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
+            $res = new \Doctrine\ORM\Tools\Pagination\Paginator($query->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
             self::$count=$res->count();
         } else {
-            $res = $query->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
+            $res = $query->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
             self::$count=  count($res);
         }
 

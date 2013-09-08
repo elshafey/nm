@@ -65,7 +65,7 @@ function build_grid(array $fields, $controller, $json, $i = 2, $url = '', $loado
             direction:"' . get_dir() . '",';
     if ($url != '') {
         $script.='datatype:"json",';
-        $script.='url:"' . site_url($url) . '",';
+        $script.='url:"' . site_url($url).'?'.  convert_post_to_get() . '",';
     } else {
         $script.='datatype: "local",';
     }
