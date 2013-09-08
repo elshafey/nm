@@ -23,8 +23,8 @@ class Banners extends CMS {
         $this->setUpColumn(
                 array(
                     'name' => 'link',
-                    'validation' => 'required|xss_clean',
-                    'required' => true,
+                    'validation' => 'xss_clean',
+                    'required' => false,
                     'outType' => 'textbox',
                     'value' => '',
         ));

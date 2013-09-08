@@ -9,10 +9,13 @@
 <div class="book-code"><?php echo lang('home_book_subcategory2') ?>: <?php echo $book['SubCategories2']['name'][get_locale()] ?></div>
 <!--<div class="book-rate"><img width="79" height="14" src="images/book-rate.png"></div>-->
 <div class="book-code">
-    
+
     <a id="share_lnk" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(site_url('home/preview_book/' . $book['id'])) ?>">
         <img style="height: 24px" src="<?php echo base_url() . 'layout/images/share.jpeg' ?>" />
     </a>
+</div>
+<div class="book-code">
+    <a href="<?php echo base_url() . $book['preview'] ?>" class="download-pdf"></a>
 </div>
 <div class="news-section">
     <?php echo $book['brief_description'][get_locale()] ?>
@@ -32,7 +35,7 @@
             scribd_doc.addParam('public', true);
             scribd_doc.write('embedded_resume');
             scribd_doc.addEventListener('iPaperReady', oniPaperReady);
-            
+
 
 
         });

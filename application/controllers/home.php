@@ -298,7 +298,7 @@ class Home extends My_Controller {
                 '<meta property="og:url" content="' . base_url() . 'home/preview_book/' . $id . '"/>' .
                 '<meta property="og:image" content="' . base_url() . $this->data['book']['img'] . '" />' .
                 '<meta property="og:site_name" content="Nahdet Misr"/>' .
-                '<meta property="og:description" content="' . $this->data['book']['title'][get_locale()] . '"/>';
+                '<meta property="og:description" content="' . $this->data['book']['brief_description'][get_locale()] . '"/>';
 
         $this->data['page_title'] = $this->data['book']['title'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
