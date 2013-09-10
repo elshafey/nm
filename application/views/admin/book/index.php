@@ -98,8 +98,41 @@
     <li>&nbsp;</li>
     <li>&nbsp;</li>
 </ul>
-
-<?php build_grid(array('title_en-us', 'title_ar-eg', 'subcategory2_name', 'subcategory_name', 'category_name', 'is_latest_release', 'is_most_popular'), 'books', '', '1', 'admin/book/books_list/', false) ?>
-<?php build_grid(array('name_en-us', 'name_ar-eg',), 'subcategories2', '', '4', 'admin/book/subcategories2_list/', false) ?>
-<?php build_grid(array('name_en-us', 'name_ar-eg',), 'subcategories', '', '2', 'admin/book/subcategories_list/', false) ?>
-<?php build_grid(array('name_en-us', 'name_ar-eg'), 'categories', '', '3', 'admin/book/categories_list/', false) ?>
+<!--<script>
+    jQuery("#list1").jqGrid(
+            {
+                url: "http://nahdet_misr.me/admin/book/books_list",
+                direction: "ltr",
+                datatype: "json",
+                colNames: ["Title in English", "Title in Arabic", "Subcategory2 name", "Subcategory1 name", "Category name", "Is latest release?", "Is most popular", "Page order", "Is active?", "", "", ],
+                colModel: [
+                    {name: "title_en-us", index: "title_en-us", width: 180},
+                    {name: "title_ar-eg", index: "title_ar-eg", width: 180},
+                    {name: "subcategory2_name", index: "subcategory2_name", width: 180},
+                    {name: "subcategory_name", index: "subcategory_name", width: 180},
+                    {name: "category_name", index: "category_name", width: 180},
+                    {name: "is_latest_release", index: "is_latest_release", width: 180},
+                    {name: "is_most_popular", index: "is_most_popular", width: 180},
+                    {name: "page_order", index: "page_order", width: 80, sorttype: function(cell, row) {
+                            return parseInt($(cell).text());
+                        }},
+                    {name: "is_active", index: "is_active", width: 80, classes: 'grid_center'},
+                    {name: "edit", index: "edit", width: 80},
+                    {name: "delete", index: "delete", width: 80}
+                ],
+                rowNum: 10,
+                rowList: [10, 20, 30],
+                height: 230,
+                width: 910,
+                pager: '#pager1',
+                sortname: 'page_order',
+                viewrecords: true,
+                sortorder: 'desc', 
+                loadonce:true,
+                });
+    jQuery('#list1').jqGrid('navGrid', '#pager1', {edit: false, add: false, del: false, search: false});
+</script>-->
+<?php build_grid(array('title_en-us', 'title_ar-eg', 'subcategory2_name', 'subcategory_name', 'category_name', 'is_latest_release', 'is_most_popular'), 'books', '', '1', 'admin/book/books_list/') ?>
+<?php build_grid(array('name_en-us', 'name_ar-eg',), 'subcategories2', '', '4', 'admin/book/subcategories2_list/') ?>
+<?php build_grid(array('name_en-us', 'name_ar-eg',), 'subcategories', '', '2', 'admin/book/subcategories_list/') ?>
+<?php build_grid(array('name_en-us', 'name_ar-eg'), 'categories', '', '3', 'admin/book/categories_list/') ?>

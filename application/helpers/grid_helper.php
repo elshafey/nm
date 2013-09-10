@@ -57,7 +57,7 @@ function order_icon($order, $controller, $id) {
 function build_grid(array $fields, $controller, $json, $i = 2, $url = '', $loadonce = true, $out = true) {
 
     $script = '<script>';
-    if($loadonce)
+    if ($json)
         $script.="var mydata =$json;";
     $script.='
         jQuery("#list' . $i . '").jqGrid(
@@ -65,7 +65,7 @@ function build_grid(array $fields, $controller, $json, $i = 2, $url = '', $loado
             direction:"' . get_dir() . '",';
     if ($url != '') {
         $script.='datatype:"json",';
-        $script.='url:"' . site_url($url).'?'.  convert_post_to_get() . '",';
+        $script.='url:"' . site_url($url) . '?' . convert_post_to_get() . '",';
     } else {
         $script.='datatype: "local",';
     }
@@ -97,8 +97,10 @@ function build_grid(array $fields, $controller, $json, $i = 2, $url = '', $loado
             "sortname: 'page_order'," .
             "viewrecords: true," .
             "sortorder: 'desc',";
-    if ($loadonce) {
+    if ($json) {
         $script.="data: mydata,";
+    }
+    if ($loadonce) {
         $script.="loadonce: true";
     }
     $script.="});";
@@ -108,4 +110,5 @@ function build_grid(array $fields, $controller, $json, $i = 2, $url = '', $loado
     if ($out)
         echo $script;
 }
+
 ?>
