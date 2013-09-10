@@ -1032,12 +1032,16 @@ a.next, a.prev {
     height: 65px;
 }
 #pagination a, #pagination strong {
-  border: 1px solid #CCCCCC;
-  float: left;
-  margin-right: 2px;
-  padding: 3px;
-  text-align: center;
-}
-.addthis_toolbox div{
+    border: 1px solid #CCCCCC;
     float: left;
+    margin-right: 2px;
+    padding: 3px;
+    text-align: center;
+}
+.book-code div{
+    float: left;
+}
+.book-code .download-pdf{
+    margin-left: -167px;
+    margin-top: 24px;
 }
