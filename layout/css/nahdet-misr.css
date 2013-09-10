@@ -1038,3 +1038,6 @@ a.next, a.prev {
   padding: 3px;
   text-align: center;
 }
+.addthis_toolbox div{
+    float: left;
+}
