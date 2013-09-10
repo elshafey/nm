@@ -15,6 +15,12 @@
         <div class="news-home-title">News</div>
         <?php foreach ($news as $item) { ?>
             <div class="news-box">
+                <?php if (isset($item['img']) && $item['img']) { ?>
+                        <!--<img class="news-img" width="73" src="<?php echo base_url() . page_thumb($item['img']) ?>" title="<?php echo $item['img_title'] ?>" alt="<?php echo $item['img_alt'] ?>" />-->
+                    <div class="news-thumbnail">
+                        <img src="<?php echo base_url() . page_thumb($item['img']) ?>" title="<?php echo $item['img_title'] ?>" alt="<?php echo $item['img_alt'] ?>" />
+                    </div>
+                <?php } ?>
                 <a href="<?php echo get_routed_url(Urls::URL_PREFIX_NEWS_DETAILS . $item['id']) ?>" class="title"><?php echo $item['page_title'][get_locale()] ?></a>
                 <p>
                     <?php echo sub_string_from_start($item['page_content'][get_locale()], 90) ?>

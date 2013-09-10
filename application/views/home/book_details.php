@@ -50,7 +50,6 @@
             s.parentNode.insertBefore(po, s);
         })();
     </script>
-
 </div>
 
 <div class="book-code">
