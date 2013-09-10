@@ -1208,7 +1208,7 @@ class My_Form_validation {
             $exp=  explode('(', trim($class,')'));
             $model=$exp[0].'Table';
             $obj=$model::getOneBy($field,$str);
-            if($obj['id']!=$exp[1]){
+            if($obj&&$obj['id']!=$exp[1]){
                 return false;
             }
         }else{
@@ -1217,7 +1217,6 @@ class My_Form_validation {
             if($obj&&$obj[$field]==$str)
                 return false;
         }
-        
         return true;
     }
 
