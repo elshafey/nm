@@ -26,7 +26,7 @@
 
     <li class="sub-title">
         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS) ?>">
-        <?php echo lang('home_educational_solutions') ?></a></li>
+            <?php echo lang('home_educational_solutions') ?></a></li>
     <?php if ($educational_solutions) { ?>
         <?php foreach ($educational_solutions as $key => $value) { ?>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_EDUCATIONAL_SOLUTIONS . $value['id']) ?>"><?php echo $value['name'][get_locale()] ?></a></li>
@@ -37,9 +37,9 @@
 <ul style="margin-top: 24px;">        	
     <li class="sub-title">
         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_DIGITAL_SOLUTIONS) ?>">
-        <?php echo lang('home_digital_solutions') ?>
+            <?php echo lang('home_digital_solutions') ?>
         </a>
-        </li>
+    </li>
     <?php if ($digital_solutions) { ?>
         <?php foreach ($digital_solutions as $key => $value) { ?>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_DIGITAL_SOLUTIONS . $value['id']) ?>"><?php echo $value['name'][get_locale()] ?></a></li>
@@ -74,3 +74,12 @@
 <div class="copyrights">
     &copy; 2013 Nahdet Misr | All Rights Reserved | <a href="">Privacy Statement</a>
 </div>
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-8059931-1");
+    pageTracker._trackPageview();
+</script>
