@@ -18,6 +18,7 @@ $lang['home_book_category']            ='Category';
 $lang['home_book_isbn']            ='ISBN';
 $lang['home_book_subcategory']            ='Subcategory1';
 $lang['home_book_subcategory2']            ='Subcategory2';
+$lang['home_book_download']       ='Download Preview';
 $lang['home_btn_search']                ='Search';
 $lang['home_search_no_result']                ='No results have been found!';
 
@@ -68,6 +69,7 @@ $lang['home_careers_apply_position']       ='Current Position';
 $lang['home_careers_apply_employer']       ='Employer';
 $lang['home_careers_apply_start_date']       ='Start Date: Month/Year';
 $lang['home_careers_apply_brief_description']       ='Brief description for responsibilities';
+
 
 //////////////////menu//////////////////////////////
 $lang['home_menu_media_center_news']='News';

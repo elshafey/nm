@@ -158,10 +158,10 @@ class Forms {
     }
 
     public function addImgUploader($field) {
-        
-        $fld_html = '<input name="%s" class="txtbox" id="%s" value="%s" readonly="readonly">'
+        $required=  in_array('required', explode('|', $field['validation']));
+        $fld_html = '<input name="%s" class="txtbox" id="%s" value="%s" '.($required? 'readonly="readonly"': '').'>'
                 . ' <input type="button" onclick="' . $field['name'] . 'BrowseServer();" value="' . lang('global_btn_browse') . '">'
-                . ' <span class="star">*</span>'
+                . ($required?' <span class="star">*</span>':'')
                 . '<div id="img_thumb"></div>'
                 . file_finder_txt($field['name'])
 

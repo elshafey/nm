@@ -38,3 +38,11 @@ function more_less_str($str){
 function sub_string_from_start($string,$length){
     return (substr(htmlspecialchars_decode(strip_tags($string)), 0,$length).((strlen($string)>$length)?'...':''));
 }
+
+function get_cell_name($column, $row) {
+    if ($column < 26) {
+        return chr(($column) + 65) . ($row);
+    } else {
+        return chr(floor($column / 26) + 64) . chr(($column % 26) + 65) . ($row);
+    }
+}

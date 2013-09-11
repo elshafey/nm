@@ -47,8 +47,248 @@ class Book extends CMSController {
         $this->template->render();
     }
 
+    public function export() {
+        $pages = BooksTable::advancedSearch($_GET);
+        require_once 'PHPExcel-1.7.7/PHPExcel.php';
+        $cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+        $cacheSettings = array('memoryCacheSize' => '8GB');
+        PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
+        PHPExcel_Cell::setValueBinder(new PHPExcel_Cell_AdvancedValueBinder());
+        $phpExcell = new PHPExcel();
+
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(0, 1), 'ISBN');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(1, 1), 'Category name in Arabic');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(2, 1), 'Category name in English');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(3, 1), 'Subcategory1 name in Arabic');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(4, 1), 'Subcategory 1 name in English');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(5, 1), 'Subcategory2 name in Arabic');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(6, 1), 'Subcategory 2 name in English');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(7, 1), 'Number of pages');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(8, 1), 'Title in English');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(9, 1), 'Title in Arabic');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(10, 1), 'Author name in English');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(11, 1), 'Author name in Arabic');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(12, 1), 'Brief description in English ');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(13, 1), 'Brief description in Arabic');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(14, 1), 'Preview PDF');
+        $phpExcell->getActiveSheet()->setCellValue(get_cell_name(15, 1), 'Book Cover Thumbnail');
+//        pre_print($pages);
+        foreach ($pages as $key => $book) {
+            $subcategory2 = SubCategories2Table::getOneBy('id', $book['parent_id']);
+            $subcategory = SubCategoriesTable::getOneBy('id', $book['subcategory']);
+            $category = CategoriesTable::getOneBy('id', $book['category']);
+
+            $preview=  array_pop(explode('/', $book['preview']));
+            $img=  array_pop(explode('/', $book['img']));
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(0, $key + 2), $book['isbn']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(1, $key + 2), $category['name']['ar-eg']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(2, $key + 2), $category['name']['en-us']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(3, $key + 2), $subcategory['name']['ar-eg']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(4, $key + 2), $subcategory['name']['en-us']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(5, $key + 2), $subcategory2['name']['ar-eg']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(6, $key + 2), $subcategory2['name']['en-us']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(7, $key + 2), $book['pages_count']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(8, $key + 2), $book['title']['en-us']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(9, $key + 2), $book['title']['ar-eg']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(10, $key + 2), $book['author']['en-us']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(11, $key + 2), $book['author']['ar-eg']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(12, $key + 2), $book['brief_description']['en-us']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(13, $key + 2), $book['brief_description']['ar-eg']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(14, $key + 2), $preview);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(15, $key + 2), $img);
+        }
+
+        //setting column width
+        $phpExcell->getActiveSheet()->getDefaultColumnDimension()->setWidth(30);
+
+        $xlsx_file_name = md5(date('ymdHis'));
+        $objWriter = new PHPExcel_Writer_Excel2007($phpExcell);
+        $objWriter->save('uploads/exports/' . $xlsx_file_name . '.xlsx');
+
+        redirect('uploads/exports/' . $xlsx_file_name . '.xlsx');
+    }
+
+    public function import() {
+        set_time_limit(0);
+        require 'PHPExcel-1.7.7/PHPExcel.php';
+        $objPHPExcel = PHPExcel_IOFactory::load($_FILES['file']['tmp_name']);
+//        pre_print($objPHPExcel);
+        $k = 1;
+        foreach ($objPHPExcel->getSheet()->getRowIterator(2) as $i => $row) {
+            $_POST = array();
+            $book_post = array();
+//            echo $row->getRowIndex() . '<br>';
+            foreach ($row->getCellIterator() as $cell) {
+                if ($cell->getColumn() == 'A') {
+                    $book_post['isbn'] = $cell->getValue();
+                }
+                if ($cell->getColumn() == 'B') {
+                    $cat['ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'C') {
+                    $cat['en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'D') {
+                    $subcat['ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'E') {
+                    $subcat['en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'F') {
+                    $subcat2['ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'G') {
+                    $subcat2['en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'H') {
+                    $book_post['pages_count'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'I') {
+                    $book_post['title_en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'J') {
+                    $book_post['title_ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'K') {
+                    $book_post['author_en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'L') {
+                    $book_post['author_ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'M') {
+                    $book_post['brief_description_en-us'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'N') {
+                    $book_post['brief_description_ar-eg'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'O' && $cell->getValue() != '') {
+                    $book_post['preview'] = 'uploads/files/' . $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'P' && $cell->getValue() != '') {
+                    $book_post['img'] = 'uploads/images/' . $cell->getValue();
+                }
+            }
+
+            $this->form_validation = new My_Form_validation();
+            $category = CategoriesTable::getOneBy('name', $cat['en-us']);
+            $category_id = '';
+            if ($category) {
+                $category_id = $category['id'];
+            } else {
+                $category_post['name_en-us'] = $cat['en-us'];
+                $category_post['name_ar-eg'] = $cat['ar-eg'];
+                $category_post['page_order'] = $k;
+                $category_post['is_active'] = 1;
+                $_POST = $category_post;
+                $form = new Forms(new Categories());
+                if ($form->process()) {
+                    $category = CategoriesTable::getOneBy('name', $cat['en-us']);
+                    $category_id = $category['id'];
+                } else {
+//                    pre_print($this->form_validation->_error_array,false);
+                    echo $form->renderFields();
+                }
+            }
+
+            $this->form_validation = new My_Form_validation();
+            $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
+            $subcategory_id = '';
+            if ($subcategory) {
+                $subcategory_id = $subcategory['id'];
+            } else {
+                $subcategory_post['name_en-us'] = $subcat['en-us'];
+                $subcategory_post['name_ar-eg'] = $subcat['ar-eg'];
+                $subcategory_post['page_order'] = $k;
+                $subcategory_post['is_active'] = 1;
+                $subcategory_post['parent_id'] = $category_id;
+                $_POST = $subcategory_post;
+                $form = new Forms(new SubCategories());
+                if ($form->process()) {
+                    $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
+                    $subcategory_id = $subcategory['id'];
+                } else {
+//                    echo $form->renderFields();
+                }
+//                        pre_print($form->cms->page);
+            }
+
+            $this->form_validation = new My_Form_validation();
+            $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
+            $subcategory2_id = '';
+            if ($subcategory2) {
+                $subcategory2_id = $subcategory2['id'];
+            } else {
+                $subcategory2_post['name_en-us'] = $subcat2['en-us'];
+                $subcategory2_post['name_ar-eg'] = $subcat2['ar-eg'];
+                $subcategory2_post['page_order'] = $k;
+                $subcategory2_post['is_active'] = 1;
+                $subcategory2_post['parent_id'] = $subcategory_id;
+                $subcategory2_post['category'] = $category_id;
+                $_POST = $subcategory2_post;
+                $form = new Forms(new SubCategories2());
+                if ($form->process()) {
+                    $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
+                    $subcategory2_id = $subcategory2['id'];
+                } else {
+//                    echo $form->renderFields();
+                }
+//                        pre_print($form->cms->page);
+            }
+
+
+            $book_post['img_alt'] = $book_post['img'];
+            $book_post['img_title'] = $book_post['title_en-us'];
+            $book_post['meta_title'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
+            $book_post['meta_keywords'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
+            $book_post['meta_description'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
+            $book_post['is_active'] = 1;
+            $book_post['is_latest_release'] = 0;
+            $book_post['is_most_popular'] = 0;
+
+            $book_post['category'] = $category_id;
+            $book_post['subcategory'] = $subcategory_id;
+            $book_post['parent_id'] = $subcategory2_id;
+            $book_post['page_order'] = $k;
+            
+            $this->form_validation = new My_Form_validation();
+            $obj = BooksTable::getOneBy('isbn', $book_post['isbn']);
+            if ($obj) {
+                $form = new Forms(new Books($obj['id']));
+                $book_post['routed'] = $form->cms->book_url->routed;
+            } else {
+                $book_post['routed'] = Urls::URL_PREFIX_BOOK;
+                $form = new Forms(new Books());
+            }
+            $_POST = $book_post;
+            if (!$form->process()) {
+                $errors[] = $book_post;
+            }
+
+            $k++;
+        }
+
+        if (isset($errors) && $errors)
+            file_put_contents('non-uploded.txt', serialize($errors));
+        
+        redirect('admin/book');
+    }
+
     public function books_list() {
-         
+
         $pages = BooksTable::advancedSearch($_GET);
 
         $per_page = 10;

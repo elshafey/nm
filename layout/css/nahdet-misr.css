@@ -1042,6 +1042,12 @@ a.next, a.prev {
     float: left;
 }
 .book-code .download-pdf{
-    margin-left: -167px;
-    margin-top: 24px;
+    float: right;
+    margin-top: -14px;
+}
+.book-download{
+    margin-top: 31px;
+    float: left;
+    margin-left: -200px;
+    width: 200px;
 }

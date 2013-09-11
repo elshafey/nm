@@ -322,7 +322,9 @@ $lang['books_brief_description_ar-eg']          ='Brief description';
 $lang['books_pages_count']              ='Number of pages';
 $lang['books_is_latest_release']          ='Is latest release?';
 $lang['books_is_most_popular']          ='Is most popular';
-
+$lang['books_import']               ='Importing Excel File';
+$lang['books_import_select']       ='Select file';
+$lang['books_import_upload']       ='Import';
 
 ////////////// side menu downloads  /////////////
 $lang['side_menu_downloads_form_create_page_title']         ='Create new download';

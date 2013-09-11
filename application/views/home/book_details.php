@@ -51,39 +51,30 @@
         })();
     </script>
 </div>
-
-<div class="book-code">
-    <a href="<?php echo base_url() . $book['preview'] ?>" class="download-pdf"></a>
-</div>
+<?php if ($book['preview']) { ?>
+    <div class="book-code book-download">
+        <?php echo lang('home_book_download') ?>:<a href="<?php echo base_url() . $book['preview'] ?>" class="download-pdf"></a>
+    </div>
+<?php } ?>
 
 <div class="news-section">
     <?php echo $book['brief_description'][get_locale()] ?>
 </div>
-
-<div class="book-component-place">
-    <script type='text/javascript' src='http://www.scribd.com/javascripts/view.js'></script>
-    <script language="javascript" type="text/javascript">
-        $(document).ready(function() {
-            var scribd_doc = scribd.Document.getDoc(<?php echo $book['doc_id'] ?>, '<?php echo $book['access_key'] ?>');
-
-            var oniPaperReady = function() {
-                scribd_doc.api.setZoom(1);
-            }
-
-            scribd_doc.addParam('height', 600);
-            scribd_doc.addParam('public', true);
-            scribd_doc.write('embedded_resume');
-            scribd_doc.addEventListener('iPaperReady', oniPaperReady);
-
-
-
-        });
-    </script>
-    <div id="embedded_resume"></div>
-</div>     
-<script>
-    $('#share_lnk').click(function(e) {
-        e.preventDefault()
-        window.open($(this).attr('href'), 'Share On Your Timeline', 'top=200,left=300,height=200,width=500,modal=yes,alwaysRaised=yes')
-    });
-</script>
+<?php if ($book['preview']) { ?>
+    <div class="book-component-place">
+        <script type='text/javascript' src='http://www.scribd.com/javascripts/view.js'></script>
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function() {
+                var scribd_doc = scribd.Document.getDoc(<?php echo $book['doc_id'] ?>, '<?php echo $book['access_key'] ?>');
+                var oniPaperReady = function() {
+                    scribd_doc.api.setZoom(1);
+                }
+                scribd_doc.addParam('height', 600);
+                scribd_doc.addParam('public', true);
+                scribd_doc.write('embedded_resume');
+                scribd_doc.addEventListener('iPaperReady', oniPaperReady);
+            });
+        </script>
+        <div id="embedded_resume"></div>
+    </div>
+<?php } ?>

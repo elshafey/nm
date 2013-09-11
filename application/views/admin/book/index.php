@@ -65,6 +65,23 @@
         <table id="list1"></table>
         <div id="pager1"></div>
     </li>
+    <li class="excell-icon">
+        <a href="<?php echo base_url().'admin/book/export?'.  convert_post_to_get($_GET) ?>">
+            <img src="<?php echo base_url() . 'layout/images/Excel-icon.png' ?>" />
+        </a>
+    </li>
+    <li class="section_title"><?php echo lang('books_import') ?></li>
+    <form method="POST" action="<?php echo base_url().'admin/book/import'?>" enctype="multipart/form-data">
+        <ul>
+            <li>
+                <?php echo lang('books_import_select',' ') ?>
+                <input type="file" class="txtbox" name="file" />
+            </li>
+            <li class="btns">
+                <input type="submit" value="<?php echo lang('books_import_upload') ?>"/>
+            </li>
+        </ul>
+    </form>
     <li>&nbsp;</li>
     <li>&nbsp;</li>
     <li class="section_title"><?php echo lang('subcategories2_section_title') ?></li>
