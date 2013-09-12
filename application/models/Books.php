@@ -212,7 +212,7 @@ class Books extends CMS {
     function onFlush(\Entities\Pages &$page) {
         parent::onFlush($page);
         
-        if (trim($this->preview)) {
+        if (trim($this->preview)&&file_exists($this->preview)) {
             $path = getcwd() . '/' . $this->preview;
 
             $ch = curl_init('http://api.scribd.com/api?method=docs.upload&api_key=3r190500l02rmjeficw4l');
