@@ -62,7 +62,7 @@
 </div>
 <?php if ($book['preview']) { ?>
     <div class="book-component-place">
-    <!--        <script type='text/javascript' src='http://www.scribd.com/javascripts/view.js'></script>
+        <script type='text/javascript' src='http://www.scribd.com/javascripts/view.js'></script>
         <script language="javascript" type="text/javascript">
             $(document).ready(function() {
                 var scribd_doc = scribd.Document.getDoc(<?php echo $book['doc_id'] ?>, '<?php echo $book['access_key'] ?>');
@@ -74,27 +74,7 @@
                 scribd_doc.write('embedded_resume');
                 scribd_doc.addEventListener('iPaperReady', oniPaperReady);
             });
-        </script>-->
-        
-        <div id="embedded_resume"></div>
-        <script type="text/javascript" src='http://www.scribd.com/javascripts/scribd_api.js'></script>
-        <script type="text/javascript">
-            var url = '<?php echo base_url() . $book['preview'] ?>';
-            var pub_id = 'pub-77213600829701276943';
-            var scribd_doc = scribd.Document.getDocFromUrl(url, pub_id);
-
-            var onDocReady = function(e) {
-                scribd_doc.api.setPage(3);
-            }
-
-            scribd_doc.addEventListener('docReady', onDocReady);
-            scribd_doc.addParam('jsapi_version', 2);
-            scribd_doc.addParam('height', 600);
-            scribd_doc.addParam('public', true);
-            scribd_doc.addParam('hide_disabled_buttons', false);
-            scribd_doc.addParam('allow_share', false);
-
-            scribd_doc.write('embedded_resume');
         </script>
+        <div id="embedded_resume"></div>
     </div>
 <?php } ?>
