@@ -73,6 +73,7 @@
                 scribd_doc.addParam('jsapi_version', 2);
                 scribd_doc.addParam('default_embed_format', 'flash');
                 scribd_doc.addParam('height', 600);
+                scribd_doc.addParam('hide_disabled_buttons', true);
                 scribd_doc.addParam('allow_share', false);
                 scribd_doc.addEventListener('docReady', oniPaperReady);
                 scribd_doc.write('embedded_resume');
