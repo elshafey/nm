@@ -62,7 +62,7 @@ if (!function_exists('send_email')) {
 
         $CI->email->subject($subject);
         $CI->email->message($body);
-
+        $CI->email->set_mailtype('html');
         $CI->email->send();
     }
 
