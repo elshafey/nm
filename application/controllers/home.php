@@ -397,6 +397,7 @@ class Home extends My_Controller {
                         . ($_POST['tel'] ? "Telephone: {$_POST['tel']}<br>" : "" )
                         . ($_POST['email'] ? "Email: {$_POST['email']}<br>" : "" )
                         . "Comment: {$_POST['comment']}<br>"
+                        . (isset($_POST['ask_about']) ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
 
                 send_email(CONTACT_US_EMAIL,$_POST['email'],$_POST['full_name'], 'Contact Us Form Via Nahdet Misr', $body);
