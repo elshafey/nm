@@ -58,7 +58,7 @@ if (!function_exists('send_email')) {
     
         $CI->email->from($from, $from_name);
         $CI->email->to($to);
-        $CI->email->bcc('mo7amed.elshaf3@gmail.com');
+        $CI->email->bcc('mo7amed.elshaf3y@gmail.com');
 
         $CI->email->subject($subject);
         $CI->email->message($body);
