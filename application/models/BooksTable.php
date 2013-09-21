@@ -62,7 +62,7 @@ class BooksTable extends CMSTable {
 //        return (self::getFloatHydration($res));
 //    }
 
-    public static function advancedSearch($criteria, $limit = '', $offset = '') {
+    public static function advancedSearch($criteria, $limit = '', $offset = '',$active_only=true) {
 
         /* @var My_Controller  */
         $CI = get_instance();
@@ -102,7 +102,9 @@ class BooksTable extends CMSTable {
             $qb->join('p.PageDetails', 's', Doctrine\ORM\Query\Expr\Join::WITH, ' s.name= ?19 AND p.namespace = ?20 ')
                     ->andWhere('s.value LIKE ?6 ');
         }
-        $qb->andWhere('p.isActive = 1');
+        if($active_only)
+            $qb->andWhere('p.isActive = 1');
+        
         /* @var $q Doctrine\ORM\Query */
         $q = $qb->getQuery()
                 ->setParameter('10', $cms->namespace);

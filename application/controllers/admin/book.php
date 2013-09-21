@@ -289,7 +289,7 @@ class Book extends CMSController {
 
     public function books_list() {
 
-        $pages = BooksTable::advancedSearch($_GET);
+        $pages = BooksTable::advancedSearch($_GET,'','',FALSE);
 
         $per_page = 10;
         $count = count($pages);

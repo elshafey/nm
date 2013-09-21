@@ -18,7 +18,7 @@ class Pressreleases extends News {
                     'value' => new Urls(Urls::URL_PREFIX_PRESS_DETAILS),
         ));
         
-        $this->render_fields=array('page_title','page_content','pdf',   'page_url','page_order','is_active');
+        $this->render_fields=array('page_title','page_content','pdf','img','img_alt','img_title','page_url','page_order','is_active');
     }
 
 }

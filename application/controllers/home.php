@@ -174,7 +174,8 @@ class Home extends My_Controller {
                         . lang('home_careers_apply_start_date') . ": {$_POST['start_date']}<br>"
                         . lang('home_careers_apply_brief_description') . ": {$_POST['brief_description']}<br>"
                 ;
-                send_email(CAREERS_EMAIL, $_POST['name'] . ' Application', $body);
+                
+                send_email(CAREERS_EMAIL,$_POST['email'],$_POST['name'],$_POST['name'] . ' Application Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
@@ -399,7 +400,7 @@ class Home extends My_Controller {
                         . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
 
-                send_email(CONTACT_US_EMAIL, 'Contact Us Form', $body);
+                send_email(CONTACT_US_EMAIL,$_POST['email'],$_POST['full_name'], 'Contact Us Form Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
@@ -434,7 +435,7 @@ class Home extends My_Controller {
                         . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
 
-                send_email(CONTACT_US_EMAIL, 'Becom Agent Form', $body);
+                send_email(BECOME_AGENT_MAIL,$_POST['email'],$_POST['full_name'], 'Becom Agent Form Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
@@ -469,7 +470,7 @@ class Home extends My_Controller {
                         . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
 
-                send_email(CONTACT_US_EMAIL, 'Request Propsal Form', $body);
+                send_email(BECOME_AGENT_MAIL,$_POST['email'],$_POST['full_name'], 'Request Propsal Form Via Nahdet Misr', $body);
                 redirect('/');
             }
         }

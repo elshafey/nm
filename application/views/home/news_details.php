@@ -7,7 +7,7 @@
     <?php echo $item['page_content'][get_locale()] ?>
 </div>
 
-<?php if (isset($item['pdf']) && $item['pdf']) { ?>
+<?php if (isset($item['pdf']) && $item['pdf'][get_locale()]) { ?>
 <div style="margin-top: 15px;">
         <a href="<?php echo base_url() . $item['pdf'][get_locale()] ?>" class="download-pdf"></a>    
     </div>

@@ -18,6 +18,7 @@
   * @property CI_Lang $lang
   * @property CI_Loader $load
   * @property CKEditor $ckeditor
+  * @property CI_Email $email
   * 
   */
 class My_Controller extends CI_Controller {

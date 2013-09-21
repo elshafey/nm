@@ -36,7 +36,7 @@ class News extends CMS {
         $this->setUpColumn(
                 array(
                     'name' => 'img',
-                    'validation' => 'xss_clean',
+                    'validation' => 'required|xss_clean',
                     'required' => false,
                     'outType' => 'img_uploader',
                     'value' => '',
