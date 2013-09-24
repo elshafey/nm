@@ -30,6 +30,7 @@ class Book extends CMSController {
             $this->form_validation->set_rules('title', '', 'xss_clean');
             $this->form_validation->set_rules('author', '', 'xss_clean');
             $this->form_validation->set_rules('isbn', '', 'xss_clean');
+            $this->form_validation->set_rules('is_active', '', 'xss_clean');
             $this->form_validation->set_rules('category', '', 'xss_clean');
             $this->form_validation->set_rules('subcategory', '', 'xss_clean');
             $this->form_validation->set_rules('subcategory2', '', 'xss_clean');
@@ -48,7 +49,7 @@ class Book extends CMSController {
     }
 
     public function export() {
-        $pages = BooksTable::advancedSearch($_GET);
+        $pages = BooksTable::advancedSearch($_GET,'','',FALSE);
         require_once 'PHPExcel-1.7.7/PHPExcel.php';
         $cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
         $cacheSettings = array('memoryCacheSize' => '8GB');

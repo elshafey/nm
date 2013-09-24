@@ -4,15 +4,23 @@
         <ul>
             <li>
                 <?php echo lang('home_book_title', 'title') ?>
-                <input type="text" class="txtbox" name="title" value="<?php echo set_value('title') ?>"
+                <input type="text" class="txtbox" name="title" value="<?php echo set_value('title') ?>" />
             </li>
             <li>
                 <?php echo lang('home_book_author', 'author') ?>
-                <input type="text" class="txtbox" name="author" value="<?php echo set_value('author') ?>"
+                <input type="text" class="txtbox" name="author" value="<?php echo set_value('author') ?>" />
             </li>
             <li>
                 <?php echo lang('home_book_isbn', 'isbn') ?>
-                <input type="text" class="txtbox" name="isbn" value="<?php echo set_value('isbn') ?>"
+                <input type="text" class="txtbox" name="isbn" value="<?php echo set_value('isbn') ?>" />
+            </li>
+            <li>
+                <?php echo lang('home_book_is_active', 'isbn') ?>
+                <select name="is_active" id="is_active" >
+                    <option value=""><?php echo lang('global_all') ?></option>
+                    <option value="1" <?php echo set_select('is_active', '1') ?>><?php echo lang('books_active_only') ?></option>
+                    <option value="0" <?php echo set_select('is_active', '0') ?>><?php echo lang('books_inactive_only') ?></option>
+                </select>
             </li>
             <li>
                 <?php echo lang('home_book_category', 'category') ?>

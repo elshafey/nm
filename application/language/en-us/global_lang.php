@@ -331,6 +331,9 @@ $lang['books_is_most_popular']          ='Is most popular';
 $lang['books_import']               ='Importing Excel File';
 $lang['books_import_select']       ='Select file';
 $lang['books_import_upload']       ='Import';
+$lang['books_active_only']       ='Active Only';
+$lang['books_inactive_only']       ='Inactive Only';
+$lang['home_book_is_active']       ='Is Active?';
 
 ////////////// side menu downloads  /////////////
 $lang['side_menu_downloads_form_create_page_title']         ='Create new download';

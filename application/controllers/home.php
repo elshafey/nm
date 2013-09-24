@@ -263,8 +263,26 @@ class Home extends My_Controller {
     }
 
     public function portfolio() {
+        
+        if(isset($_GET['per_page']))
+            $offset=$_GET['per_page'];
+        else
+            $offset=0;
+        
         $this->data['page'] = StaticPagesTable::getPage('portfolio');
-        $this->data['portfolios'] = PortfoliosTable::getList(true);
+        $this->data['portfolios'] = PortfoliosTable::getList(true,10,$offset);
+        
+        $this->load->library('pagination');
+        $config['base_url'] = get_routed_url(Urls::URL_PREFIX_PORTFOLIO).'?';
+        $config['total_rows'] = PortfoliosTable::getCount();
+        $config['per_page'] = 10;
+        $config['use_page_numbers'] = TRUE;
+        $config['num_links'] = 4;
+        $config['page_query_string'] = TRUE;
+        
+        $this->pagination->initialize($config);
+        $this->data['pagination'] = $this->pagination->create_links();
+        
         $this->data['page_title'] = $this->data['page']['page_title'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->template->write_view('content', 'home/portfolio', $this->data);

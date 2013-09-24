@@ -102,6 +102,11 @@ class BooksTable extends CMSTable {
             $qb->join('p.PageDetails', 's', Doctrine\ORM\Query\Expr\Join::WITH, ' s.name= ?19 AND p.namespace = ?20 ')
                     ->andWhere('s.value LIKE ?6 ');
         }
+
+        if (isset($criteria['is_active']) && $criteria['is_active'] != '') {
+            $qb->andWhere('p.isActive = '.$criteria['is_active'].'');
+        }
+        
         if($active_only)
             $qb->andWhere('p.isActive = 1');
         

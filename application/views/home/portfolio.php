@@ -21,3 +21,8 @@
         </ul>
     <?php } ?>
 </div>
+<?php if (isset($pagination)) { ?>
+    <div id="pagination">
+        <?php echo $pagination ?>
+    </div>
+<?php } ?>
