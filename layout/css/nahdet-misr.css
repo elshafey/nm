@@ -591,11 +591,16 @@ a:hover{
     list-style: none;
 }
 
+.portfolio-list li .news-thumbnail img{
+    height: auto;
+    width: 100px;
+}
+
 .portfolio-list li{
     padding-bottom: 10px;
     border-bottom: 1px dashed #CCC;
     clear: both;
-    height: 70px;
+    height: 50px;
     margin-top: 10px;
 }
 
@@ -612,7 +617,7 @@ a:hover{
     margin-left: 10px;
     display: block;
     position: relative;
-    top: 25px;
+    top: 13px;
 }
 
 .read-more{
