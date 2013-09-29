@@ -31,6 +31,8 @@ class Book extends CMSController {
             $this->form_validation->set_rules('author', '', 'xss_clean');
             $this->form_validation->set_rules('isbn', '', 'xss_clean');
             $this->form_validation->set_rules('is_active', '', 'xss_clean');
+            $this->form_validation->set_rules('is_latest_release', '', 'xss_clean');
+            $this->form_validation->set_rules('is_most_popular', '', 'xss_clean');
             $this->form_validation->set_rules('category', '', 'xss_clean');
             $this->form_validation->set_rules('subcategory', '', 'xss_clean');
             $this->form_validation->set_rules('subcategory2', '', 'xss_clean');
@@ -78,7 +80,10 @@ class Book extends CMSController {
             $subcategory2 = SubCategories2Table::getOneBy('id', $book['parent_id']);
             $subcategory = SubCategoriesTable::getOneBy('id', $book['subcategory']);
             $category = CategoriesTable::getOneBy('id', $book['category']);
-
+            $url=  UrlsTable::getOneBy('parent', $book['id']);
+            $book['meta_title']=$url['meta_title'];
+            $book['meta_keywords']=$url['meta_keywords'];
+            $book['meta_description']=$url['meta_description'];
             $preview=  array_pop(explode('/', $book['preview']));
             $img=  array_pop(explode('/', $book['img']));
             $phpExcell->getActiveSheet()->setCellValue(get_cell_name(0, $key + 2), $book['isbn']);
@@ -97,6 +102,9 @@ class Book extends CMSController {
             $phpExcell->getActiveSheet()->setCellValue(get_cell_name(13, $key + 2), $book['brief_description']['ar-eg']);
             $phpExcell->getActiveSheet()->setCellValue(get_cell_name(14, $key + 2), $preview);
             $phpExcell->getActiveSheet()->setCellValue(get_cell_name(15, $key + 2), $img);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(16, $key + 2), $book['meta_title']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(17, $key + 2), $book['meta_keywords']);
+            $phpExcell->getActiveSheet()->setCellValue(get_cell_name(18, $key + 2), $book['meta_description']);
         }
 
         //setting column width
@@ -112,12 +120,17 @@ class Book extends CMSController {
     public function import() {
         set_time_limit(0);
         require 'PHPExcel-1.7.7/PHPExcel.php';
-        $objPHPExcel = PHPExcel_IOFactory::load($_FILES['file']['tmp_name']);
-//        pre_print($objPHPExcel);
+        $objPHPExcelReader=new PHPExcel_Reader_Excel2007();
+        $sheetInfo=($objPHPExcelReader->listWorksheetInfo($_FILES['file']['tmp_name']));
+
+        $objPHPExcel=$objPHPExcelReader->load($_FILES['file']['tmp_name']);
+        
         $k = 1;
         foreach ($objPHPExcel->getSheet()->getRowIterator(2) as $i => $row) {
             $_POST = array();
             $book_post = array();
+            if($i>$sheetInfo[0]['totalRows'])
+                break;
 //            echo $row->getRowIndex() . '<br>';
             foreach ($row->getCellIterator() as $cell) {
                 if ($cell->getColumn() == 'A') {
@@ -181,6 +194,18 @@ class Book extends CMSController {
 
                 if ($cell->getColumn() == 'P' && $cell->getValue() != '') {
                     $book_post['img'] = 'uploads/images/' . $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'Q' && $cell->getValue() != '') {
+                    $book_post['meta_title'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'R' && $cell->getValue() != '') {
+                    $book_post['meta_keywords'] = $cell->getValue();
+                }
+
+                if ($cell->getColumn() == 'S' && $cell->getValue() != '') {
+                    $book_post['meta_description'] = $cell->getValue();
                 }
             }
 
@@ -253,9 +278,9 @@ class Book extends CMSController {
 
             $book_post['img_alt'] = $book_post['img'];
             $book_post['img_title'] = $book_post['title_en-us'];
-            $book_post['meta_title'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
-            $book_post['meta_keywords'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
-            $book_post['meta_description'] = $book_post['title_en-us'] . ' ' . $book_post['title_ar-eg'];
+            $book_post['meta_title'] = $book_post['meta_title'] ;
+            $book_post['meta_keywords'] = $book_post['meta_keywords'] ;
+            $book_post['meta_description'] = $book_post['meta_description'];
             $book_post['is_active'] = 1;
             $book_post['is_latest_release'] = 0;
             $book_post['is_most_popular'] = 0;
@@ -270,6 +295,8 @@ class Book extends CMSController {
             if ($obj) {
                 $form = new Forms(new Books($obj['id']));
                 $book_post['routed'] = $form->cms->book_url->routed;
+                $book_post['is_latest_release'] = $form->cms->is_latest_release;
+                $book_post['is_most_popular'] = $form->cms->is_most_popular;
             } else {
                 $book_post['routed'] = Urls::URL_PREFIX_BOOK;
                 $form = new Forms(new Books());

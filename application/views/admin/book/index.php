@@ -15,6 +15,22 @@
                 <input type="text" class="txtbox" name="isbn" value="<?php echo set_value('isbn') ?>" />
             </li>
             <li>
+                <?php echo lang('books_is_latest_release_view', 'isbn') ?>
+                <select name="is_latest_release" id="is_latest_release" >
+                    <option value=""><?php echo lang('global_all') ?></option>
+                    <option value="1" <?php echo set_select('is_latest_release', '1') ?>><?php echo lang('books_latest_release') ?></option>
+                    <option value="0" <?php echo set_select('is_latest_release', '0') ?>><?php echo lang('books_not_latest_release') ?></option>
+                </select>
+            </li>
+            <li>
+                <?php echo lang('books_is_most_popular_view', 'isbn') ?>
+                <select name="is_most_popular" id="is_most_popular" >
+                    <option value=""><?php echo lang('global_all') ?></option>
+                    <option value="1" <?php echo set_select('is_most_popular', '1') ?>><?php echo lang('books_most_popular') ?></option>
+                    <option value="0" <?php echo set_select('is_most_popular', '0') ?>><?php echo lang('books_not_most_popular') ?></option>
+                </select>
+            </li>
+            <li>
                 <?php echo lang('home_book_is_active', 'isbn') ?>
                 <select name="is_active" id="is_active" >
                     <option value=""><?php echo lang('global_all') ?></option>

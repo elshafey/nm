@@ -51,35 +51,39 @@
         })();
     </script>
 </div>
-<?php if ($book['preview']) { ?>
+<?php if ($book['preview'] && file_exists($book['preview'])) { ?>
     <div class="book-code book-download">
         <?php echo lang('home_book_download') ?>:<a href="<?php echo base_url() . $book['preview'] ?>" class="download-pdf"></a>
     </div>
-<?php } ?>
+<?php
+} else {
+    $book['doc_id'] = '171634108';
+    $book['access_key'] = 'key-1apwbm7vy7h3a5ol1g63';
+}
+?>
 
 <div class="news-section">
-    <?php echo $book['brief_description'][get_locale()] ?>
+<?php echo $book['brief_description'][get_locale()] ?>
 </div>
-<?php if ($book['preview']) { ?>
-    <div class="book-component-place">
-        <script type="text/javascript" src='http://www.scribd.com/javascripts/scribd_api.js'></script>
-        <script language="javascript" type="text/javascript">
-            $(document).ready(function() {
-                var scribd_doc = scribd.Document.getDoc(<?php echo $book['doc_id'] ?>, '<?php echo $book['access_key'] ?>');
-                var oniPaperReady = function() {
-                    scribd_doc.api.setZoom(1);
-                }
-                
-                scribd_doc.addParam('jsapi_version', 2);
-                scribd_doc.addParam('default_embed_format', 'flash');
-                scribd_doc.addParam('height', 600);
-                scribd_doc.addParam('hide_disabled_buttons', true);
-                scribd_doc.addParam('allow_share', false);
-                scribd_doc.addEventListener('docReady', oniPaperReady);
-                scribd_doc.write('embedded_resume');
 
-            });
-        </script>
-        <div id="embedded_resume"></div>
-    </div>
-<?php } ?>
+<div class="book-component-place">
+    <script type="text/javascript" src='http://www.scribd.com/javascripts/scribd_api.js'></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function() {
+            var scribd_doc = scribd.Document.getDoc(<?php echo $book['doc_id'] ?>, '<?php echo $book['access_key'] ?>');
+            var oniPaperReady = function() {
+                scribd_doc.api.setZoom(1);
+            }
+
+            scribd_doc.addParam('jsapi_version', 2);
+            scribd_doc.addParam('default_embed_format', 'flash');
+            scribd_doc.addParam('height', 600);
+            scribd_doc.addParam('hide_disabled_buttons', true);
+            scribd_doc.addParam('allow_share', false);
+            scribd_doc.addEventListener('docReady', oniPaperReady);
+            scribd_doc.write('embedded_resume');
+
+        });
+    </script>
+    <div id="embedded_resume"></div>
+</div>

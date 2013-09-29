@@ -11,7 +11,8 @@ class BooksTable extends CMSTable {
      *
      * @return Books 
      */
-    static $count=0;
+    static $count = 0;
+
     public static function getInstance() {
         return new Books();
     }
@@ -62,7 +63,7 @@ class BooksTable extends CMSTable {
 //        return (self::getFloatHydration($res));
 //    }
 
-    public static function advancedSearch($criteria, $limit = '', $offset = '',$active_only=true) {
+    public static function advancedSearch($criteria, $limit = '', $offset = '', $active_only = true) {
 
         /* @var My_Controller  */
         $CI = get_instance();
@@ -104,12 +105,22 @@ class BooksTable extends CMSTable {
         }
 
         if (isset($criteria['is_active']) && $criteria['is_active'] != '') {
-            $qb->andWhere('p.isActive = '.$criteria['is_active'].'');
+            $qb->andWhere('p.isActive = ' . $criteria['is_active'] . '');
         }
-        
-        if($active_only)
+
+        if (isset($criteria['is_latest_release']) && $criteria['is_latest_release'] != '') {
+            $qb->join('p.PageDetails', 'l', Doctrine\ORM\Query\Expr\Join::WITH, ' l.name= ?21 AND p.namespace = ?22 ')
+                    ->andWhere('l.value LIKE ?7 ');
+        }
+
+        if (isset($criteria['is_most_popular']) && $criteria['is_most_popular'] != '') {
+            $qb->join('p.PageDetails', 'm', Doctrine\ORM\Query\Expr\Join::WITH, ' m.name= ?23 AND p.namespace = ?24 ')
+                    ->andWhere('m.value LIKE ?8 ');
+        }
+
+        if ($active_only)
             $qb->andWhere('p.isActive = 1');
-        
+
         /* @var $q Doctrine\ORM\Query */
         $q = $qb->getQuery()
                 ->setParameter('10', $cms->namespace);
@@ -143,7 +154,18 @@ class BooksTable extends CMSTable {
             $q->setParameter('19', 'subcategory');
             $q->setParameter('20', $cms->namespace);
         }
-        
+
+        if (isset($criteria['is_latest_release']) && $criteria['is_latest_release'] != '') {
+            $q->setParameter('7', $criteria['is_latest_release']);
+            $q->setParameter('21', 'is_latest_release');
+            $q->setParameter('22', $cms->namespace);
+        }
+
+        if (isset($criteria['is_most_popular']) && $criteria['is_most_popular'] != '') {
+            $q->setParameter('8', $criteria['is_most_popular']);
+            $q->setParameter('23', 'is_most_popular');
+            $q->setParameter('24', $cms->namespace);
+        }
 
         if (isset($criteria['subcategory2']) && $criteria['subcategory2'] != '') {
             $q->setParameter('5', $criteria['subcategory2']);
@@ -158,10 +180,10 @@ class BooksTable extends CMSTable {
         if ($limit || $offset) {
             $res = new \Doctrine\ORM\Tools\Pagination\Paginator(
                     $q->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
-            self::$count=$res->count();
+            self::$count = $res->count();
         } else {
             $res = $q->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
-            self::$count=  count($res);
+            self::$count = count($res);
         }
 
         return (self::getFloatHydration($res));
@@ -200,10 +222,10 @@ class BooksTable extends CMSTable {
 
         if ($limit || $offset) {
             $res = new \Doctrine\ORM\Tools\Pagination\Paginator($query->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)->setHydrationMode(Doctrine\ORM\Query::HYDRATE_ARRAY), $fetchJoinCollection = true);
-            self::$count=$res->count();
+            self::$count = $res->count();
         } else {
             $res = $query->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, TRUE)->getResult(Doctrine\ORM\Query::HYDRATE_ARRAY);
-            self::$count=  count($res);
+            self::$count = count($res);
         }
 
         return (self::getFloatHydration($res));
