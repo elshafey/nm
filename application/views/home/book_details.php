@@ -53,7 +53,7 @@
 </div>
 <?php if ($book['preview'] && file_exists($book['preview'])) { ?>
     <div class="book-code book-download">
-        <span class="span-word"><?php echo lang('home_book_download') ?></span>:<a href="<?php echo base_url() . $book['preview'] ?>" class="download-pdf"></a>
+        <span class="span-word"><?php echo lang('home_book_download') ?>:</span><a href="<?php echo base_url() . $book['preview'] ?>" class="download-pdf"></a>
     </div>
 <?php
 } else {
