@@ -12,7 +12,7 @@
     <div class="clear"></div>
 
     <div class="home-news">
-        <div class="news-home-title">News</div>
+        <div class="news-home-title"><?php echo lang('home_menu_media_center_news') ?></div>
         <?php foreach ($news as $item) { ?>
             <?php $url=get_routed_url(Urls::URL_PREFIX_NEWS_DETAILS . $item['id']) ?>
             <div class="news-box">

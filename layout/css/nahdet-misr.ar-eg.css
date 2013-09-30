@@ -1,17 +1,30 @@
 @charset "utf-8";
 /* CSS Document */
 
+@font-face {
+    font-family: customFont;
+    src: url('../fonts/HelveticaNeueW23-Reg.eot');
+    src: url('../fonts/HelveticaNeueW23-Reg.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/HelveticaNeueW23-Reg.woff') format('woff'),
+        url('../fonts/HelveticaNeueW23-Reg.ttf') format('truetype'),
+        url('../fonts/HelveticaNeueW23-Reg.svg#helvetica_neue') format('svg');		 
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 *{
     margin: 0;
     padding: 0;
     border: 0;
     background: none; 
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 12px;
+    font-family: customFont, Verdana, Geneva, sans-serif;
+    font-size: 13px;
     color: #272727;
 }
 
 body{
+    direction: rtl;
     background-image: url(../images/bg.jpg);
     background-repeat: repeat;
     background-position: top left;	
@@ -30,14 +43,14 @@ body{
 }
 
 #social-network{
-    float: left;
+    float: right;
     position: relative;
     display: block;
     top: 25px;
 }
 
 .social-network-inside{
-    float: right!important;	
+    float: left!important;	
     top: 60px !important;
 }
 
@@ -80,13 +93,15 @@ body{
     width: 65px;
     height: 32px;
     display:block;
-    float: right;
+    float: left;
     position: relative;
-    right: 0px;
+    left: 0px;
     top: 25px;
+    cursor: pointer;
 }
 .arabic-link-inside{
-    top: 60px !important;	
+    top: 60px !important;
+    margin-right: 7px;
 }
 
 .clear{
@@ -135,7 +150,7 @@ body{
 }
 
 #top-menu .header-middle ul, #top-menu-inside .header-middle ul{
-    margin-left: 10px;	
+    margin-right: 10px;	
 }
 
 #top-menu .header-middle ul li, #top-menu-inside .header-middle ul li{
@@ -153,9 +168,10 @@ body{
     margin-right: 6px;
 }
 
-#top-menu .header-middle ul li a,#top-menu-inside .header-middle ul li a{
-    font-size: 13px;
-    color: #FFF;
+#top-menu .header-middle ul li a, #top-menu-inside .header-middle ul li a {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -174,11 +190,11 @@ body{
     width: 247px;
     height: 300px;
     display: block;
-    float: left;
+    float: right;
 }
 
 .banner{
-    float: left;
+    float: right;
     width: 660px;
     height: 300px;
     display: block;
@@ -236,15 +252,15 @@ body{
 
 #content .left{
     width: 180px;
-    margin-right: 22px;
+    margin-left: 22px;
     display: block;
-    float: left;
+    float: right;
 }
 
 #content .right{
     width: 700px;
     display: block;
-    float: left;
+    float: right;
 }
 
 #content .left .bar-title{
@@ -257,26 +273,21 @@ body{
 }
 #content .left .bar-title span{
     position: relative;
-    left: 5px;
-    top: 3px;
+    right: 7px;
+    top: 2px;
     color: #FFF;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 14px;
 }
 
 #content .left ul{
-    margin-left: 18px;	
-    margin-top: 15px;
-    width:142px;
-    margin-bottom: 10px;
-    font-weight: bold;
+    margin-right: 18px;	
+    margin-top: 10px;
 }
 #content .left ul li{
     color: #272727;
     margin-top: 3px;
     padding-bottom: 3px;
     border-bottom: dashed #858585 1px;
-    padding-left: 2px;
 }
 #content .left ul li:last-child{
     border-bottom: none;	
@@ -290,7 +301,7 @@ body{
 }
 #content .right .about-us .about-us-left{
     width: 190px;	
-    float: left;
+    float: right;
 }
 #content .right .about-us .about-us-left .home-title{
     color: #001845;
@@ -300,9 +311,9 @@ body{
     margin-top: 10px;
 }
 #content .right .about-us .about-us-right{
-    margin-left: 52px;
-    float: left;
-    width: 458px;
+    margin-right: 45px;
+    float: right;
+    width: 465px;
 }
 #content .right .about-us .about-us-right p{
     text-align: justify;
@@ -313,20 +324,21 @@ body{
     margin-top: 15px;	
 }
 
-.home-news .news-home-title{
-    color: #323232;
-    font-size: 14px;
+.home-news .news-home-title {
     border-bottom: 1px dashed #858585;
+    color: #323232;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .home-news .news-box{
     width: 220px;
-    float: left;
+    float: right;
     margin-top: 10px;
-    margin-right: 13px;
+    margin-left: 13px;
 }
 .home-news .news-box:last-child{
-    margin-right: 0px;
+    margin-left: 0px;
 }
 .home-news .news-box .title{
     color: #001845;
@@ -351,7 +363,7 @@ body{
     font-size: 14px;
     position: relative;
     top: 3px;
-    left: 7px;
+    right: 7px;
 }
 
 .home-media{
@@ -365,10 +377,9 @@ body{
 #footer{
     background-image: url(../images/footer-bg.png);
     background-repeat: repeat-x;
-    height: 535px;
+    height: 460px;
     width: 100%;
     margin-top: 60px;
-    background-size: auto 100%;
 }
 
 #footer .wrapper{
@@ -377,17 +388,17 @@ body{
     background-position: right bottom;
     display: block;
     width: 907px;
-    height: 453px;
+    height: 390px;
     margin: 0 auto;
 }
 
 #footer .wrapper ul{
     position: relative;
-    float: left;
+    float: right;
     margin-right: 15px;
     width: 164px;
     display: block;
-    top: 60px;
+    top: 20px;
     margin-right: 50px;
 }
 
@@ -396,11 +407,11 @@ body{
     width: 162px;
     height: 24px;
     list-style: none;
-    margin-left: -14px;
+    margin-right: -14px;
 }
 #footer .wrapper ul .sub-title{		
     list-style: none;
-    margin-left: -5px;
+    margin-right: -5px;
     font-size: 12px;
     color: #828282;
     margin-top: 10px;
@@ -408,19 +419,18 @@ body{
 #footer .wrapper ul .title span{
     position: relative;
     top: 3px;
-    left: 10px;
+    right: 10px;
     color: #828282;
     font-size: 13px;
 }
 #footer .wrapper ul li{
-    margin-left: 20px;
-    margin-bottom: 7px;
+    margin-right: 20px;
     color: #6f6f6f;
 }
 
 #footer .wrapper ul li a{
     color: #6f6f6f;
-    font-size: 11px;
+    font-size: 12px;
     text-decoration: none;
 }
 #footer .wrapper ul li a:hover{
@@ -428,9 +438,9 @@ body{
 }
 
 #footer .wrapper .copyrights{
-    width: 357px;
+    width: 350px;
     margin: 0 auto;
-    bottom: -126px;
+    top: 110px;
     position: relative;
     color: #676767;
     font-size: 11px;
@@ -448,16 +458,16 @@ a:hover{
     text-decoration:underline;
 }
 
-.logo-inside{
-    background-image: url("../images/logo-inside.png");
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    display: block;
-    float: left;
-    height: 79px;
-    margin-bottom: 10px;
-    margin-top: 15px;
-    width: 46px;
+.logo-inside {
+  background-image: url("../images/logo-inside.png");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  display: block;
+  float: right;
+  height: 79px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  width: 46px;
 }
 
 .inside-banner{
@@ -471,8 +481,9 @@ a:hover{
 
 .navigator .main-item{
     color: #174196;
-    font-size: 12px;	
+    font-size: 14px;	
 }
+
 
 .navigator .main-item a{
     color: #174196;
@@ -487,7 +498,7 @@ a:hover{
 
 .navigator .sub-item{
     color: #595959;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .right p{
@@ -499,26 +510,25 @@ a:hover{
     background-image: url(../images/pdf-icon.png);
     width: 44px;
     height: 44px;
-    float: left;
+    float: right;
     display: block;	
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .download-item{
-    float:left;
-    /*margin-left: 10px;*/
+    float:right;
+    margin-right: 10px;
     display: block;
     position: relative;
-    /*top: 17px;*/
+    top: 13px;
 }
 
 .downloaded-items{
     margin-top: 30px;	
 }
 .downloaded-items li{
-    /*width: 348px;*/
     display: block;
-    float: left;
+    float: right;
     margin-bottom:10px;
 }
 
@@ -527,18 +537,17 @@ a:hover{
     width: 171px;
     height: 37px;
     display: block;
-    float: right;
+    float: left;
     color: #272727;	
     position: relative;
     top: -10px;
-    text-align: center;
 }
 
 .request-proposal a{
     position: relative;
-    top: 9px;
-    font-weight: bold;
-    /*left: 19px;*/	
+    top: 8px;
+    right: 19px;
+    font-size: 15px;
 }
 
 .inside-title{
@@ -548,36 +557,22 @@ a:hover{
 }
 
 .partner{
-    /*width: 134px;*/
+    width: 134px;
     float: left;
     text-align: center;
-    /*margin-bottom: 30px;*/
-    margin-right: 5px;
+    margin-bottom: 30px;
+    margin-left: 5px;
 }
 
 .partner-frame{
-    /*background-image: url(../images/partner-frame.png);*/
+    background-image: url(../images/partner-frame.png);
     background-repeat: no-repeat;
     width: 134px;
     height: 111px;
     display: block;
     margin-bottom: 5px;
-    float: left;
 }
-.partner-description{
-    float: left;
-    margin-left: 3px;
-    text-align: left;
-    width: 150px;
-}
-.partner-name{
-    clear: both;
-    float: left;
-    width: 135px;
-}
-.partners-group{
-    float: left;   
-}
+
 .h-line{
     clear: both;
     height: 1px;
@@ -591,16 +586,11 @@ a:hover{
     list-style: none;
 }
 
-.portfolio-list li .news-thumbnail img{
-    height: auto;
-    width: 100px;
-}
-
 .portfolio-list li{
     padding-bottom: 10px;
     border-bottom: 1px dashed #CCC;
     clear: both;
-    height: 50px;
+    height: 70px;
     margin-top: 10px;
 }
 
@@ -609,15 +599,15 @@ a:hover{
     width: 65px;
     height: 66px;
     display: block;
-    float: left;
+    float: right;
 }
 
 .portfolio-list li .portfolio-item{
-    float:left;
-    margin-left: 10px;
+    float:right;
+    margin-right: 10px;
     display: block;
     position: relative;
-    top: 13px;
+    top: 25px;
 }
 
 .read-more{
@@ -628,6 +618,8 @@ a:hover{
 .book-image{
     margin-bottom: 20px;
     margin-right: 20px;
+    float: right;
+    margin-left: 13px;
 }
 
 .book-title{
@@ -675,6 +667,36 @@ a:hover{
     color: #272727;
     display: block;
 }
+
+.search-box{
+    float: right;
+    position: relative;
+    top: 15px;
+    right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid #e0e0e0;background-color: #FFF;width: 530px;height: 30px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.07);
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: inset 0 1px 14px rgba(0, 0, 0, 0.07);
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;	
+}
+
+.advanced-search{
+    float: right;
+    position: relative;
+    top: 25px;
+    right: 50px;
+    color: #a4a4a4;
+}
+
 .page-title{
     font-size: 14px;
     margin-bottom: 13px;
@@ -809,23 +831,23 @@ a.prev span, a.next span {
     width: 600px;
 }
 .job-code{
-    float: left;
+    float: right;
     margin-top: 20px;
     margin-bottom: 20px;
     width: 100%
 }
 .job-description{
-    float: left;
+    float: right;
     font-size: 13px;
     font-weight: bold;
-    padding-right: 10px;
+    padding-left: 10px;
 }
 .job-code span{
     font-size: 13px;
     font-weight: bold;
 }
 .news-section{
-    float: left;
+    float: right;
 }
 .see_more,.see_less{
     cursor: pointer;
@@ -938,35 +960,19 @@ a.next, a.prev {
 .carousel-image-container-0:hover .book-title-anchor{
     text-decoration:underline;
 }
-.search-middle-title{
-    float: left;
-    width: 140px;
-    font-size:14px;
-    color: #a4a4a4;
-    position: relative;
-    top: 25px;
-    left: 90px;
-}
-.search-box{
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 7px 7px 7px 7px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07) inset;
-    float: left;
-    height: 30px;
-    left: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    position: relative;
-    top: 15px;
-    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
-    width: 530px;
-}
-.advanced-search {
+.search-middle-title {
     color: #A4A4A4;
-    float: left;
-    left: 50px;
+    float: right;
+    font-size: 14px;
     position: relative;
+    right: 90px;
+    top: 25px;
+    width: 140px;
+}
+.search-separator{
+    color: #AAAAAA;
+    position: relative;
+    left: 42px;
     top: 25px;
 }
 .sub-title a{
@@ -1019,17 +1025,11 @@ a.next, a.prev {
     -moz-box-shadow:0 0 25px #111;
     max-width:940px;
 }
-.search-separator{
-    color: #AAAAAA;
-    position: relative;
-    right: 42px;
-    top: 25px;
-}
 
 .news-thumbnail{
     border: 1px solid #7C7C7C;
-    float: left;
-    margin-right: 6px;
+    float: right;
+    margin-left: 6px;
 }
 
 .news-thumbnail img{
@@ -1037,22 +1037,33 @@ a.next, a.prev {
     height: 65px;
 }
 #pagination a, #pagination strong {
-    border: 1px solid #CCCCCC;
-    float: left;
-    margin-right: 2px;
-    padding: 3px;
-    text-align: center;
+  border: 1px solid #CCCCCC;
+  float: right;
+  margin-right: 2px;
+  padding: 3px;
+  text-align: center;
 }
 .book-code div{
-    float: left;
+    float: right;
 }
 .book-code .download-pdf{
     float: right;
     margin-top: -14px;
 }
-.book-download{
-    margin-top: 31px;
-    float: left;
-    margin-left: -200px;
-    width: 200px;
+.book-download {
+margin-top: 42px;
+float: right;
+margin-right: -200px;
+width: 200px;
+}
+.span-word{
+    float: right;
+    color: #7c7c7c;
+}
+
+.fb-area{
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 36px;
+    height: 105px
 }

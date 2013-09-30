@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <?php echo print_meta_data($url, isset($page_title) ? $page_title : lang('page_title')) ?>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/nahdet-misr.css"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/coolMenu.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/nahdet-misr.<?php echo get_locale() ?>.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/coolMenu.<?php echo get_locale() ?>.css"/>
         <?php echo $_styles ?>
 
         <script src="<?php echo base_url(); ?>layout/js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -26,7 +26,11 @@
                 <!--<a href="" class="linkedin"></a>-->
                 <a href="http://www.youtube.com/nahdetmisrgroup" class="youtube"></a>
             </div>
-            <a href="<?php echo base_url() . 'home/under_costruction' ?>" class="arabic-link"></a>
+            <?php if(get_locale()=='en-us'){ ?>
+            <a class="arabic-link" ref="ar-eg"></a>
+            <?php }else{ ?>
+            <a class="arabic-link" ref="en-us" ></a>
+            <?php } ?>
 
             <div class="clear"></div>
             <?php $this->load->view('top-menu', array('is_internal' => false)) ?>
@@ -48,7 +52,7 @@
             <div id="search-box">
                 <div class="search-left"></div>
                 <div class="search-middle">
-                    <div class="search-middle-title">Search</div>
+                    <div class="search-middle-title"><?php echo lang('home_btn_search') ?></div>
                     <form action="<?php echo site_url('home/quick_search') ?>">
                         <input id="quick_search" type="text" value="<?php echo set_value('q') ?>" class="search-box" name="q" />
                     </form>

@@ -14,7 +14,7 @@
                         <!--<img class="news-img" width="73" src="<?php echo base_url() . page_thumb($book['img']) ?>" title="<?php echo $book['img_title'] ?>" alt="<?php echo $book['img_alt'] ?>" />-->
                     <?php } ?>
                     <a class="news-title"href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK . $book['id']) ?>"><?php echo $book['title'][get_locale()] ?></a>
-                    <div class="book-code" style="color: #272727;margin-top: 8px;">ISBN: <?php echo $book['isbn'] ?></div>
+                    <div class="book-code" style="color: #272727;margin-top: 8px;"><span class="span-word">ISBN:</span>: <?php echo $book['isbn'] ?></div>
                     <div class="book-code" style="color: #272727"><?php echo lang('home_book_author') ?>: <?php echo $book['author'][get_locale()] ?></div>
                 </div>   
                 <div class="h-line" style="margin-bottom: 0px;border-bottom: none"></div>

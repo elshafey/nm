@@ -81,6 +81,7 @@ $lang['home_careers_apply_brief_description']       ='Brief description for resp
 //////////////////menu//////////////////////////////
 $lang['home_menu_media_center_news']='News';
 $lang['home_menu_portfolio']='Portfolio';
+$lang['home_menu_media_center']='Media Center';
 $lang['home_menu_media_center_press_release']='Press Releases';
 $lang['home_menu_media_center_events']='Events';
 $lang['home_menu_partners']='Partners';
@@ -96,3 +97,9 @@ $lang['home_menu_contact_us']       ='Contact Us';
 $lang['home_menu_become_agent']       ='Become a Partner';
 $lang['home_menu_request_prposal']       ='Request for Proposal';
 $lang['home_menu_projects']       ='Projects';
+$lang['home_footer_our_solutions']  ='Our Solutions';
+$lang['home_footer_langs']  ='Languages';
+$lang['home_footer_english']  ='English';
+$lang['home_footer_arabic']  ='Arabic';
+$lang['home_footer_search']  ='Search';
+$lang['home_nav_home_page']  ='Home Page';

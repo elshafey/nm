@@ -42,7 +42,7 @@
             <li class="menu-separator">|</li>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_DOWNLOADS) ?>"><?php echo lang('home_menu_downloads') ?></a></li>
             <li class="menu-separator">|</li>
-            <li><a href="javascript:">Media Center</a>
+            <li><a href="javascript:"><?php echo lang('home_menu_media_center') ?></a>
                 <ul class="sub-menu noJS">
                     <li>
                         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_NEWS_LIST) ?>"><?php echo lang('home_menu_media_center_news') ?></a>

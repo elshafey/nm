@@ -79,7 +79,7 @@ function print_meta_data($url, $page_title) {
         $meta.='<meta name="description" content="' . $url['meta_description'] . '" />
         <meta name="keywords" content="' . $url['meta_keywords'] . '" />
         <meta name="title" content="' . ($url['meta_title'] ? $url['meta_title'] : $page_title) . '" />
-        <title>' . ($url['meta_title'] ? $url['meta_title'] : $page_title) . '</title>';
+        <title>' . ($url['meta_title']&&$page_title==lang('page_title') ? $url['meta_title'] : $page_title) . '</title>';
     } else {
         $meta.='<title>' . $page_title . '</title>';
     }

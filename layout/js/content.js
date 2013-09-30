@@ -18,6 +18,10 @@ $(document).ready(function(){
             $(this).closest('form').submit();
         }
     });
+    $('.arabic-link,.lang').click(function(){
+        urlParts=location.href.split("?");
+        location.href=urlParts[0]+"?lang="+$(this).attr("ref");
+    });
 });
 function site_url(controller){
     if(!controller){

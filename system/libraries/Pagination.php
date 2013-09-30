@@ -34,10 +34,10 @@ class CI_Pagination {
 	var $per_page			= 10; // Max number of items you want shown per page
 	var $num_links			=  2; // Number of "digit" links to show before/after the currently viewed page
 	var $cur_page			=  0; // The current page being viewed
-	var $first_link			= '&lsaquo; First';
+	var $first_link			= '&lsaquo; ';
 	var $next_link			= '&gt;';
 	var $prev_link			= '&lt;';
-	var $last_link			= 'Last &rsaquo;';
+	var $last_link			= ' &rsaquo;';
 	var $uri_segment		= 3;
 	var $full_tag_open		= '';
 	var $full_tag_close		= '';
@@ -78,6 +78,11 @@ class CI_Pagination {
 		}
 
 		log_message('debug', "Pagination Class Initialized");
+                
+                $this->first_link			= lang('global_first');
+                $this->next_link			=  lang('global_next');
+                $this->prev_link			= lang('global_prev');
+                $this->last_link			=  lang('global_last');
 	}
 
 	// --------------------------------------------------------------------

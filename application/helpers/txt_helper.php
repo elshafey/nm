@@ -36,7 +36,8 @@ function more_less_str($str){
 }
 
 function sub_string_from_start($string,$length){
-    return (substr(htmlspecialchars_decode(strip_tags($string)), 0,$length).((strlen($string)>$length)?'...':''));
+    $striped=htmlspecialchars_decode(strip_tags($string));
+    return (array_shift(explode('<br/>', wordwrap($striped,$length,'<br/>'))).((strlen($striped)>$length)?'...':''));
 }
 
 function get_cell_name($column, $row) {

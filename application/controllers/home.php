@@ -183,7 +183,7 @@ class Home extends My_Controller {
         $this->data['list'] = CareersTable::getList(true);
         $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_careers');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-        $this->template->add_css('layout/css/form.css');
+        $this->template->add_css('layout/css/form.'.get_locale().'.css');
         $this->template->write_view('content', 'home/careers', $this->data);
         $this->template->render();
     }
@@ -367,7 +367,7 @@ class Home extends My_Controller {
         $this->data['categories'] = CategoriesTable::getList(true);
         $this->data['page_title'] = lang('home_menu_advances_search');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_advances_search') . '</span>';
-        $this->template->add_css('layout/css/form.css');
+        $this->template->add_css('layout/css/form.'.get_locale().'.css');
         $this->template->write_view('content', 'home/advanced_search', $this->data);
         $this->template->render();
     }
@@ -428,7 +428,7 @@ class Home extends My_Controller {
         $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_contact_us');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->data['countries'] = CountriesTable::getList();
-        $this->template->add_css('layout/css/form.css');
+        $this->template->add_css('layout/css/form.'.get_locale().'.css');
         $this->template->write_view('content', 'home/contact_us', $this->data);
         $this->template->render();
     }
@@ -462,7 +462,7 @@ class Home extends My_Controller {
         $this->data['page'] = $page;
         $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_become_agent');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-        $this->template->add_css('layout/css/form.css');
+        $this->template->add_css('layout/css/form.'.get_locale().'.css');
         $this->template->write_view('content', 'home/become_agent', $this->data);
         $this->template->render();
     }
@@ -514,7 +514,7 @@ class Home extends My_Controller {
         $this->data['is_request_proposal']=true;
         $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_request_prposal');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-        $this->template->add_css('layout/css/form.css');
+        $this->template->add_css('layout/css/form.'.get_locale().'.css');
         $this->template->write_view('content', 'home/become_agent', $this->data);
         $this->template->render();
     }

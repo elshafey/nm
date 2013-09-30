@@ -1,18 +1,18 @@
 <?php
 
-$lang['required']		= "هذه البيانات مطلوبة";
-$lang['isset']			= "هذا الحقل يجب ان يحتوى على قيمة";
-$lang['valid_email']		= "من فضلك ادخل بريد الكترونى صحيح";
-$lang['valid_emails']		= "من فضلك ادخل بريد الكترونى صحيح";
-$lang['valid_url']		= "من فضلك ادخل رابط صحيح";
-$lang['valid_ip']		= "من فضلك ادخل عنوان صحيح";
-$lang['min_length']		= "من فضلك ادخل على الاقل %S من الحروف";
-$lang['max_length']		= "لا يمكنك ادخال اكثر من %s حرف فى هذا الحقل";
-$lang['exact_length']		= "هذا الحقل يجب ان يكون %s بالظبط";
-$lang['alpha']			= "هذا الحقل يجب ان يحتوى فقط على حروف ابجدية";
+$lang['required']		= "This field is required.";
+$lang['isset']			= "This field must have a value.";
+$lang['valid_email']		= "This field must contain a valid email address.";
+$lang['valid_emails']		= "This field must contain all valid email addresses.";
+$lang['valid_url']		= "This field must contain a valid URL.";
+$lang['valid_ip']		= "This field must contain a valid IP.";
+$lang['min_length']		= "This field must be at least %s characters in length.";
+$lang['max_length']		= "This field can not exceed %s characters in length.";
+$lang['exact_length']		= "This field must be exactly %s characters in length.";
+$lang['alpha']			= "This field may only contain alphabetical characters.";
 $lang['alpha_numeric']		= "This field may only contain alpha-numeric characters.";
 $lang['alpha_dash']		= "This field may only contain alpha-numeric characters, underscores, and dashes.";
-$lang['numeric']		= "هذا الحقل يجب أن يحتوى على أرقام فقط";
+$lang['numeric']		= "This field must contain only numbers.";
 $lang['is_numeric']		= "This field must contain only numeric characters.";
 $lang['integer']		= "This field must contain an integer.";
 $lang['regex_match']		= "This field is not in the correct format.";
@@ -24,13 +24,13 @@ $lang['less_than']		= "This field must contain a number less than %s.";
 $lang['greater_than']		= "This field must contain a number greater than %s.";
 
 /**this localizations are for the user defiend validations**/
-$lang['unique']                 = "تم إدخال هذه القيمة من قبل";
-$lang['select']                 = "من فضلك اختار قيمة ";
-$lang['valid_date']             = "من فضلك أدخل تاريخ صحيح.";
-$lang["max_count"]              ="من فضلك اختر  أقل من %S عناصر/عنصر";
-$lang["min_count"]              ="من فضلك اختر  أكثر من %S عنصر/عناصر";
+$lang['unique']                 = "This field value was assigined before.";
+$lang['capatcha']               = "Please insert valid capatcha";
+$lang['select']                 = "Please select value for this field.";
+$lang['valid_date']             = "Please insert valid date value.";
+$lang["max_count"]              ="Please select less than %s %s item(s)";
+$lang["min_count"]              ="Please select more than %s %s item(s)";
 
-$lang["all_select"]             = "من فضلك حدد جميع الخيارات";
-
+$lang["all_select"]             ="Please Select all options.";
 
 /* End of file form_validation_lang.php */

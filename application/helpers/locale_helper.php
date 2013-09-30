@@ -30,7 +30,7 @@ function get_dir()
     //Get current instance
     $CI =& get_instance();
     //Reutrn dir session
-    return $CI->session->userdata('user_dir');
+    //return $CI->session->userdata('user_dir');
 }
 
 /**

@@ -14,7 +14,7 @@
 
 <ul>
 
-    <li class="title"><span>Our Solutions</span></li>
+    <li class="title"><span><?php echo lang('home_footer_our_solutions') ?></span></li>
     <li class="sub-title">
         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_PUBLISHING_SOLUTIONS) ?>">
             <?php echo lang('home_publishing_solutions') ?></a></li>
@@ -57,18 +57,13 @@
 </ul>
 
 <ul>
-    <li class="title"><span>Languages</span></li>
-    <li><a href="">English</a></li>
-    <li><a href="">Arabic</a></li>            
+    <li class="title"><span><?php echo lang('home_footer_langs') ?></span></li>
+    <li><a ref="en-us" class="lang"><?php echo lang('home_footer_english') ?></a></li>
+    <li><a ref='ar-eg' class="lang"><?php echo lang('home_footer_arabic') ?></a></li>            
 
-    <li class="sub-title" style="margin-top: 25px;">Search</li>
+    <li class="sub-title" style="margin-top: 25px;"><?php echo lang('home_footer_search') ?></li>
     <li><a href="<?php echo site_url('home/advanced_search') ?>"><?php echo lang('home_menu_advances_search') ?></a></li>
 
-    <!--    <li class="sub-title" style="margin-top: 25px;">Our Social Pages</li>
-        <li><a href="">Facebook</a></li>
-        <li><a href="">Twitter</a></li>
-        <li><a href="">Linkedin</a></li>
-        <li><a href="">Youtube</a></li>-->
 </ul>
 <div class="clear"></div>
 <div class="copyrights">
@@ -83,3 +78,6 @@
     var pageTracker = _gat._getTracker("UA-8059931-1");
     pageTracker._trackPageview();
 </script>
+<style>
+    .lang{cursor: pointer}
+</style>
