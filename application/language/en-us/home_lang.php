@@ -31,6 +31,13 @@ $lang['home_contact_us_capatch_hint']      ='Please enter the characters below:'
 $lang['home_contact_us_comment']      ='Comment';
 $lang['home_contact_us_ask_about']      ='Ask about';
 $lang['home_contact_us_fiil_form']      ='Or fill form';
+$lang['home_request_proposal_marketting']      ='Marketting';
+$lang['home_request_proposal_rights']      ='Rights';
+$lang['home_request_proposal_publishing']      ='Publishing';
+$lang['home_request_proposal_customer_service']      ='Customer Sevices';
+$lang['home_request_proposal_sales']      ='Sales';
+$lang['home_request_proposal_department']      ='Department';
+
 $lang['home_btn_send']      ='Send';
 
 /////////////////////////career form/////////////////////////

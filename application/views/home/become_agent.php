@@ -25,6 +25,21 @@
             <span class="star">*</span>
             <?php echo form_error('email') ?>
         </li>
+        <?php if(isset($is_request_proposal)&&$is_request_proposal){ ?>
+        <li>
+            <?php echo lang('home_request_proposal_department', 'department') ?>
+            <select name="department" >
+                <option value=""><?php echo lang('global_select') ?></option>
+                <option value="marketting"><?php echo lang('home_request_proposal_marketting') ?></option>
+                <option value="rights"><?php echo lang('home_request_proposal_rights') ?></option>
+                <option value="publishing"><?php echo lang('home_request_proposal_publishing') ?></option>
+                <option value="customer_service"><?php echo lang('home_request_proposal_customer_service') ?></option>
+                <option value="sales"><?php echo lang('home_request_proposal_sales') ?></option>
+            </select>
+            <span class="star">*</span>
+            <?php echo form_error('email') ?>
+        </li>
+        <?php } ?>
         <li>
             <label>&nbsp;</label>
             <span class="capatcha-span">

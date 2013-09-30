@@ -477,6 +477,7 @@ class Home extends My_Controller {
             $this->form_validation->set_rules('email', '', 'required|valid_email|xss_clean');
             $this->form_validation->set_rules('security_code', '', 'required|capatcha|xss_clean');
             $this->form_validation->set_rules('comment', '', 'required|xss_clean');
+            $this->form_validation->set_rules('department', '', 'required|xss_clean');
             if ($this->form_validation->run()) {
                 $body =
                         "Full name: {$_POST['full_name']}<br>"
@@ -487,13 +488,30 @@ class Home extends My_Controller {
                         . "Comment: {$_POST['comment']}<br>"
                         . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
-
-                send_email(BECOME_AGENT_MAIL,$_POST['email'],$_POST['full_name'], 'Request Propsal Form Via Nahdet Misr', $body);
+                switch ($_POST['department']) {
+                    case 'marketting':
+                        $to='marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        break;
+                    case 'rights':
+                        $to='rights@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        break;
+                    case 'publishing':
+                        $to='rights@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        break;
+                    case 'customer_service':
+                        $to='customerservice@nahdetmisr.com,marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        break;
+                    case 'sales':
+                        $to='customerservice@nahdetmisr.com,marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        break;
+                }
+                send_email($to,$_POST['email'],$_POST['full_name'], 'Request Propsal Form Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
         $page = StaticPagesTable::getPage('request_prposal');
         $this->data['page'] = $page;
+        $this->data['is_request_proposal']=true;
         $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_request_prposal');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->template->add_css('layout/css/form.css');
