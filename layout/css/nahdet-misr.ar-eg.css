@@ -541,12 +541,13 @@ a:hover{
     color: #272727;	
     position: relative;
     top: -10px;
+    text-align: center;
 }
 
 .request-proposal a{
     position: relative;
     top: 8px;
-    right: 19px;
+    /*right: 19px;*/
     font-size: 15px;
 }
 
