@@ -6,13 +6,13 @@
 }
 #menu > li {
     float: right;
-    height: 28px;
+    height: 34px;
 }
 
 #menu ul {
     position: absolute;
     display: none;
-    z-index: 999;
+    z-index: 9999;
 }
 #menu ul li a {
     width: 80px;
@@ -25,7 +25,7 @@
     position: absolute;
     /*    top: 130px;*/
     margin-right: -10px !important;
-    margin-top: 11px;
+    margin-top: -2px;
     background-color: #263450;
     z-index: 100;
     box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.41);
@@ -35,7 +35,7 @@
     border-bottom: 1px solid #000907;
     height: 20px;
     margin-top: 3px;
-    padding: 1px 13px 1px 10px;
+    padding: 1px 13px 5px 10px;
     min-width: 175px;
     top: 0 !important;
 }
