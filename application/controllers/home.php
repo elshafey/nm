@@ -177,6 +177,7 @@ class Home extends My_Controller {
                         . lang('home_careers_apply_start_date') . ": {$_POST['start_date']}<br>"
                         . lang('home_careers_apply_brief_description') . ": {$_POST['brief_description']}<br>"
                 ;
+                pre_print($_FILES);
                 $this->email->attach($_FILES['cv_file']['tmp']);exit;
                 send_email(CAREERS_EMAIL,$_POST['email'],$_POST['name'],$_POST['name'] . ' Application Via Nahdet Misr', $body);
                 redirect('/');
