@@ -139,7 +139,7 @@ class Home extends My_Controller {
 
     public function careers() {
         if ($_POST) {
-            $_POST['cv_file']=' ';
+            $_POST['cv_file'] = ' ';
             $this->form_validation->set_error_delimiters('<span class="frm_error_msg">', '</span>');
             $this->form_validation->set_rules('interests', '', 'xss_clean');
             $this->form_validation->set_rules('name', '', 'required|xss_clean');
@@ -156,11 +156,13 @@ class Home extends My_Controller {
             $this->form_validation->set_rules('start_date', '', 'xss_clean');
             $this->form_validation->set_rules('brief_description', '', 'required|xss_clean');
             $this->form_validation->set_rules('cv_file', '', 'required_file|match_types[pdf,txt,doc,docx]|match_size[2024]|xss_clean');
-            
+
             if ($this->form_validation->run()) {
                 $interests = lang('home_careers_apply_interests');
-                foreach ($_POST['interests'] as $key => $value) {
-                    $_POST['interests'][$key] = $interests[$key];
+                if (isset($_POST['interests'])) {
+                    foreach ($_POST['interests'] as $key => $value) {
+                        $_POST['interests'][$key] = $interests[$key];
+                    }
                 }
                 $body =
                         lang('home_careers_apply_interest_title') . ": " . implode(' - ', $_POST['interests']) . "<br>"
@@ -177,18 +179,18 @@ class Home extends My_Controller {
                         . lang('home_careers_apply_start_date') . ": {$_POST['start_date']}<br>"
                         . lang('home_careers_apply_brief_description') . ": {$_POST['brief_description']}<br>"
                 ;
-                pre_print($_FILES);
-                $this->email->attach($_FILES['cv_file']['tmp']);exit;
-                send_email(CAREERS_EMAIL,$_POST['email'],$_POST['name'],$_POST['name'] . ' Application Via Nahdet Misr', $body);
+
+                $this->email->attach($_FILES['cv_file']['tmp_name'], $_FILES['cv_file']['name']);
+                send_email(CAREERS_EMAIL, $_POST['email'], $_POST['name'], $_POST['name'] . ' Application Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
-        
+
         $this->data['page'] = StaticPagesTable::getPage('careers');
         $this->data['list'] = CareersTable::getList(true);
         $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_careers');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-        $this->template->add_css('layout/css/form.'.get_locale().'.css');
+        $this->template->add_css('layout/css/form.' . get_locale() . '.css');
         $this->template->write_view('content', 'home/careers', $this->data);
         $this->template->render();
     }
@@ -268,26 +270,26 @@ class Home extends My_Controller {
     }
 
     public function portfolio() {
-        
-        if(isset($_GET['per_page']))
-            $offset=$_GET['per_page'];
+
+        if (isset($_GET['per_page']))
+            $offset = $_GET['per_page'];
         else
-            $offset=0;
-        
+            $offset = 0;
+
         $this->data['page'] = StaticPagesTable::getPage('portfolio');
-        $this->data['portfolios'] = PortfoliosTable::getList(true,10,$offset);
-        
+        $this->data['portfolios'] = PortfoliosTable::getList(true, 10, $offset);
+
         $this->load->library('pagination');
-        $config['base_url'] = get_routed_url(Urls::URL_PREFIX_PORTFOLIO).'?';
+        $config['base_url'] = get_routed_url(Urls::URL_PREFIX_PORTFOLIO) . '?';
         $config['total_rows'] = PortfoliosTable::getCount();
         $config['per_page'] = 10;
         $config['use_page_numbers'] = TRUE;
         $config['num_links'] = 4;
         $config['page_query_string'] = TRUE;
-        
+
         $this->pagination->initialize($config);
         $this->data['pagination'] = $this->pagination->create_links();
-        
+
         $this->data['page_title'] = $this->data['page']['page_title'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->template->write_view('content', 'home/portfolio', $this->data);
@@ -330,7 +332,7 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function quick_search($pager=0) {
+    public function quick_search($pager = 0) {
         if (!$_GET || !isset($_GET['q']) && $_GET['q'])
             redirect('/');
         $_POST = $_GET;
@@ -372,7 +374,7 @@ class Home extends My_Controller {
         $this->data['categories'] = CategoriesTable::getList(true);
         $this->data['page_title'] = lang('home_menu_advances_search');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . lang('home_menu_advances_search') . '</span>';
-        $this->template->add_css('layout/css/form.'.get_locale().'.css');
+        $this->template->add_css('layout/css/form.' . get_locale() . '.css');
         $this->template->write_view('content', 'home/advanced_search', $this->data);
         $this->template->render();
     }
@@ -380,7 +382,7 @@ class Home extends My_Controller {
     private function setup_pagination($action = 'advanced_search') {
 
         $this->load->library('pagination');
-        $config['base_url'] = base_url() . 'home/'.$action.'/';
+        $config['base_url'] = base_url() . 'home/' . $action . '/';
         $config['total_rows'] = BooksTable::getCount();
         $config['per_page'] = 10;
         $config['uri_segment'] = 3;
@@ -423,7 +425,7 @@ class Home extends My_Controller {
                         . (isset($_POST['ask_about']) ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
 
-                send_email(CONTACT_US_EMAIL,$_POST['email'],$_POST['full_name'], 'Contact Us Form Via Nahdet Misr', $body);
+                send_email(CONTACT_US_EMAIL, $_POST['email'], $_POST['full_name'], 'Contact Us Form Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
@@ -433,7 +435,7 @@ class Home extends My_Controller {
         $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_contact_us');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->data['countries'] = CountriesTable::getList();
-        $this->template->add_css('layout/css/form.'.get_locale().'.css');
+        $this->template->add_css('layout/css/form.' . get_locale() . '.css');
         $this->template->write_view('content', 'home/contact_us', $this->data);
         $this->template->render();
     }
@@ -458,7 +460,7 @@ class Home extends My_Controller {
                         . ($_POST['ask_about'] ? 'Ask about:' . implode(', ', $_POST['ask_about']) : '')
                 ;
 
-                send_email(BECOME_AGENT_MAIL,$_POST['email'],$_POST['full_name'], 'Becom Agent Form Via Nahdet Misr', $body);
+                send_email(BECOME_AGENT_MAIL, $_POST['email'], $_POST['full_name'], 'Becom Agent Form Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
@@ -467,7 +469,7 @@ class Home extends My_Controller {
         $this->data['page'] = $page;
         $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_become_agent');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-        $this->template->add_css('layout/css/form.'.get_locale().'.css');
+        $this->template->add_css('layout/css/form.' . get_locale() . '.css');
         $this->template->write_view('content', 'home/become_agent', $this->data);
         $this->template->render();
     }
@@ -495,31 +497,31 @@ class Home extends My_Controller {
                 ;
                 switch ($_POST['department']) {
                     case 'marketting':
-                        $to='marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        $to = 'marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
                         break;
                     case 'rights':
-                        $to='rights@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        $to = 'rights@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
                         break;
                     case 'publishing':
-                        $to='rights@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        $to = 'rights@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
                         break;
                     case 'customer_service':
-                        $to='customerservice@nahdetmisr.com,marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        $to = 'customerservice@nahdetmisr.com,marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
                         break;
                     case 'sales':
-                        $to='customerservice@nahdetmisr.com,marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
+                        $to = 'customerservice@nahdetmisr.com,marketing@nahdetmisr.com,nehad.hashem@nahdetmisr.com';
                         break;
                 }
-                send_email($to,$_POST['email'],$_POST['full_name'], 'Request Propsal Form Via Nahdet Misr', $body);
+                send_email($to, $_POST['email'], $_POST['full_name'], 'Request Propsal Form Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
         $page = StaticPagesTable::getPage('request_prposal');
         $this->data['page'] = $page;
-        $this->data['is_request_proposal']=true;
+        $this->data['is_request_proposal'] = true;
         $this->data['page_title'] = ($page) ? $page['page_title'][get_locale()] : lang('home_menu_request_prposal');
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
-        $this->template->add_css('layout/css/form.'.get_locale().'.css');
+        $this->template->add_css('layout/css/form.' . get_locale() . '.css');
         $this->template->write_view('content', 'home/become_agent', $this->data);
         $this->template->render();
     }
@@ -549,26 +551,26 @@ class Home extends My_Controller {
 
     private function get_common_news($model = 'News') {
 
-        if(isset($_GET['per_page']))
-            $offset=$_GET['per_page'];
+        if (isset($_GET['per_page']))
+            $offset = $_GET['per_page'];
         else
-            $offset=0;
-        
+            $offset = 0;
+
         $modelTable = $model . 'Table';
-        $this->data['list'] = $modelTable::getList(true,10,$offset);
-        
+        $this->data['list'] = $modelTable::getList(true, 10, $offset);
+
         $this->load->library('pagination');
-        $config['base_url'] = get_routed_url($modelTable::getListUrl()).'?';
+        $config['base_url'] = get_routed_url($modelTable::getListUrl()) . '?';
         $config['total_rows'] = $modelTable::getCount();
         $config['per_page'] = 10;
         $config['use_page_numbers'] = TRUE;
 //        $config['uri_segment'] = 3;
         $config['num_links'] = 4;
         $config['page_query_string'] = TRUE;
-        
+
         $this->pagination->initialize($config);
         $this->data['pagination'] = $this->pagination->create_links();
-        
+
         $this->template->write_view('content', 'home/news', $this->data);
         $this->template->render();
     }
