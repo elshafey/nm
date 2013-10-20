@@ -593,8 +593,13 @@ a:hover{
     padding-bottom: 10px;
     border-bottom: 1px dashed #CCC;
     clear: both;
-    height: 70px;
+    height: 86px;
     margin-top: 10px;
+}
+
+.portfolio-list li .news-thumbnail img{
+    height: auto;
+    width: 100px;
 }
 
 .portfolio-list li .photo{

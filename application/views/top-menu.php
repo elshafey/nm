@@ -58,8 +58,8 @@
             <li class="menu-separator">|</li>
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_CAREERS) ?>"><?php echo lang('home_menu_careers') ?></a></li>
             <li class="menu-separator">|</li>
-            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_FAQS) ?>"><?php echo lang('home_menu_faqs') ?></a></li>
-            <li class="menu-separator">|</li>
+<!--            <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_FAQS) ?>"><?php echo lang('home_menu_faqs') ?></a></li>
+            <li class="menu-separator">|</li>-->
             <li><a href="<?php echo get_routed_url(Urls::URL_PREFIX_CONTACT_US) ?>"><?php echo lang('home_menu_contact_us'); ?></a></li>
         </ul>
     </div>

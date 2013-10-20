@@ -139,6 +139,7 @@ class Home extends My_Controller {
 
     public function careers() {
         if ($_POST) {
+            $_POST['cv_file']=' ';
             $this->form_validation->set_error_delimiters('<span class="frm_error_msg">', '</span>');
             $this->form_validation->set_rules('interests', '', 'xss_clean');
             $this->form_validation->set_rules('name', '', 'required|xss_clean');
@@ -154,6 +155,8 @@ class Home extends My_Controller {
             $this->form_validation->set_rules('employer', '', 'xss_clean');
             $this->form_validation->set_rules('start_date', '', 'xss_clean');
             $this->form_validation->set_rules('brief_description', '', 'required|xss_clean');
+            $this->form_validation->set_rules('cv_file', '', 'required_file|match_types[pdf,txt,doc,docx]|match_size[2024]|xss_clean');
+            
             if ($this->form_validation->run()) {
                 $interests = lang('home_careers_apply_interests');
                 foreach ($_POST['interests'] as $key => $value) {
@@ -174,11 +177,12 @@ class Home extends My_Controller {
                         . lang('home_careers_apply_start_date') . ": {$_POST['start_date']}<br>"
                         . lang('home_careers_apply_brief_description') . ": {$_POST['brief_description']}<br>"
                 ;
-                
+                $this->email->attach($_FILES['cv_file']['tmp']);exit;
                 send_email(CAREERS_EMAIL,$_POST['email'],$_POST['name'],$_POST['name'] . ' Application Via Nahdet Misr', $body);
                 redirect('/');
             }
         }
+        
         $this->data['page'] = StaticPagesTable::getPage('careers');
         $this->data['list'] = CareersTable::getList(true);
         $this->data['page_title'] = ($this->data['page']) ? $this->data['page']['page_title'][get_locale()] : lang('home_menu_careers');

@@ -27,7 +27,7 @@
         <?php echo lang('home_careers_apply_brief') ?>
     </div>
     <br>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <ul>
             <li>
                 <h2><?php echo lang('home_careers_apply_interest_title') ?></h2>
@@ -98,6 +98,11 @@
             <li>
                 <?php echo lang('home_careers_apply_start_date', 'start_date') ?>
                 <input class="txtbox" type="text" value="<?php echo set_value('start_date') ?>" name="start_date" />
+            </li>
+            <li>
+                <?php echo lang('home_careers_cv_file', 'cv_file') ?>
+                <input type="file" name="cv_file"  value="<?php echo set_value('start_date') ?>" >
+                <?php echo form_error('cv_file') ?>
             </li>
             <li>
                 <label>&nbsp;</label>

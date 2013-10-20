@@ -76,7 +76,7 @@ $lang['home_careers_apply_position']       ='Current Position';
 $lang['home_careers_apply_employer']       ='Employer';
 $lang['home_careers_apply_start_date']       ='Start Date: Month/Year';
 $lang['home_careers_apply_brief_description']       ='Brief description for responsibilities';
-
+$lang['home_careers_cv_file']       ='CV'.'(PDF,TXT,DOC,DOCX) - MAX 2MB';
 
 //////////////////menu//////////////////////////////
 $lang['home_menu_media_center_news']='News';

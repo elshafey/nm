@@ -1,5 +1,8 @@
 <?php
 
+$lang['required_file']		= "You did not select a file to upload.";
+$lang['match_types']		= "File type doesn't match valid type.";
+$lang['match_size']		= "File size exceeds size limit.";
 $lang['required']		= "This field is required.";
 $lang['isset']			= "This field must have a value.";
 $lang['valid_email']		= "This field must contain a valid email address.";

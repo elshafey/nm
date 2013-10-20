@@ -509,7 +509,7 @@ class My_Form_validation {
                 }
 
                 // Run the function and grab the result
-                $result = $this->CI->$rule($postdata, $param,$row['field']);
+                $result = $this->CI->$rule($postdata, $param, $row['field']);
 
                 // Re-assign the result to the master data array
                 if ($_in_array == TRUE) {
@@ -1200,24 +1200,62 @@ class My_Form_validation {
      * @param bool $isStatic To determine if the $method is a static function or not
      * @return int 
      */
-    public function unique($str,$class,$field) {
-        if($str=='')
+    public function unique($str, $class, $field) {
+        if ($str == '')
             return true;
-        
-        if(preg_match('/\(/', $class)){
-            $exp=  explode('(', trim($class,')'));
-            $model=$exp[0].'Table';
-            $obj=$model::getOneBy($field,$str);
-            if($obj&&$obj['id']!=$exp[1]){
+
+        if (preg_match('/\(/', $class)) {
+            $exp = explode('(', trim($class, ')'));
+            $model = $exp[0] . 'Table';
+            $obj = $model::getOneBy($field, $str);
+            if ($obj && $obj['id'] != $exp[1]) {
                 return false;
             }
-        }else{
-            $model=$class.'Table';
-            $obj=$model::getOneBy($field,$str);
-            if($obj&&$obj[$field]==$str)
+        } else {
+            $model = $class . 'Table';
+            $obj = $model::getOneBy($field, $str);
+            if ($obj && $obj[$field] == $str)
                 return false;
         }
         return true;
+    }
+
+    public function required_file($str) {
+        $args = func_get_args();
+        array_shift($args);
+        $field_name = array_pop($args);
+        if (isset($_FILES[$field_name]) && $_FILES[$field_name]['name']) {
+            return true;
+        }
+        return false;
+    }
+
+    public function match_types($str) {
+        $args = func_get_args();
+        array_shift($args);
+        $field_name = array_pop($args);
+        include 'application/config/mimes.php';
+
+        foreach ($args as $type) {
+            $mime = $mimes[$type];
+            if (is_array($mime) && in_array($_FILES[$field_name]['type'], $mime)) {
+                return true;
+            } elseif ($_FILES[$field_name]['type'] == $mime) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function match_size($str) {
+        $args = func_get_args();
+        array_shift($args);
+        $field_name = array_pop($args);
+        
+        if ($_FILES[$field_name]['size']<=$args[0]*1024) {
+            return true;
+        }
+        return false;
     }
 
     public function uniqe_url($str, $page_id) {
@@ -1319,15 +1357,15 @@ class My_Form_validation {
 
         return true;
     }
-    
-    function capatcha($str){
+
+    function capatcha($str) {
         /* @var $CI My_Controller */
-        $CI=  get_instance();
-        $security_code=$CI->session->userdata('security_code');
+        $CI = get_instance();
+        $security_code = $CI->session->userdata('security_code');
         $CI->session->unset_userdata('security_code');
-        if(strtolower($str)==$security_code)
+        if (strtolower($str) == $security_code)
             return true;
-        
+
         return false;
     }
 

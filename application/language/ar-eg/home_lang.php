@@ -76,7 +76,7 @@ $lang['home_careers_apply_position']       ='الوظيفة الحالية';
 $lang['home_careers_apply_employer']       ='الشركة';
 $lang['home_careers_apply_start_date']       ='بداية العمل الحالى: شهر/سنة';
 $lang['home_careers_apply_brief_description']       ='شرح مختصر عن مسئولياتك فى العمل الحالى';
-
+$lang['home_careers_cv_file']       ='السيرة الذاتي'.'(PDF,TXT,DOC,DOCX) - MAX 2MB';
 
 //////////////////menu//////////////////////////////
 $lang['home_menu_media_center_news']='الأخبار';

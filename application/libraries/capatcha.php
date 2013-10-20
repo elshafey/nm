@@ -24,7 +24,7 @@
 
 class Captcha {
 
-    var $font = 'fonts/monofont.ttf';
+    var $font = 'layout/fonts/monofont.ttf';
 
     function generateCode($characters) {
         /* list all possible characters, similar looking characters and vowels have been removed */
