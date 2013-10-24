@@ -80,7 +80,7 @@ $lang['home_careers_cv_file']       ='السيرة الذاتي'.'(PDF,TXT,DOC,D
 
 //////////////////menu//////////////////////////////
 $lang['home_menu_media_center_news']='الأخبار';
-$lang['home_menu_portfolio']='الحُزمة';
+$lang['home_menu_portfolio']='أنشطة نهضة مصر';
 $lang['home_menu_media_center']='المركز الإعلامي';
 $lang['home_menu_media_center_press_release']='تصريحات صحفية';
 $lang['home_menu_media_center_events']='فعاليات';
