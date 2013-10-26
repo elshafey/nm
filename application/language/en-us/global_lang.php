@@ -224,12 +224,15 @@ $lang['staticpages_ajax_banner']                                ='Select detaile
 ////////////// Banners controller /////////////
 $lang['banner_index_page_title']         ='Manage home rotator';
 $lang['banner_form_create_page_title']         ='Create new banner';
-$lang['banners_path']                           ='Select image';
-$lang['banner_grid_preview']                           ='Preview';
-$lang['banner_alt']                            ='Image alt';
-$lang['banner_title']                          ='Image title';
-$lang['banner_page_order']                     ='Image order';
-$lang['banner_is_active']                      ='Is active?';
+$lang['banners_path_en-us']                    ='Select English rotator';
+$lang['banners_path_ar-eg']                    ='Select Arabic rotator';
+$lang['banners_grid_preview']                  ='Preview';
+$lang['banners_alt_en-us']                     ='English rotator alt';
+$lang['banners_alt_ar-eg']                     ='Arabic rotator alt';
+$lang['banners_title_en-us']                   ='English rotator title';
+$lang['banners_title_ar-eg']                   ='Arabic rotator title';
+$lang['banners_page_order']                    ='Image order';
+$lang['banners_is_active']                     ='Is active?';
 $lang['banner_form_edit_page_title']           ='Edit banner';
 
 

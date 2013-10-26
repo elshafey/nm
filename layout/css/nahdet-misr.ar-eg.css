@@ -185,7 +185,8 @@ body{
 }
 
 .nahdit-mist-group-logo{
-    background-image: url(../images/nahdit-misr-group.jpg);
+    background-image: url(../images/nahdit-misr-group.ar-eg.jpg);
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 247px;
     height: 300px;

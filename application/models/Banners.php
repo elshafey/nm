@@ -11,14 +11,18 @@ class Banners extends CMS {
 
     protected function setUp() {
         parent::setUp();
-        
+        $value = array();
+        foreach (get_lang_list() as $key => $lang) {
+            $value[$key] = '';
+        }
         $this->setUpColumn(
                 array(
                     'name' => 'path',
                     'validation' => 'required|xss_clean',
                     'required' => false,
+                    'multi' => true,
                     'outType' => 'img_uploader',
-                    'value' => '',
+                    'value' => $value,
         ));
         $this->setUpColumn(
                 array(
@@ -33,16 +37,18 @@ class Banners extends CMS {
                     'name' => 'alt',
                     'validation' => 'required|xss_clean',
                     'required' => true,
+                    'multi' => true,
                     'outType' => 'textbox',
-                    'value' => '',
+                    'value' => $value,
         ));
         $this->setUpColumn(
                 array(
                     'name' => 'title',
                     'validation' => 'required|xss_clean',
                     'required' => true,
+                    'multi' => true,
                     'outType' => 'textbox',
-                    'value' => '',
+                    'value' => $value,
         ));
         
         array_unshift($this->render_fields, 'title');
