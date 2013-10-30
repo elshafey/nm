@@ -51,7 +51,7 @@ class Book extends CMSController {
     }
 
     public function export() {
-        $pages = BooksTable::advancedSearch($_GET,'','',FALSE);
+        $pages = BooksTable::advancedSearch($_GET, '', '', FALSE);
         require_once 'PHPExcel-1.7.7/PHPExcel.php';
         $cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
         $cacheSettings = array('memoryCacheSize' => '8GB');
@@ -80,12 +80,12 @@ class Book extends CMSController {
             $subcategory2 = SubCategories2Table::getOneBy('id', $book['parent_id']);
             $subcategory = SubCategoriesTable::getOneBy('id', $book['subcategory']);
             $category = CategoriesTable::getOneBy('id', $book['category']);
-            $url=  UrlsTable::getOneBy('parent', $book['id']);
-            $book['meta_title']=$url['meta_title'];
-            $book['meta_keywords']=$url['meta_keywords'];
-            $book['meta_description']=$url['meta_description'];
-            $preview=  array_pop(explode('/', $book['preview']));
-            $img=  array_pop(explode('/', $book['img']));
+            $url = UrlsTable::getOneBy('parent', $book['id']);
+            $book['meta_title'] = $url['meta_title'];
+            $book['meta_keywords'] = $url['meta_keywords'];
+            $book['meta_description'] = $url['meta_description'];
+            $preview = array_pop(explode('/', $book['preview']));
+            $img = array_pop(explode('/', $book['img']));
             $phpExcell->getActiveSheet()->setCellValue(get_cell_name(0, $key + 2), $book['isbn']);
             $phpExcell->getActiveSheet()->setCellValue(get_cell_name(1, $key + 2), $category['name']['ar-eg']);
             $phpExcell->getActiveSheet()->setCellValue(get_cell_name(2, $key + 2), $category['name']['en-us']);
@@ -120,44 +120,44 @@ class Book extends CMSController {
     public function import() {
         set_time_limit(0);
         require 'PHPExcel-1.7.7/PHPExcel.php';
-        $objPHPExcelReader=new PHPExcel_Reader_Excel2007();
-        $sheetInfo=($objPHPExcelReader->listWorksheetInfo($_FILES['file']['tmp_name']));
+        $inputFileType = PHPExcel_IOFactory::identify($_FILES['file']['tmp_name']);
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+        /* @var $objPHPExcel PHPExcel */
+        $objPHPExcel = $objReader->load($_FILES['file']['tmp_name']);
 
-        $objPHPExcel=$objPHPExcelReader->load($_FILES['file']['tmp_name']);
-        
         $k = 1;
         foreach ($objPHPExcel->getSheet()->getRowIterator(2) as $i => $row) {
             $_POST = array();
             $book_post = array();
-            if($i>$sheetInfo[0]['totalRows'])
-                break;
+//            if ($i > $sheetInfo[0]['totalRows'])
+//                break;
 //            echo $row->getRowIndex() . '<br>';
             foreach ($row->getCellIterator() as $cell) {
                 if ($cell->getColumn() == 'A') {
                     $book_post['isbn'] = $cell->getValue();
                 }
                 if ($cell->getColumn() == 'B') {
-                    $cat['ar-eg'] = $cell->getValue();
+                    $cat['ar-eg'] = trim($cell->getValue());
                 }
 
                 if ($cell->getColumn() == 'C') {
-                    $cat['en-us'] = $cell->getValue();
+                    $cat['en-us'] = trim($cell->getValue());
                 }
 
                 if ($cell->getColumn() == 'D') {
-                    $subcat['ar-eg'] = $cell->getValue();
+                    $subcat['ar-eg'] = trim($cell->getValue());
                 }
 
                 if ($cell->getColumn() == 'E') {
-                    $subcat['en-us'] = $cell->getValue();
+                    $subcat['en-us'] = trim($cell->getValue());
                 }
 
                 if ($cell->getColumn() == 'F') {
-                    $subcat2['ar-eg'] = $cell->getValue();
+                    $subcat2['ar-eg'] = trim($cell->getValue());
                 }
 
                 if ($cell->getColumn() == 'G') {
-                    $subcat2['en-us'] = $cell->getValue();
+                    $subcat2['en-us'] = trim($cell->getValue());
                 }
 
                 if ($cell->getColumn() == 'H') {
@@ -209,6 +209,10 @@ class Book extends CMSController {
                 }
             }
 
+            if (trim($cat['en-us']) == '') {
+                $cat['en-us'] = 'General';
+                $cat['ar-eg'] = 'عام';
+            }
             $this->form_validation = new My_Form_validation();
             $category = CategoriesTable::getOneBy('name', $cat['en-us']);
             $category_id = '';
@@ -229,7 +233,10 @@ class Book extends CMSController {
                     echo $form->renderFields();
                 }
             }
-
+            if (trim($subcat['en-us']) == '') {
+                $subcat['en-us'] = 'General';
+                $subcat['ar-eg'] = 'عام';
+            }
             $this->form_validation = new My_Form_validation();
             $subcategory = SubCategoriesTable::getOneBy('name', $subcat['en-us']);
             $subcategory_id = '';
@@ -252,6 +259,10 @@ class Book extends CMSController {
 //                        pre_print($form->cms->page);
             }
 
+            if (trim($subcat2['en-us']) == '') {
+                $subcat2['en-us'] = 'General';
+                $subcat2['ar-eg'] = 'عام';
+            }
             $this->form_validation = new My_Form_validation();
             $subcategory2 = SubCategories2Table::getOneBy('name', $subcat2['en-us']);
             $subcategory2_id = '';
@@ -278,9 +289,11 @@ class Book extends CMSController {
 
             $book_post['img_alt'] = $book_post['img'];
             $book_post['img_title'] = $book_post['title_en-us'];
-            $book_post['meta_title'] = $book_post['meta_title'] ;
-            $book_post['meta_keywords'] = $book_post['meta_keywords'] ;
-            $book_post['meta_description'] = $book_post['meta_description'];
+            
+//            $book_post['meta_title'] = $book_post['meta_title'];
+//            $book_post['meta_keywords'] = $book_post['meta_keywords'];
+//            $book_post['meta_description'] = $book_post['meta_description'];
+            
             $book_post['is_active'] = 1;
             $book_post['is_latest_release'] = 0;
             $book_post['is_most_popular'] = 0;
@@ -289,7 +302,7 @@ class Book extends CMSController {
             $book_post['subcategory'] = $subcategory_id;
             $book_post['parent_id'] = $subcategory2_id;
             $book_post['page_order'] = $k;
-            
+
             $this->form_validation = new My_Form_validation();
             $obj = BooksTable::getOneBy('isbn', $book_post['isbn']);
             if ($obj) {
@@ -311,13 +324,13 @@ class Book extends CMSController {
 
         if (isset($errors) && $errors)
             file_put_contents('non-uploded.txt', serialize($errors));
-        
+
         redirect('admin/book');
     }
 
     public function books_list() {
 
-        $pages = BooksTable::advancedSearch($_GET,'','',FALSE);
+        $pages = BooksTable::advancedSearch($_GET, '', '', FALSE);
 
         $per_page = 10;
         $count = count($pages);
