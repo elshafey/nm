@@ -1,7 +1,7 @@
 <div class="about-us">
     <div class="about-us-left">
         <a id="vedio" href="#?w=420" rel="popup_name" class="poplight" style="font-size: 112% !important;">
-            <img src="<?php echo base_url() . $home_page['video_image'] ?>" width="228"/>
+            <img src="<?php echo base_url() . $home_page['video_image'] ?>" alt="" width="228"/>
         </a>
 <!--        <div class="home-title"><?php echo $home_page['page_title'][get_locale()] ?></div>-->
     </div>
@@ -44,9 +44,9 @@
                 <?php foreach ($latest_release as $value) { ?>
                     <div class="carousel-image-container-0">
                         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK.$value['id']) ?>" class="carousel-image-container-1">
-                            <div class="carousel-image-container-2" >
+                            <span class="carousel-image-container-2" >
                                 <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" />
-                            </div>
+                            </span>
                         </a>
                         <p class="carousel-image-info">
                             <?php echo $value['title'][get_locale()] ?><br/>
