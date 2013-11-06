@@ -27,9 +27,9 @@
                 <a href="http://www.youtube.com/nahdetmisrgroup" class="youtube"></a>
             </div>
             <?php if(get_locale()=='en-us'){ ?>
-            <a class="arabic-link" ref="ar-eg"></a>
+            <span class="arabic-link" ref="ar-eg"></span>
             <?php }else{ ?>
-            <a class="arabic-link" ref="en-us" ></a>
+            <span class="arabic-link" ref="en-us" ></span>
             <?php } ?>
 
             <div class="clear"></div>

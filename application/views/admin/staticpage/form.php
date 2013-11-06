@@ -17,3 +17,14 @@
     $('#li_meta_description').hide();
 </script>
 <?php } ?>
+<?php if($type=='home'){ ?>
+<script>
+    $('#li_img').hide();
+    $('#li_img_alt').hide();
+    $('#li_img_title').hide();
+    $('#img').val('home');
+    $('#img_alt').val('home');
+    $('#img_title').val('home');
+    $('#li_routed').hide();
+</script>
+<?php } ?>

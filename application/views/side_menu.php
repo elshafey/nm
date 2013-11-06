@@ -44,14 +44,14 @@
 <?php } ?>
 <?php if($side_banner){ ?>
 <a href="<?php echo base_url().$side_banner['ajax_banner'] ?>" class="lightbox_trigger">
-    <img src="<?php echo base_url().$side_banner['side_banner'] ?>" width="162" height="174" />
+    <img src="<?php echo base_url().$side_banner['side_banner'] ?>" alt="" width="162" height="174" />
 </a>
 <?php }else{?>
 <a href="<?php echo base_url() ?>layout/images/for-limited-time-img.jpg" class="lightbox_trigger">
-    <img src="<?php echo base_url() ?>layout/images/for-limited-time-img.jpg" width="162" height="174" />
+    <img src="<?php echo base_url() ?>layout/images/for-limited-time-img.jpg" alt="" width="162" height="174" />
 </a>
 <?php } ?>
-<script>
+<script type="text/javascript">
     jQuery(document).ready(function($) {
 
         $('.lightbox_trigger').click(function(e) {

@@ -18,7 +18,7 @@ class Staticpage extends CMSController {
     var $url_prefix = '';
 
     protected $_render_fields=array(
-        'home'=>array('page_title','page_content','video_path','video_image'),
+        'home'=>array('page_title','page_content','video_path','video_image','page_url'),
         'side-banner'=>array('side_banner','ajax_banner'),
         'partener'=>array('page_title','page_content','page_url'),
         'projects'=>array('page_title','page_content','page_url'),

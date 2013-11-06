@@ -20,9 +20,9 @@
                 <div class="logo-inside"></div>
             </a>
             <?php if (get_locale() == 'en-us') { ?>
-                <a class="arabic-link arabic-link-inside" ref="ar-eg"></a>
+                <span class="arabic-link arabic-link-inside" ref="ar-eg"></span>
             <?php } else { ?>
-                <a class="arabic-link arabic-link-inside" ref="en-us" ></a>
+                <span class="arabic-link arabic-link-inside" ref="en-us" ></span>
             <?php } ?>
             <div class="social-network-inside" id="social-network">
                 <a href="https://www.facebook.com/nahdetmisrgroup?ref=hl" class="facebook"></a>
