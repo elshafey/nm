@@ -45,7 +45,7 @@
                     <div class="carousel-image-container-0">
                         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK.$value['id']) ?>" class="carousel-image-container-1">
                             <span class="carousel-image-container-2" >
-                                <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" />
+                                <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo strip_quotes($value['img_alt']) ?>" />
                             </span>
                         </a>
                         <p class="carousel-image-info">
@@ -69,7 +69,7 @@
                     <div class="carousel-image-container-0">
                         <a href="<?php echo get_routed_url(Urls::URL_PREFIX_BOOK.$value['id']) ?>" class="carousel-image-container-1">
                             <span class="carousel-image-container-2" >
-                                <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo $value['img_alt'] ?>" />
+                                <img class="carousel-image-item"src="<?php echo base_url() . ($value['img']) ?>"  title="<?php echo $value['img_title'] ?>" alt="<?php echo strip_quotes($value['img_alt']) ?>" />
                             </span>
                         </a>
                         <p class="carousel-image-info">
