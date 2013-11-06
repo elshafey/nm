@@ -78,6 +78,6 @@
     var pageTracker = _gat._getTracker("UA-8059931-1");
     pageTracker._trackPageview();
 </script>
-<style>
+<style type="text/css">
     .lang{cursor: pointer}
 </style>
