@@ -51,4 +51,4 @@
     <img src="<?php echo base_url() ?>layout/images/for-limited-time-img.jpg" alt="" width="162" height="174" />
 </a>
 <?php } ?>
-<script type="text/javascript" src="<?php echo site_url() ?>layout/js/lightbox.js></script>
+<script type="text/javascript" src="<?php echo site_url() ?>layout/js/lightbox.js"></script>
