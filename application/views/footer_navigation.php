@@ -58,8 +58,8 @@
 
 <ul>
     <li class="title"><span><?php echo lang('home_footer_langs') ?></span></li>
-    <li><a lang="en-us" class="lang"><?php echo lang('home_footer_english') ?></a></li>
-    <li><a lang='ar-eg' class="lang"><?php echo lang('home_footer_arabic') ?></a></li>            
+    <li><a ref="en-us" class="lang"><?php echo lang('home_footer_english') ?></a></li>
+    <li><a ref='ar-eg' class="lang"><?php echo lang('home_footer_arabic') ?></a></li>            
 
     <li class="sub-title" style="margin-top: 25px;"><?php echo lang('home_footer_search') ?></li>
     <li><a href="<?php echo site_url('home/advanced_search') ?>"><?php echo lang('home_menu_advances_search') ?></a></li>
