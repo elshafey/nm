@@ -420,12 +420,12 @@ body{
     color: #6f6f6f;
 }
 
-#footer .wrapper ul li a{
+#footer .wrapper ul li a,span.lang{
     color: #6f6f6f;
     font-size: 11px;
     text-decoration: none;
 }
-#footer .wrapper ul li a:hover{
+#footer .wrapper ul li a:hover ,span.lang:hover{
     text-decoration:underline;	
 }
 

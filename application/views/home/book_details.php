@@ -21,7 +21,7 @@
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));</script>                                
 
-            <div class="fb-like" data-href="<?php echo (site_url('home/preview_book/' . $book['id'])) ?>" data-send="true" data-layout="box_count" data-width="100" data-show-faces="true"></div>
+            <div class="fb-like" data-href="<?php echo (get_routed_url(Urls::URL_PREFIX_BOOK. $book['id'])).'?lang='.  get_locale() ?>" data-send="true" data-layout="box_count" data-width="100" data-show-faces="true"></div>
         </div>                            
     </div>
     <div >
@@ -29,15 +29,15 @@
         <div style="clear: both;margin-bottom: 5px;">
             <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
             <div>
-                <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-url="<?php echo (site_url('home/preview_book/' . $book['id'])) ?>" data-counturl="<?php echo (site_url('home/preview_book/' . $book['id'])) ?>" data-text="<?php echo $book['title'][get_locale()] ?>" data-related="NahdetMisr">Tweet</a>
+                <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-url="<?php echo (get_routed_url(Urls::URL_PREFIX_BOOK. $book['id'])).'?lang='.  get_locale() ?>" data-counturl="<?php echo (get_routed_url(Urls::URL_PREFIX_BOOK. $book['id'])).'?lang='.  get_locale() ?>" data-text="<?php echo $book['title'][get_locale()] ?>" data-related="NahdetMisr">Tweet</a>
             </div>
         </div>
 
         <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
-        <script type="in/share" data-url="<?php echo (site_url('home/preview_book/' . $book['id'])) ?>" data-counter="top"></script>
+        <script type="in/share" data-url="<?php echo (get_routed_url(Urls::URL_PREFIX_BOOK. $book['id'])).'?lang='.  get_locale() ?>" data-counter="top"></script>
     </div>
     <!-- Place this tag where you want the +1 button to render -->
-    <div class="g-plusone" data-size="tall" data-href="<?php echo (site_url('home/preview_book/' . $book['id'])) ?>"></div>
+    <div class="g-plusone" data-size="tall" data-href="<?php echo (get_routed_url(Urls::URL_PREFIX_BOOK. $book['id'])).'?lang='.  get_locale() ?>"></div>
 
     <!-- Place this render call where appropriate -->
     <script type="text/javascript">
