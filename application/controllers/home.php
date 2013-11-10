@@ -316,7 +316,12 @@ class Home extends My_Controller {
     }
 
     public function preview_book($id) {
-
+        $exp=  explode('-', $id);
+        if(count($exp)>1){
+            $id=  array_shift($exp);
+            $lang=  implode('-', $exp);
+            $this->session->set_userdata('user_locale',$lang);
+        }
         $this->data['book'] = BooksTable::getOneBy('id', $id);
         $this->data['book']['SubCategories2'] = SubCategories2Table::getOneBy('id', $this->data['book']['parent_id']);
         $this->data['book']['SubCategories'] = SubCategoriesTable::getOneBy('id', $this->data['book']['subcategory']);
