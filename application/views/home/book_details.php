@@ -21,7 +21,7 @@
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));</script>                                
 
-            <div class="fb-like" data-href="<?php echo trim((site_url('home/preview_book/'. $book['id'])),'/').'-'.  get_locale() ?>" data-send="true" data-layout="box_count" data-width="100" data-show-faces="true"></div>
+            <div class="fb-like" data-href="<?php echo site_url('home/preview_book/'.get_locale().'-'. $book['id']) ?>" data-send="true" data-layout="box_count" data-width="100" data-show-faces="true"></div>
         </div>                            
     </div>
     <div >
