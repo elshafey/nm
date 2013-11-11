@@ -179,10 +179,10 @@ class Home extends My_Controller {
                         . lang('home_careers_apply_start_date') . ": {$_POST['start_date']}<br>"
                         . lang('home_careers_apply_brief_description') . ": {$_POST['brief_description']}<br>"
                 ;
-                move_uploaded_file($_FILES['cv_file']['tmp_name'], 'uploads/files/'.$_FILES['cv_file']['name']);
-                $this->email->attach('uploads/files/'.$_FILES['cv_file']['name']);
+                move_uploaded_file($_FILES['cv_file']['tmp_name'], 'uploads/files/' . $_FILES['cv_file']['name']);
+                $this->email->attach('uploads/files/' . $_FILES['cv_file']['name']);
                 send_email(CAREERS_EMAIL, $_POST['email'], $_POST['name'], $_POST['name'] . ' Application Via Nahdet Misr', $body);
-                unlink('uploads/files/'.$_FILES['cv_file']['name']);
+                unlink('uploads/files/' . $_FILES['cv_file']['name']);
                 redirect('/');
             }
         }
@@ -316,11 +316,9 @@ class Home extends My_Controller {
     }
 
     public function preview_book($id) {
-        $exp=  explode('-', $id);
-        if(count($exp)>1){
-            $id=  array_pop($exp);
-            $lang=  implode('-', $exp);
-            $this->session->set_userdata('user_locale',$lang);
+        $lang = $this->uri->segment(4);
+        if ($lang) {
+            $this->session->set_userdata('user_locale', $lang);
         }
         $this->data['book'] = BooksTable::getOneBy('id', $id);
         $this->data['book']['SubCategories2'] = SubCategories2Table::getOneBy('id', $this->data['book']['parent_id']);

@@ -43,10 +43,8 @@ class My_Controller extends CI_Controller {
         }
 
         if ($this->router->method == 'preview_book') {
-            $exp = explode('-', $this->uri->segment(3));
-            if (count($exp) > 1) {
-                $id = array_pop($exp);
-                $lang = implode('-', $exp);
+            $lang = $this->uri->segment(4);
+            if ($lang) {
                 $this->session->set_userdata('user_locale', $lang);
             }
         }
