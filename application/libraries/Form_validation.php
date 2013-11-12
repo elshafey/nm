@@ -1220,6 +1220,42 @@ class My_Form_validation {
         return true;
     }
 
+    /**
+     *
+     * @param string $str The value to validate
+     * @param string $class Class name which will search with
+     * @param string $method Class method to search with
+     * @param string $idFieldName The identity field in the table
+     * @param string $idFieldValue The value of identity field 
+     * @param bool $isStatic To determine if the $method is a static function or not
+     * @return int 
+     */
+    public function unique_multi($str, $class, $field) {
+        if ($str == '')
+            return true;
+        foreach (get_lang_list() as $key => $lang) {
+            if (strlen(array_shift(explode('_' . $key, $field))) < strlen($field)){
+                $field = array_shift(explode('_' . $key, $field));
+                break;
+            }
+        }
+        
+        if (preg_match('/\(/', $class)) {
+            $exp = explode('(', trim($class, ')'));
+            $model = $exp[0] . 'Table';
+            $obj = $model::getOneBy($field, $str);
+            if ($obj && $obj['id'] != $exp[1]) {
+                return false;
+            }
+        } else {
+            $model = $class . 'Table';
+            $obj = $model::getOneBy($field, $str);
+            if ($obj && $obj[$field] == $str)
+                return false;
+        }
+        return true;
+    }
+
     public function required_file($str) {
         $args = func_get_args();
         array_shift($args);
@@ -1251,8 +1287,8 @@ class My_Form_validation {
         $args = func_get_args();
         array_shift($args);
         $field_name = array_pop($args);
-        
-        if ($_FILES[$field_name]['size']<=$args[0]*1024) {
+
+        if ($_FILES[$field_name]['size'] <= $args[0] * 1024) {
             return true;
         }
         return false;
@@ -1269,8 +1305,9 @@ class My_Form_validation {
 
     public function valid_url_segment($str) {
         $explode = explode('/', $str);
+        
         foreach ($explode as $value) {
-            if (!preg_match('/^([a-zA-Z0-9_-])*$/', $value))
+            if (!preg_match('/^[\d\p{Arabic}a-zA-Z_-]*$/ui', $value))
                 return false;
         }
         return true;

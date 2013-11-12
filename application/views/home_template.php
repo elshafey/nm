@@ -6,7 +6,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/nahdet-misr.<?php echo get_locale() ?>.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>layout/css/coolMenu.<?php echo get_locale() ?>.css"/>
         <?php echo $_styles ?>
-
+        
+        <link rel="icon" type="image/jpg" href="<?php echo base_url() ?>layout/images/favicon.jpg"></link>
+        
         <script src="<?php echo base_url(); ?>layout/js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>layout/js/jquery/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>layout/js/jquery/jquery.mousewheel.min.js" type="text/javascript"></script>

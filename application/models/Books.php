@@ -188,7 +188,7 @@ class Books extends CMS {
                 array(
                     'name' => 'book_url',
                     'outType' => 'url',
-                    'value' => new Urls(Urls::URL_PREFIX_BOOK),
+                    'value' => new Urls(Urls::URL_PREFIX_BOOK,TRUE),
         ));
 
 

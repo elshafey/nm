@@ -119,6 +119,7 @@ class Book extends CMSController {
 
     public function import() {
         set_time_limit(0);
+        
         require 'PHPExcel-1.7.7/PHPExcel.php';
         $inputFileType = PHPExcel_IOFactory::identify($_FILES['file']['tmp_name']);
         $objReader = PHPExcel_IOFactory::createReader($inputFileType);
@@ -289,11 +290,11 @@ class Book extends CMSController {
 
             $book_post['img_alt'] = $book_post['img'];
             $book_post['img_title'] = $book_post['title_en-us'];
-            
+
 //            $book_post['meta_title'] = $book_post['meta_title'];
 //            $book_post['meta_keywords'] = $book_post['meta_keywords'];
 //            $book_post['meta_description'] = $book_post['meta_description'];
-            
+
             $book_post['is_active'] = 1;
             $book_post['is_latest_release'] = 0;
             $book_post['is_most_popular'] = 0;
@@ -303,15 +304,21 @@ class Book extends CMSController {
             $book_post['parent_id'] = $subcategory2_id;
             $book_post['page_order'] = $k;
 
+            $book_post['routed_en-us'] = slugify($book_post['title_en-us']);
+            $book_post['routed_ar-eg'] = slugify($book_post['title_ar-eg']);
+
             $this->form_validation = new My_Form_validation();
             $obj = BooksTable::getOneBy('isbn', $book_post['isbn']);
+
             if ($obj) {
                 $form = new Forms(new Books($obj['id']));
-                $book_post['routed'] = $form->cms->book_url->routed;
+//                $book_post['routed_ar-eg'] = $form->cms->book_url->routed;
+//                $book_post['routed_en-us'] = $form->cms->book_url->routed;
                 $book_post['is_latest_release'] = $form->cms->is_latest_release;
                 $book_post['is_most_popular'] = $form->cms->is_most_popular;
             } else {
-                $book_post['routed'] = Urls::URL_PREFIX_BOOK;
+//                $book_post['routed_en-us'] = Urls::URL_PREFIX_BOOK;
+//                $book_post['routed_ar-eg'] = Urls::URL_PREFIX_BOOK;
                 $form = new Forms(new Books());
             }
             $_POST = $book_post;

@@ -62,11 +62,7 @@ class Forms {
                     }
                     $this->cms->$key = $value;
                 } elseif (isset($field['value']) && $field['value'] instanceof CMS) {
-                    foreach ($this->cms->columns[$key]['value']->columns as $k => $column) {
-                        if (isset($_POST[$k])) {
-                            $this->cms->columns[$key]['value']->$k = $_POST[$k];
-                        }
-                    }
+                    $this->process_subpage($field['value']);
                 } elseif (isset($_POST[$key])) {
                     $value = $_POST[$key];
                     $this->cms->$key = $value;
@@ -80,6 +76,26 @@ class Forms {
             return true;
         }
         return false;
+    }
+
+    protected function process_subpage(CMS &$cms) {
+        foreach ($cms->render_fields as $key) {
+            $field = $cms->columns[$key];
+            if (isset($field['multi']) && $field['multi']) {
+                foreach (get_lang_list() as $code => $lang) {
+                    $value[$code] = $_POST[$key . "_$code"];
+                }
+                $cms->$key = $value;
+            } elseif (isset($field['value']) && $field['value'] instanceof CMS) {
+                $this->process_subpage($field['value']);
+            } elseif (isset($_POST[$key])) {
+                $value = $_POST[$key];
+                $cms->$key = $value;
+            }
+            if (isset($value)) {
+                unset($value);
+            }
+        }
     }
 
     protected function buildFields(array $fields) {
@@ -158,10 +174,10 @@ class Forms {
     }
 
     public function addImgUploader($field) {
-        $required=  in_array('required', explode('|', $field['validation']));
-        $fld_html = '<input name="%s" class="txtbox" id="%s" value="%s" '.($required? 'readonly="readonly"': '').'>'
+        $required = in_array('required', explode('|', $field['validation']));
+        $fld_html = '<input name="%s" class="txtbox" id="%s" value="%s" ' . ($required ? 'readonly="readonly"' : '') . '>'
                 . ' <input type="button" onclick="' . $field['name'] . 'BrowseServer();" value="' . lang('global_btn_browse') . '">'
-                . ($required?' <span class="star">*</span>':'')
+                . ($required ? ' <span class="star">*</span>' : '')
                 . '<div id="img_thumb"></div>'
                 . file_finder_txt($field['name'])
 
@@ -183,10 +199,10 @@ class Forms {
 
     public function addPassword($field) {
         $fld_html = '<input name="%s" type="password" class="txtbox" id="%s" value="" /> ';
-        
-        $temp =$this->buildCommonHtml($field, $fld_html);
-        $field['name']=$field['name'].'_confirm';
-        $this->fields[$field['name']]=$temp.$this->buildCommonHtml($field, $fld_html);
+
+        $temp = $this->buildCommonHtml($field, $fld_html);
+        $field['name'] = $field['name'] . '_confirm';
+        $this->fields[$field['name']] = $temp . $this->buildCommonHtml($field, $fld_html);
     }
 
     public function addHidden($field) {
@@ -243,6 +259,8 @@ class Forms {
         $html = '';
         if (isset($field['multi']) && $field['multi']) {
             foreach (get_lang_list() as $key => $lang) {
+                if (!isset($value[$key]))
+                    $value[$key] = '';
                 $new_fld = $field_name . "_$key";
                 $li = '<li id="li_' . $new_fld . '">';
                 $li.=lang($namespace . '_' . $new_fld, $new_fld);
@@ -255,15 +273,14 @@ class Forms {
                 if ($field['outType'] == 'content') {
 //                    pre_print($_POST);
                     $html.= sprintf($li, load_editor($new_fld, htmlspecialchars_decode($value[$key])));
-                }elseif ($field['outType'] == 'file_uploader') {
+                } elseif ($field['outType'] == 'file_uploader') {
                     $html.= sprintf($li, sprintf($field_html, $new_fld, $new_fld, $value[$key]));
-                    $html=  str_replace('pdfBrowseServer', $field_name.'_'.str_replace('-', '_', $key).'_BrowseServer', $html);
-                    $html=  str_replace('pdfSetFileField', $field_name.'_'.str_replace('-', '_', $key).'_SetFileField', $html);
-                    $html=  str_replace('"pdf"', '"'.$new_fld.'"', $html);
-                    $html=  str_replace('"#pdf"', '"#'.$new_fld.'"', $html);
+                    $html = str_replace('pdfBrowseServer', $field_name . '_' . str_replace('-', '_', $key) . '_BrowseServer', $html);
+                    $html = str_replace('pdfSetFileField', $field_name . '_' . str_replace('-', '_', $key) . '_SetFileField', $html);
+                    $html = str_replace('"pdf"', '"' . $new_fld . '"', $html);
+                    $html = str_replace('"#pdf"', '"#' . $new_fld . '"', $html);
 //                    echo $html;exit;
-                }
-                else {
+                } else {
                     $html.= sprintf($li, sprintf($field_html, $new_fld, $new_fld, $value[$key]));
                 }
             }

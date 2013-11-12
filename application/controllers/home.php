@@ -315,11 +315,12 @@ class Home extends My_Controller {
         $this->template->render();
     }
 
-    public function preview_book($id) {
-        $lang = $this->uri->segment(4);
-        if ($lang) {
-            $this->session->set_userdata('user_locale', $lang);
-        }
+    public function preview_book($id,$lang='') {
+        
+//        if ($lang) {
+//            $this->session->set_userdata('user_locale', $lang);
+//            $this->get_common_data();
+//        }
         $this->data['book'] = BooksTable::getOneBy('id', $id);
         $this->data['book']['SubCategories2'] = SubCategories2Table::getOneBy('id', $this->data['book']['parent_id']);
         $this->data['book']['SubCategories'] = SubCategoriesTable::getOneBy('id', $this->data['book']['subcategory']);
