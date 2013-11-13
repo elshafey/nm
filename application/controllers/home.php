@@ -331,7 +331,7 @@ class Home extends My_Controller {
         $this->data['url']['meta_title']=$this->data['book']['title'][get_locale()];
         $this->data['url']['meta_keywords']=$this->data['book']['title'][get_locale()];
         $this->data['url']['meta_description']=html_entity_decode(strip_tags($this->data['book']['brief_description'][get_locale()]));
-        pre_print($this->data['url']);
+        
         $this->data['page_title'] = $this->data['book']['title'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->template->write_view('content', 'home/book_details', $this->data);
