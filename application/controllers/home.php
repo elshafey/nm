@@ -316,11 +316,6 @@ class Home extends My_Controller {
     }
 
     public function preview_book($id,$lang='') {
-        
-//        if ($lang) {
-//            $this->session->set_userdata('user_locale', $lang);
-//            $this->get_common_data();
-//        }
         $this->data['book'] = BooksTable::getOneBy('id', $id);
         $this->data['book']['SubCategories2'] = SubCategories2Table::getOneBy('id', $this->data['book']['parent_id']);
         $this->data['book']['SubCategories'] = SubCategoriesTable::getOneBy('id', $this->data['book']['subcategory']);
@@ -332,6 +327,11 @@ class Home extends My_Controller {
                 '<meta property="og:site_name" content="Nahdet Misr"/>' .
                 '<meta property="og:description" content="' . html_entity_decode(strip_tags($this->data['book']['brief_description'][get_locale()])) . '"/>';
 
+        //adding new meta info
+        $this->data['url']['meta_title']=$this->data['book']['title'][get_locale()];
+        $this->data['url']['meta_keywords']=$this->data['book']['title'][get_locale()];
+        $this->data['url']['meta_description']=html_entity_decode(strip_tags($this->data['book']['brief_description'][get_locale()]));
+        pre_print($this->data['url']);
         $this->data['page_title'] = $this->data['book']['title'][get_locale()];
         $this->data['navigator'][] = '<span class="sub-item"> &gt; ' . $this->data['page_title'] . '</span>';
         $this->template->write_view('content', 'home/book_details', $this->data);
