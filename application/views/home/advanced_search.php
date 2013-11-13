@@ -24,9 +24,9 @@
         <li id="subcategory_area">
             <?php $this->load->view('home/_subcategories') ?>
         </li>
-        <li id="subcategory2_area">
+<!--        <li id="subcategory2_area" >
             <?php $this->load->view('home/_subcategories2') ?>
-        </li>
+        </li>-->
         <li class="btns">
             <input type="submit" value="<?php echo lang('home_btn_search') ?>" />
         </li>

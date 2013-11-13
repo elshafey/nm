@@ -6,7 +6,7 @@
 <div class="book-code"><?php echo lang('home_book_author') ?>: <?php echo $book['author'][get_locale()] ?></div>
 <div class="book-code"><?php echo lang('home_book_category') ?>: <?php echo $book['SubCategories']['Categories']['name'][get_locale()] ?></div>
 <div class="book-code"><?php echo lang('home_book_subcategory') ?>: <?php echo $book['SubCategories']['name'][get_locale()] ?></div>
-<div class="book-code"><?php echo lang('home_book_subcategory2') ?>: <?php echo $book['SubCategories2']['name'][get_locale()] ?></div>
+<!--<div class="book-code"><?php echo lang('home_book_subcategory2') ?>: <?php echo $book['SubCategories2']['name'][get_locale()] ?></div>-->
 <div class="book-code">                     
     <div class="fb-area">
         <div id="fb_share_1" style="margin-top: 1px;">
