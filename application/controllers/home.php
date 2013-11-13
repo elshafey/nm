@@ -326,7 +326,7 @@ class Home extends My_Controller {
         $this->data['book']['SubCategories'] = SubCategoriesTable::getOneBy('id', $this->data['book']['subcategory']);
         $this->data['book']['SubCategories']['Categories'] = CategoriesTable::getOneBy('id', $this->data['book']['category']);
         $this->data['meta_share'] =
-                '<meta property="og:url" content="' . base_url() . 'home/preview_book/' . $id . '"/>' .
+                '<meta property="og:url" content="' . get_routed_url(Urls::URL_PREFIX_BOOK . $id) . '"/>' .
                 '<meta property="og:image" content="' . base_url() . $this->data['book']['img'] . '" />' .
                 '<meta property="og:site_name" content="Nahdet Misr"/>' .
                 '<meta property="og:description" content="' . html_entity_decode(strip_tags($this->data['book']['brief_description'][get_locale()])) . '"/>';
