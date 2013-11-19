@@ -20,6 +20,7 @@
             }
             $.get('<?php echo site_url('admin/book/get_subcategories/') ?>/'+$(this).val(),function(data){
                 $('#li_parent_id').html($(data).html());
+                $('#subcategory').attr('name','parent_id');
             });
             
         }

@@ -20,7 +20,7 @@ function get_locale() {
     //Get current instance
     $CI = & get_instance();
     //Return locale session
-    return $CI->session->userdata('user_locale');
+    return $CI->session->userdata('user_locale')? $CI->session->userdata('user_locale'):'en-us';
 }
 
 /**
