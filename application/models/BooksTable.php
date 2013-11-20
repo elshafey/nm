@@ -71,7 +71,12 @@ class BooksTable extends CMSTable {
         $qb = $CI->doctrine->em->createQueryBuilder();
 
         $cms = self::getInstance();
-
+        
+        if($criteria){
+            foreach ($criteria as $k=>$value) {
+                $criteria[$k]=  trim($value);
+            }
+        }
         $qb->select('p,pd')
                 ->from('\Entities\Pages', 'p')
                 ->join('p.PageDetails', 'pd', Doctrine\ORM\Query\Expr\Join::WITH, '   p.namespace = ?10 ');
@@ -190,12 +195,12 @@ class BooksTable extends CMSTable {
     }
 
     public static function quickSearch($q, $limit = '', $offset = '') {
-
+        
         /* @var My_Controller  */
         $CI = get_instance();
         /* @var $qb \Doctrine\ORM\QueryBuilder */
         $qb = $CI->doctrine->em->createQueryBuilder();
-
+        $q=trim($q);
         $cms = self::getInstance();
 
         /* @var $query Doctrine\ORM\Query */

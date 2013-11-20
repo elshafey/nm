@@ -20,7 +20,7 @@ $(document).ready(function(){
     });
     $('.arabic-link,.lang').click(function(){
         urlParts=location.href.split("?");
-        location.href=urlParts[0]+"?lang="+$(this).attr("lang");
+        location.href=urlParts[0]+(urlParts.length>1? '?'+urlParts[1]:'?')+"&lang="+$(this).attr("lang");
     });
 });
 function site_url(controller){

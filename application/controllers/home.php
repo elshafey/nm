@@ -360,7 +360,7 @@ class Home extends My_Controller {
             $_POST = $_GET;
 
         if ($_POST) {
-
+            
             $this->data['books'] = BooksTable::advancedSearch($_POST, 10, $pager);
             $this->setup_pagination();
 
