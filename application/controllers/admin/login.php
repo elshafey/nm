@@ -21,7 +21,7 @@ class Login extends CMSController{
             $username = $this->input->post('username');
             $password = $this->input->post('password');
             
-            if($username == 'nahdet_misr' && $password == 'nahdet_misr@1'){
+            if($username == 'nahdet_misr' && $password == 'qwer@#1'){
                 $this->session->set_userdata('is_login' , true);
                 redirect(site_url('admin/dashboard'));
             }else{
